@@ -1,0 +1,144 @@
+.content{
+    width: 100%;
+    height: 75px;
+    box-shadow: 1px 0px 17px -2px rgba(173, 169, 169, 0.41);
+    border-radius: 5px 5px 0px 0px;
+    /* text-align: center; */
+}
+.topcontent{
+    color: rgb(27, 165, 27);
+    font-size: 18px;
+    width: 20%;
+    text-align: center;
+    padding-top: 2%;
+}
+.middlecontent{
+    width: 100%;
+    height: 660px;
+    box-shadow: 1px 0px 5px 0px rgba(143, 140, 140, 0.41);
+
+}
+.titles{
+    /* display: flex; */
+    /* width: 20%; */
+    font-size: 17px;
+    text-align: center;
+    color: white;
+}
+.optionsboxes{
+    display: flex;
+    width: 100%;
+    height: 160px;
+    padding: 1%;
+    justify-content: space-around;
+    /* background-color:rgba(42, 100, 226, 0.671);
+    text-align: center; */
+}
+.boxes1{
+    cursor: pointer;
+    width: 22%;
+    background-color:rgb(2, 167, 233);
+    padding: 1%;
+    border-radius: 8px;
+    /* height: 120px; */
+}
+.boxes2{
+    cursor: pointer;
+    margin-left: 2%;
+    width: 22%;
+    background-color:rgba(230, 185, 40, 0.931);
+    padding: 1%;
+    border-radius: 8px;
+}
+.boxes3{
+    cursor: pointer;
+    margin-left: 2%;
+    width: 22%;
+    background-color:rgba(230, 51, 105, 0.931);
+    padding: 1%;
+    border-radius: 8px;
+}
+.boxes4{
+    cursor: pointer;
+    margin-left: 2%;
+    width: 22%;
+    background-color:rgba(8, 136, 36, 0.931);
+    padding: 1%;
+    border-radius: 8px;
+}
+.number{
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+
+}
+.lines{
+    color: white;
+    size: 2px;
+}
+.appoinmenteddate{
+    height: 50px;
+    display: flex;
+}
+.appoinment{
+    padding: 1%;
+    font-size: 15px;
+    font-weight: 550;
+
+}
+.currentdate{
+    padding: 1%;
+    font-size: 15px;
+}
+.tablespart{
+    width: 100%;
+    height: 350px;
+}
+.headingrow{
+    height: 60px;
+    display: flex;
+    /* justify-content: space-around; */
+    font-size: 16px;
+    padding: 1%;
+}
+.sno{
+    width: 15%;
+    padding-left: 1%;
+
+}
+.customer{
+    width: 22%;
+    padding-left: 2%;
+
+}
+.time{
+    width: 18%;
+    padding-left: 2%;
+}
+.charge{
+    width: 35%;
+    padding-left: 2%;
+}
+.action{
+    padding-left: 2%;
+}
+.tablescontent{
+    width: 97%;
+    height: 260px;
+    border: 1px solid rgb(199, 194, 194);
+    margin: auto;
+}
+.datafoundimage{
+    margin-top: 4%;
+    text-align: center;
+}
+.datafoundimage img{
+    width: 8%;
+}
+.datafoundtext{
+    text-align: center;
+    font-size: 15px;
+    color: rgb(141, 138, 138);
+}

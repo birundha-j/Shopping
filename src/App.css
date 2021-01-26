@@ -1,38 +1,105 @@
-.App {
-  text-align: center;
+.hearderrightside{
+  padding-left: 70%;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.headerdisplay{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 265px;
+}
+
+.profileimage{
+
+  width: 20%;
+    height: 50px;
+    border-radius: 50%;
+  padding-left: 4%;
+
+}
+.Belldesign{
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 34px ! important;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  flex-shrink: 0;
+  user-select: none;
+padding-right: 5% ! important;
+}
+.headerbutton{
   color: white;
 }
+.headerline{
+  width: 1px;
+  color: gray;
+}
+.popupheader{
+  text-align: center;
+  height: 210px;
+}
+.popupfirstrow{
+  height: 130px;
+}
+.popupimage{
+  width: 41%;
+  height: 86px;
+  padding-top: 5%;
+  border-radius: 50%;
+  
+}
+.labname{
+  font-weight: 550;
+  font-size: 13px;
+    text-align: center;
+}
+.popupmail{
+  position: fixed;
+  color: rgb(121, 113, 113);
+  text-align: center;
+  font-size: 12px;
+}
+.popuplogout{
+  
+  height: 30px;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+}
+.popupbutton {
+ 
+    /* width: 6%; */
+    background-color: white;
+    border-color: white;
+  
+}
+.popupprofile{
+  font-size: 13px;
+color:rgb(65, 61, 61); 
 
-.App-link {
-  color: #61dafb;
+}
+.popupprivacy{
+  margin-top: 5%;
+  height: 30px;
+  font-size: 12px;
+text-align: center;
+color:rgb(151, 144, 144); 
+}
+.headerdateform{
+  font-size: 11px;
+  text-align: center;
+}
+.Logoimage{
+  width: 43%;
+    height: auto;
+    /* position: fixed; */
+    
+}
+.iconsize{
+  font-size: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.iconView svg{
+  font-size: 30px;
 }

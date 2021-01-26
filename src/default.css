@@ -1,0 +1,68 @@
+.drawerContainer .MuiAppBar-colorPrimary {
+    color: gray ! important;
+    background-color: white ! important;
+    /* width:100%; */
+    
+}
+
+.headerbutton ,.ant-btn:hover, .ant-btn:focus {
+    color: rgb(107, 102, 102) ! important; 
+    background: #fff ! important;
+    border-color: white ! important;
+}
+ .ant-modal {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    
+    color: rgba(211, 77, 77, 0.85);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    -webkit-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum', "tnum";
+    pointer-events: none;
+    position: fixed ! important;
+    top: 38px ! important;
+    left: 78% ! important;
+    width: 50% !important;
+    max-width: calc(100vw - 32px);
+    margin: 0 auto;
+    padding-bottom: 24px;
+    border-radius: 8px ! important;
+    /* box-shadow: 1px 0px 5px -2px rgba(219, 210, 210, 0.91) ! important; */
+
+}
+.popupcontrol .ant-modal-content {
+    position: relative;
+    background-color: rgb(247, 247, 247) ! important;
+    /* background-clip: padding-box; */
+    border: 0;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    pointer-events: auto;
+    width: 40% ! important;
+}
+.popupcontrol,.ant-modal-wrap {
+    z-index: 2222 ! important;
+}
+/* .popupcontrol .ant-modal-body {
+    padding: 5px;
+    line-height: 1.5715;
+} */
+/* .MuiIconButton-label {
+    width: 50% ! important;
+    display: flex;
+    align-items: inherit;
+    justify-content: left ! important;
+} */
+
+.logoonsider .makeStyles-toolbar-9 {
+    display: flex;
+    padding: 0px 8px;
+    min-height: 56px;
+    align-items: center;
+    justify-content: flex-end;
+}
+ 
