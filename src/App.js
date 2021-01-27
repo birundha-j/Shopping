@@ -45,7 +45,8 @@ import ReportIcon from '@material-ui/icons/Report';
 // Router:
 import { BrowserRouter as Router, Switch, Route,Redirect } from 'react-router-dom';
 import Home from './components/Home/home.js';
-import Appoinmentlist from './components/appoinmentlist.js';
+import AppointmentList from './components/AppoinmentList/appointedlist';
+import UploadResults from './components/UploadResults/uploadResult.js'
 import history from "./utils/history";
 
 
@@ -271,18 +272,19 @@ export default function Apps() {
             </a>
          
           
-            {/* <a href={'/appoinmentlist'}> */}
+            <a href={'/appointedlist'}>
             <ListItem button key={'Appoinment list'}>
-            {/* <Redirect to="/appoinmentlist" /> */}
               <ListItemIcon> <ListAltIcon /> </ListItemIcon>
               <ListItemText primary={'Appoinment list'} />
             </ListItem>
-            {/* </a> */}
+            </a>
           
+          <a href={'/uploadResult'}>
             <ListItem button key={'Upload Result'}>
               <ListItemIcon> <PublishIcon className="iconsize" /> </ListItemIcon>
               <ListItemText primary={'Upload Result'} />
             </ListItem>
+            </a>
           
             <ListItem button key={'Cancelled Appoinments'}>
               <ListItemIcon> <CancelPresentationIcon /> </ListItemIcon>
@@ -339,6 +341,8 @@ export default function Apps() {
           <Router >
               <Switch>
                 <Route exact path='/' component={Home} />
+                <Route path='/appointedlist' component={AppointmentList} />
+                <Route path='/uploadResult'  component={UploadResults} />
               </Switch>
           </Router>
 

@@ -1,0 +1,64 @@
+.Uploadedpending{
+    width: 100%;
+    height: 50px;
+    box-shadow: 1px 0px 3px 1px rgba(173, 169, 169, 0.41);
+    background-color: white;
+    
+
+}
+.changebuttons{
+    width: 18%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding-top: 1%;
+
+}
+/* .uploadingbutton{
+    height: 40px;
+    width: 55%;
+    border:2px solid green;
+    text-align: center;
+    border-top:none ;
+    border-left: none;
+    border-right: none;
+    padding-top: 3%;
+    color: green;
+    font-size: 15px;
+}
+.uploadingbutton:hover{
+    cursor: pointer;
+    height: 40px;
+    width: 55%;
+    border:2px solid rgb(22, 148, 22);
+    text-align: center;
+    border-top:none ;
+    border-left: none;
+    border-right: none;
+    padding-top: 3%;
+    color: green;
+    font-size: 15px;
+}
+.pendingbutton :hover{
+    cursor: pointer;
+    height: 40px;
+    width: 55%;
+    border:2px solid rgb(22, 148, 22);
+    text-align: center;
+    border-top:none ;
+    border-left: none;
+    border-right: none;
+    padding-top: 3%;
+    color: green;
+    font-size: 15px;
+} */
+
+.changebuttons .ant-layout-header {
+    height: 35px;
+    line-height: 35px;
+    padding: 0%;
+}
+.changebuttons .uploadingbutton :hover{
+    border-color: green;
+    color: green;
+}

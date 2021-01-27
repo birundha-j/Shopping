@@ -1,0 +1,62 @@
+.content{
+    width: 100%;
+    height: 65px;
+    box-shadow: 1px 0px 17px -2px rgba(173, 169, 169, 0.41);
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    /* text-align: center; */
+}
+.topcontent{
+    color: rgb(27, 165, 27);
+    font-size: 18px;
+    width: 35%;
+    text-align: left;
+    padding: 2%;
+}
+.selectdate{
+    width: 35%;
+    display: flex;
+}
+.selectrangetext{
+    font-size: 16px;
+    color: rgb(146, 142, 142);
+    padding-top: 5%;
+    padding-right: 2%;
+
+}
+.searchicons{
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1%;
+
+}
+.searchicons img{
+    width: 11%;
+    height: 40px;
+}
+.searchicons a{
+    color: black;
+}
+.searchicons a:hover{
+    color: black;
+}
+.pdficon .MuiSvgIcon-root{
+    font-size: 35px !important;
+
+}
+.printicon{
+    font-size: large;
+}
+.printicon .MuiSvgIcon-root{
+    font-size: 35px !important;
+}
+.customertable{
+    width: 100%;
+    height: 400px;
+    box-shadow: 1px 0px 3px 1px rgba(173, 169, 169, 0.41);
+
+}
+.headingrow{
+    padding-top: 2%;
+}

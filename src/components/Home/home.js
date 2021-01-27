@@ -1,6 +1,7 @@
 import react from 'react';
 import './home.css';
 import NoFound from './nofound.png';
+import Appoint from '../AppoinmentList/appointedlist'
 // const optionbox = [
 //     { title: "Total Appoinments", number: "4" },
 //     { title: "Manage Test", number: "25" },
@@ -8,7 +9,7 @@ import NoFound from './nofound.png';
 //     { title: "Total Revenue(KWD)", number: "0" }
 // ]
 function Homepage() {
-    let d=new Date();
+    let d = new Date();
     var dateFormat = require("dateformat");
 
     return (
@@ -17,13 +18,17 @@ function Homepage() {
                 <div className="topcontent">LAB DASHBOARD</div>
             </div>
             <div className="middlecontent">
-                
+
                 <div className="optionsboxes">
-                    <div className="boxes1">
-                        <div className="titles">Total Appoinments</div>
-                        <hr className="lines" />
-                        <div className="number">4</div>
-                    </div>
+                    
+                        <div className="boxes1">
+                        <a href={ '/appointedlist'}>
+                            <div className="titles">Total Appoinments</div>
+                            <hr className="lines" />
+                            <div className="number">4</div>
+                            </a>
+                        </div>
+                   
                     <div className="boxes2">
                         <div className="titles">Manage Test</div>
                         <hr className="lines" />
@@ -58,8 +63,14 @@ function Homepage() {
                         <div className="datafoundimage"><img src={NoFound} /></div>
                         <div className="datafoundtext">No data Found</div>
                     </div>
+                    <div className="mediabookingbutton">
+                        <div className="mediabutton">Media Upload</div>
+                        <div className="bookingbutton">Advertisement Booking</div>
+                    </div>
+
                 </div>
             </div>
+            <div className="footer"></div>
         </div>
     )
 }
