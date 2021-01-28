@@ -4,6 +4,8 @@ import { DatePicker, Space, Input } from 'antd';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import PrintIcon from '@material-ui/icons/Print';
 import NoFound from './nofound.png'
+import Tables from '../TableFormat/tableform.js';
+
 
 // import { Input, Space } from 'antd';
 import Excel from './excel.jpg';
@@ -31,25 +33,7 @@ function AppoinmentList() {
                     <div className="printicon"><PrintIcon onClick={prints} /></div>
                 </div>
             </div>
-            <div className="customertable">
-                <div className="tablespart">
-                    <div className="headingrow">
-                        <div className="sno">S.No</div>
-                        <div className="customer">Customer</div>
-                        <div className="time">Time</div>
-                        <div className="charge">Charge(KWD)</div>
-                        <div className="action">Action</div>
-                    </div>
-                    <div className="tablescontent">
-
-                        <div className="datafoundimage"><img src={NoFound} /></div>
-                        <div className="datafoundtext">No data Found</div>
-                    </div>
-
-
-                </div>
-
-            </div>
+            <Tables/>
         </div>
     )
 }

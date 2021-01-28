@@ -15,7 +15,7 @@
 }
 .selectdate{
     width: 35%;
-    display: flex;
+    display: flex;margin-right: 2%;
 }
 .selectrangetext{
     font-size: 16px;
@@ -25,10 +25,11 @@
 
 }
 .searchicons{
+
     width: 30%;
     display: flex;
     justify-content: space-around;
-    padding-top: 1%;
+    padding-top: 1.2%;
 
 }
 .searchicons img{
@@ -51,12 +52,4 @@
 .printicon .MuiSvgIcon-root{
     font-size: 35px !important;
 }
-.customertable{
-    width: 100%;
-    height: 400px;
-    box-shadow: 1px 0px 3px 1px rgba(173, 169, 169, 0.41);
 
-}
-.headingrow{
-    padding-top: 2%;
-}

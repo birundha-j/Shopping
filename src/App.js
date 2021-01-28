@@ -47,7 +47,8 @@ import { BrowserRouter as Router, Switch, Route,Redirect } from 'react-router-do
 import Home from './components/Home/home.js';
 import AppointmentList from './components/AppoinmentList/appointedlist';
 import UploadResults from './components/UploadResults/uploadResult.js'
-import history from "./utils/history";
+import CancelAppoinment from './components/Cancelled/cancelApponiment.js'
+import AdvertisementBook from './components/Advertisement/Adbooking.js';
 
 
 const drawerWidth = 240;
@@ -285,16 +286,18 @@ export default function Apps() {
               <ListItemText primary={'Upload Result'} />
             </ListItem>
             </a>
-          
+          <a href={'/cancelApponiment'}>
             <ListItem button key={'Cancelled Appoinments'}>
               <ListItemIcon> <CancelPresentationIcon /> </ListItemIcon>
               <ListItemText primary={'Cancelled Appoinments'} />
             </ListItem>
-          
+            </a>
+          <a href={'/Adbooking'} >
             <ListItem button key={'Advertisement Booking'}>
               <ListItemIcon> <PhoneBluetoothSpeakerIcon /> </ListItemIcon>
               <ListItemText primary={'Advertisement Booking'} />
             </ListItem>
+            </a>
           
             <ListItem button key={'Deals'}>
               <ListItemIcon> <LibraryBooksIcon /> </ListItemIcon>
@@ -343,6 +346,8 @@ export default function Apps() {
                 <Route exact path='/' component={Home} />
                 <Route path='/appointedlist' component={AppointmentList} />
                 <Route path='/uploadResult'  component={UploadResults} />
+                <Route path='/cancelApponiment' component={CancelAppoinment} />
+                <Route path='/Adbooking'  component={AdvertisementBook}/>
               </Switch>
           </Router>
 
