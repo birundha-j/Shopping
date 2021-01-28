@@ -1,6 +1,6 @@
 .Uploadedpending{
     width: 100%;
-    height: 50px;
+    height: 52px;
     box-shadow: 1px 0px 3px 1px rgba(173, 169, 169, 0.41);
     background-color: white;
     
@@ -14,51 +14,54 @@
     padding-top: 1%;
 
 }
-/* .uploadingbutton{
-    height: 40px;
-    width: 55%;
-    border:2px solid green;
-    text-align: center;
-    border-top:none ;
-    border-left: none;
-    border-right: none;
-    padding-top: 3%;
-    color: green;
-    font-size: 15px;
-}
-.uploadingbutton:hover{
+.uploadingbutton1{
     cursor: pointer;
     height: 40px;
-    width: 55%;
-    border:2px solid rgb(22, 148, 22);
+    width: 49%;
     text-align: center;
+    padding-top: 3%;
+    font-size: 15px;
+    border:2px solid rgb(22, 148, 22);
     border-top:none ;
     border-left: none;
     border-right: none;
-    padding-top: 3%;
     color: green;
-    font-size: 15px;
+    margin-right: 1%;
 }
-.pendingbutton :hover{
-    cursor: pointer;
+.pendingbutton1{
+    margin-left: 1%;
     height: 40px;
-    width: 55%;
-    border:2px solid rgb(22, 148, 22);
+    width: 49%;
     text-align: center;
-    border-top:none ;
-    border-left: none;
-    border-right: none;
     padding-top: 3%;
-    color: green;
     font-size: 15px;
-} */
+    cursor: pointer;
 
-.changebuttons .ant-layout-header {
-    height: 35px;
-    line-height: 35px;
-    padding: 0%;
 }
-.changebuttons .uploadingbutton :hover{
-    border-color: green;
+.uploadingbutton2{
+    height: 40px;
+    width: 49%;
+    text-align: center;
+    padding-top: 3%;
+    font-size: 15px;
+    margin-right: 1%;
+    cursor: pointer;
+
+}
+.pendingbutton2{
+    height: 40px;
+    width: 49%;
+    text-align: center;
+    padding-top: 3%;
+    font-size: 15px;
+    border:2px solid rgb(22, 148, 22);
+    border-top:none ;
+    border-left: none;
+    border-right: none;
     color: green;
+    margin-right: 1%;
+    cursor: pointer;
+
 }
+
+

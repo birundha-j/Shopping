@@ -1,24 +1,37 @@
-import react from 'react';
+import react, { useState, UseState } from 'react';
 import './uploadResult.css'
 
 import { DatePicker, Space, Input, Layout, Menu, Breadcrumb } from 'antd';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import PrintIcon from '@material-ui/icons/Print';
 import Excel from './excel.jpg';
+import { Tab } from '@material-ui/core';
+import NoFound from './nofound.png'
+
 
 const { Search } = Input;
 const { RangePicker } = DatePicker;
 const { Header, Content, Footer } = Layout;
 
 
-function uploadResult() {
+function UploadResult() {
+    const [changeupload, setchangeupload] = useState(true);
     function prints() {
         window.print();
+    }
+    function ChangePending() {
+        setchangeupload(false)
+        
+        
+    }
+    function ChangeUpload(){
+    setchangeupload(true)
+        
     }
     return (
         <div>
             <div className="content">
-                <div className="topcontent">APPOINMENT LIST</div>
+                <div className="topcontent">UPLOAD RESULT</div>
                 <div className="selectdate">
                     <div className="selectrangetext">Select Range:</div>
                     <div className="rangepicker"><Space direction="vertical" size={2}> <RangePicker /></Space></div>
@@ -33,18 +46,59 @@ function uploadResult() {
                 </div>
             </div>
             <div className="Uploadedpending">
-                <div className="changebuttons">
-                    <Header>
-                        <Menu  mode="horizontal" >
-                            <Menu.Item key="1" className="uploadingbutton">UPLOADED</Menu.Item>
-                            <Menu.Item key="2">PENDING</Menu.Item>
-                        </Menu>
-                    </Header>
-                    {/* <div className="uploadingbutton">UPLOADED</div>
-                    <div className="pendingbutton">PENDING</div> */}
+                {changeupload?<div className="changebuttons">
+                    <div className="uploadingbutton1">UPLOADED</div>
+                    <div className="pendingbutton1" onClick={ChangePending} >PENDING</div>
                 </div>
+                :
+                <div className="changebuttons">
+                    <div className="uploadingbutton2" onClick={ChangeUpload}>UPLOADED</div>
+                    <div className="pendingbutton2" >PENDING</div>
+                </div>
+                }
+                
             </div>
-        </div>
+            {changeupload?<div className="customertable">
+                <div className="tablespart">
+                    <div className="headingrow">
+                        <div className="sno">S.No</div>
+                        <div className="customer">Customer</div>
+                        <div className="time">Time</div>
+                        <div className="charge">Charge(KWD)</div>
+                        <div className="action">Action</div>
+                    </div>
+                    <div className="tablescontent">
+
+                        <div className="datafoundimage"><img src={NoFound} /></div>
+                        <div className="datafoundtext">No data Found</div>
+                    </div>
+
+                    </div>
+                </div>
+                :
+                <div className="customertable">
+                <div className="tablespart">
+                    <div className="headingrow">
+                        <div className="sno">S.No</div>
+                        <div className="customer">Customer</div>
+                        <div className="time">Time</div>
+                        <div className="charge">Charge</div>
+                        <div className="action">Action</div>
+                    </div>
+                    <div className="tablescontent">
+
+                        <div className="datafoundimage"><img src={NoFound} /></div>
+                        <div className="datafoundtext">No data Found</div>
+                    </div>
+
+
+                </div>
+                </div>
+                
+                }
+
+            </div>
+       
     )
 }
-export default uploadResult;
+export default UploadResult;

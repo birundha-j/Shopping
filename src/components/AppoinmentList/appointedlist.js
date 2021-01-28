@@ -1,6 +1,6 @@
 import react from 'react';
 import './appointedlist.css';
-import { DatePicker, Space,Input } from 'antd';
+import { DatePicker, Space, Input } from 'antd';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import PrintIcon from '@material-ui/icons/Print';
 import NoFound from './nofound.png'
@@ -11,7 +11,7 @@ import Excel from './excel.jpg';
 const { Search } = Input;
 const { RangePicker } = DatePicker;
 function AppoinmentList() {
-    function prints(){
+    function prints() {
         window.print();
     }
     return (
@@ -24,15 +24,15 @@ function AppoinmentList() {
                 </div>
                 <div className="searchicons">
                     <div>
-                        <Space direction="vertical"><Search placeholder="search" style={{ width: 150}} /></Space>
+                        <Space direction="vertical"><Search placeholder="search" style={{ width: 150 }} /></Space>
                     </div>
-                    <div ><a href={'/'} download><PictureAsPdfIcon className="pdficon"/></a></div>
-                    <img src={Excel}/>
+                    <div ><a href={'/'} download><PictureAsPdfIcon className="pdficon" /></a></div>
+                    <img src={Excel} />
                     <div className="printicon"><PrintIcon onClick={prints} /></div>
                 </div>
             </div>
             <div className="customertable">
-            <div className="tablespart">
+                <div className="tablespart">
                     <div className="headingrow">
                         <div className="sno">S.No</div>
                         <div className="customer">Customer</div>
@@ -45,7 +45,7 @@ function AppoinmentList() {
                         <div className="datafoundimage"><img src={NoFound} /></div>
                         <div className="datafoundtext">No data Found</div>
                     </div>
-                   
+
 
                 </div>
 
