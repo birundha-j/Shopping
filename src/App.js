@@ -49,7 +49,8 @@ import AppointmentList from './components/AppoinmentList/appointedlist';
 import UploadResults from './components/UploadResults/uploadResult.js'
 import CancelAppoinment from './components/Cancelled/cancelApponiment.js'
 import AdvertisementBook from './components/Advertisement/Adbooking.js';
-
+import DealsList from './components/Deals/deals.js';
+import Revenueitems from './components/Revenue/revenue.js';
 
 const drawerWidth = 240;
 
@@ -299,15 +300,18 @@ export default function Apps() {
             </ListItem>
             </a>
           
+          <a href={'./deals'}>
             <ListItem button key={'Deals'}>
               <ListItemIcon> <LibraryBooksIcon /> </ListItemIcon>
               <ListItemText primary={'Deals'} />
             </ListItem>
-          
+            </a>
+          <a href={'./revenue'}>
             <ListItem button key={'Revenue'}>
               <ListItemIcon> <EqualizerIcon /> </ListItemIcon>
               <ListItemText primary={'Revenue'} />
             </ListItem>
+            </a>
           
             <ListItem button key={'Manage catogory'}>
               <ListItemIcon> <CategoryIcon /> </ListItemIcon>
@@ -348,6 +352,8 @@ export default function Apps() {
                 <Route path='/uploadResult'  component={UploadResults} />
                 <Route path='/cancelApponiment' component={CancelAppoinment} />
                 <Route path='/Adbooking'  component={AdvertisementBook}/>
+                <Route path='./deals' component={DealsList} />
+                <Route path='./revenue' component={Revenueitems}/>
               </Switch>
           </Router>
 

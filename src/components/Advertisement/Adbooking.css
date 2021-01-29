@@ -1,6 +1,6 @@
 .maincontainer{
     width: 100%;
-    height: 500px;
+    height: 600px;
     box-shadow: 0px 0px 2px 1px rgba(143, 140, 140, 0.41);
     border-radius: 0px 0px 3px 3px;
     background-color: white;
@@ -146,4 +146,82 @@
 .UploadAd{
     padding: 1% 4%;
 
+}
+.custom-file-input {
+    color: transparent;
+    padding-top: 0%;
+  }
+  .custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .custom-file-input::before {
+    content: 'BROWSE';
+    color: white;
+    display: inline-block;
+    cursor: pointer;
+    padding: 2% 25%;
+    font-size: 9px;
+  }
+  .Choosefile{
+      padding: 2% 1%;
+  }
+  .bookbotton{
+      width: 94%;
+      margin: 1% ;
+      text-align: right;
+      padding-right: 2.5%;
+  }
+  .Bookingbutton  {
+
+      width: 13%;
+      height: 35px;
+    color: #fff;
+    background: rgb(5, 197, 69);
+    -webkit-box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+    box-shadow: 0 2px 0 rgb(0 0 0 / 5%); 
+    border: hidden;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 550;
+    font-size: 15px;
+}
+ .ant-message {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: right!important;
+    padding: 0;
+    color: rgba(0,0,0,.85);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715 !important;
+    
+    position: fixed !important;
+    top: 8px;
+    right: 0;
+    z-index: 10101 !important;
+    width: 100% !important;
+}
+.AddListBox{
+    width: 94%;
+    height: 150px;
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+    border: 1px solid gray;
+    border-style: dashed;
+    margin: auto;
+}
+.part1{
+    width: 24%;
+    height: 70px;
+    padding:1%
+}
+.headingonAddlist{
+    padding: 2% 0%;
+    font-size: 15px;
+    font-weight: 550;
+}
+.Filledimages{
+    width: 40%;
+    height: 74px;
 }
