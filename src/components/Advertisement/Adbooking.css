@@ -34,8 +34,10 @@
 
 .calenderside {
     width: 50%;
-    padding: 3%;
+    padding: 1%;
     background-color: turquoise;
+    /* margin-right: 2%; */
+
 }
 .rightsidecontent{
     width: 50%;
@@ -210,9 +212,10 @@
     border: 1px solid gray;
     border-style: dashed;
     margin: auto;
+    margin-bottom: 2%;
 }
 .part1{
-    width: 24%;
+    width: 20%;
     height: 70px;
     padding:1%
 }
@@ -223,5 +226,46 @@
 }
 .Filledimages{
     width: 40%;
-    height: 74px;
+    height: 70px;
+}
+.buttonsdesign{
+    width: 90%;
+    height: 50px;
+    display: flex;
+}
+ .editbutton span{
+    color: rgb(92, 128, 8);
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+/* .MuiSvgIcon-root {
+    border: none !important;
+    background-color: white !important;
+    
+    font-size: 14px !important;
+    
+    color: red !important;
+} */
+.deletebutton{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.ant-message{
+    z-index: 10101 !important;
+
+}
+.deletebutton svg{
+    color: red;
+    font-size: 15px;
+}
+.buttonsdesign Button{
+    border: none;
+    padding: 3%;
+}
+.deletepopup{
+    width: 70%;
 }

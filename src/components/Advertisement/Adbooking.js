@@ -5,37 +5,41 @@ import HalfFill from './halfimage.jpg'
 import FullFill from './fullimage.jpg'
 
 import CalenderRange from '../Calender/calender.js'
-import { DatePicker, Space, InputNumber, Select, Input, Button, message, Checkbox } from 'antd';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { DatePicker, Space, InputNumber, Select, Input, Modal, Button, message, Checkbox } from 'antd';
 const { Option } = Select;
 
 
 
 
 
-function AdvertisementBooking() {
-    const [AllData,setAllData]=useState([])
 
-    const [All,setAll]=useState([])
+function AdvertisementBooking() {
+
     const [Createlist, setCreatelist] = useState(true);
-    const [feesamount, setfeesamount] = useState([]);
-    const [startDate, setstartDate] = useState();
-    const [endDate, setendDate] = useState();
+    // const [feesamount, setfeesamount] = useState([]);
+    const [startDate, setstartDate] = useState([]);
+    const [endDate, setendDate] = useState([]);
     const [placement, setplacement] = useState();
-    const [totalCost, settotalCost] = useState()
+    const [totalCost, settotalCost] = useState([])
     const [full, setfull] = useState()
     const [half, sethalf] = useState()
-    const [checkedbox,setcheckedbox]=useState(true)
+    const [checkedbox, setcheckedbox] = useState(true)
+    const [first, setfirst] = useState()
+    const [AllData, setAllData] = useState([])
+    const [Fees, setFees] = useState([])
 
 
-let p=[];
-
+    let p = [];
+    // function InputChange(e) {
+    //     setInput(e.target.value)
+    // }
 
     function changeAdlist() {
-        
+
         setCreatelist(false)
     }
     function changeCreatelist() {
-        setAll()
 
         setCreatelist(true)
     }
@@ -64,38 +68,68 @@ let p=[];
     }
     function changeFull() {
         setcheckedbox(true)
-     }
-    function changehalf(){
+    }
+    function changehalf() {
         setcheckedbox(false)
-     }
+    }
+    function Feeschange(e) {
+        setFees(e)
+    }
+    // function startDatechange(e){
+    //     console.log(e,"startdate")
+    //     setstartDate(e)
+    // }
 
+    // function endDatechange(e){
+    //     console.log(e,"enddatre")
+
+    //     setendDate(e)
+    // }
+    function TotalAmountchange(e) {
+        console.log(e, "totalamolunt")
+
+        settotalCost(e)
+    }
 
     //
     function success() {
         message.success('Advertisement Added Successfully');
+        // let a = document.getElementById("fees").value
+
         let b = document.getElementById("startdate").value
         let c = document.getElementById("enddate").value
-        let d = document.getElementById("totalcost").value
-        // let e=document.getElementById("full").value
-        // let f = document.getElementById("half").value
-        let a = document.getElementById("fees").value
-            setfeesamount([...a,feesamount])
-        console.log(feesamount,"aaaa")
+        // let d = document.getElementById("totalcost").value
 
-        setstartDate(b)
-        setendDate(c)
-        settotalCost(d)
-        setAll([b,c,d],All)
-        console.log(All,"First")
-
-       
-// console.log(b.toString(),"startdate")
-// console.log(b.getDate()+" "+(b.getMonth()+1)+" "+b.getFullYear(),"date1")
-// console.log(c,"enddate")
+        // setfeesamount(a)
 
 
+        setAllData([...AllData, { fee: Fees, startDate: b, EndDate: c, TotalAmount: totalCost }])
+        // {fees:startDate}
+
+        // setstartDate(b)
+        // setendDate(c)
+        // settotalCost(d)
     }
+    function warning() {
+        message.warning("Advertisement Experiod");
+    };
 
+    console.log(AllData, "alldata")
+    //popup menu
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+      };
+    
+      const handleOk = () => {
+        setIsModalVisible(false);
+      };
+    
+      const handleCancel = () => {
+        setIsModalVisible(false);
+    
+      };
 
     return (
         <div>
@@ -126,11 +160,11 @@ let p=[];
                                         <Space direction="vertical" > <DatePicker style={{ width: 300 }} id="startdate" /> </Space>
                                     </div>
                                     <div className="Checkboxview"><Checkbox id="full" onClick={changeFull}>Full</Checkbox>
-                                        <Checkbox id="half"onClick={changehalf}>Half</Checkbox>
+                                        <Checkbox id="half" onClick={changehalf}>Half</Checkbox>
                                     </div>
                                     <div className="FeeDayview">
                                         <div>Fee /Day(KWD) </div>
-                                        <InputNumber style={{ width: 300, height: 35 }} id="fees" />
+                                        <InputNumber style={{ width: 300, height: 35 }} onChange={Feeschange} />
                                     </div>
                                 </div>
                                 <div className="rightCreatemodel">
@@ -140,8 +174,8 @@ let p=[];
                                     </div>
                                     <div className="PacementLocation">
                                         <div>Placement Location</div>
-                                        <Select style={{ width: 300 }} onChange={handleChange}>
-                                            <Option value="Home">Home</Option>
+                                        <Select style={{ width: 300 }} onChange={handleChange} >
+                                            <Option value="Home" >Home</Option>
 
                                             <Option value="Category">Category</Option>
 
@@ -149,7 +183,7 @@ let p=[];
                                     </div>
                                     <div className="Totalcost">
                                         <div>Total Cost(KWD) </div>
-                                        <InputNumber placeholder={"1500"} style={{ width: 300, height: 35 }} id="totalcost" />
+                                        <InputNumber placeholder={"1500"} style={{ width: 300, height: 35 }} onChange={TotalAmountchange} />
                                     </div>
 
                                 </div>
@@ -167,65 +201,78 @@ let p=[];
                                 <button className="Bookingbutton" onClick={success}>Book</button>
                             </div>
 
-                    
+
 
                         </div>
                         :
                         <div>
-                        <div className="AddListBox">
-                            <div className="part1">
-                                <div className="headingonAddlist">Placement :</div><div>{placement}</div>
-                                <div className="headingonAddlist">Days</div> 
-
-                            </div>
-                            <div className="part1">
-                                <div className="headingonAddlist"  >Start Date</div><div>{startDate}</div>
-                                <div className="headingonAddlist">Fee /Day(KWD) :</div><div>{feesamount}</div>
+                            {AllData.map((data) => {
+                                return (
 
 
-                            </div >
-                            <div className="part1">
-                                <div className="headingonAddlist">End Date :</div><div>{endDate}</div>
-                                <div className="headingonAddlist">Total Cost :</div><div>{totalCost}</div>
-                            </div>
+                                    <div className="AddListBox">
+                                        <div className="part1">
+                                            <div className="headingonAddlist">Placement :</div><div>{placement}</div>
+                                            <div className="headingonAddlist">Days</div>
 
-                            <div className="part1">
-                                {checkedbox?
-                                <div ><div>Full:</div><img src={FullFill} className="Filledimages"/></div>
-                                
-                                :
-                                <div><div>Half:</div><img src={HalfFill} className="Filledimages"/></div>
-                                }
-                            </div>
+                                        </div>
+                                        <div className="part1">
+                                            <div className="headingonAddlist"  >Start Date</div><div>{data.startDate}</div>
+                                            <div className="headingonAddlist">Fee /Day(KWD) :</div><div>{data.fee}</div>
+
+
+
+                                        </div >
+                                        <div className="part1">
+                                            <div className="headingonAddlist">End Date :</div><div>{data.EndDate}</div>
+                                            <div className="headingonAddlist">Total Cost :</div><div>{data.TotalAmount}</div>
+                                        </div>
+
+                                        <div className="part1">
+                                            {checkedbox ?
+                                                <div>
+                                                    <div>
+                                                        <div>Full:</div>
+                                                        <img src={FullFill} className="Filledimages" />
+                                                    </div>
+                                                    <div className="buttonsdesign">
+                                                        <Button className="editbutton" onClick={warning}>✎</Button>
+                                                        <div>
+                                                            <Button className="deletebutton" ><DeleteIcon onClick={showModal} /></Button>
+                                                            <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                                                                <p>Are You Sure Do You Want To Delete This Advertisement?</p>
+                                                                {/* <Button >No</Button>
+                                                                <Button type="primary" >Ok</Button> */}
+                                                            </Modal>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                :
+                                                <div ><div>Half:</div><img src={HalfFill} className="Filledimages" />
+                                                    <div>
+                                                        <div>
+                                                        <Button className="editbutton" onClick={warning}>✎</Button>
+                                                        </div>
+                                                        <Button className="deletebutton" ><DeleteIcon onClick={showModal}/></Button>
+                                                        <Modal title="Delete Advertisement" className="popupmenus" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                                                            <p>Are You Sure Do You Want To Delete This Advertisement?</p>
+                                                            {/* <Button >No</Button>
+                                                            <Button type="primary" >Ok</Button> */}
+                                                        </Modal>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                )
+                            })}
+
+
                         </div>
-                        <div className="AddListBox">
-                            <div className="part1">
-                                <div className="headingonAddlist">Placement :</div><div>{placement}</div>
-                                <div className="headingonAddlist">Days</div> 
 
-                            </div>
-                            <div className="part1">
-                                <div className="headingonAddlist"  >Start Date</div><div>{startDate}</div>
-                                <div className="headingonAddlist">Fee /Day(KWD) :</div><div>{feesamount}</div>
-
-
-                            </div >
-                            <div className="part1">
-                                <div className="headingonAddlist">End Date :</div><div>{endDate}</div>
-                                <div className="headingonAddlist">Total Cost :</div><div>{totalCost}</div>
-                            </div>
-
-                            <div className="part1">
-                                {checkedbox?
-                                <div ><div>Full:</div><img src={FullFill} className="Filledimages"/></div>
-                                
-                                :
-                                <div><div>Half:</div><img src={HalfFill} className="Filledimages"/></div>
-                                }
-                            </div>
-                        </div>
-                        </div>
-                        
                     }
                     </div>
                 </div>

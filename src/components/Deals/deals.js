@@ -5,7 +5,7 @@ import CalenderRange from '../Calender/calender.js'
 function DealsList(){
     return (
         <div>
-            test
+            
            
         </div>
     )

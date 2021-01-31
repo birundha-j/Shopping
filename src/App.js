@@ -51,6 +51,7 @@ import CancelAppoinment from './components/Cancelled/cancelApponiment.js'
 import AdvertisementBook from './components/Advertisement/Adbooking.js';
 import DealsList from './components/Deals/deals.js';
 import Revenueitems from './components/Revenue/revenue.js';
+import ManageCategory from './components/Managecategory/managecategory.js';
 
 const drawerWidth = 240;
 
@@ -312,11 +313,12 @@ export default function Apps() {
               <ListItemText primary={'Revenue'} />
             </ListItem>
             </a>
-          
+          <a href={'./managecategory'}>
             <ListItem button key={'Manage catogory'}>
               <ListItemIcon> <CategoryIcon /> </ListItemIcon>
               <ListItemText primary={'Manage catogory'} />
             </ListItem>
+            </a>
           
             <ListItem button key={'Manage Test'}>
               <ListItemIcon> <HourglassEmptyIcon /> </ListItemIcon>
@@ -352,8 +354,9 @@ export default function Apps() {
                 <Route path='/uploadResult'  component={UploadResults} />
                 <Route path='/cancelApponiment' component={CancelAppoinment} />
                 <Route path='/Adbooking'  component={AdvertisementBook}/>
-                <Route path='./deals' component={DealsList} />
-                <Route path='./revenue' component={Revenueitems}/>
+                <Route path='/deals' component={DealsList} />
+                <Route path='/revenue' component={Revenueitems}/>
+                <Route path='/managecategory' component={ManageCategory}/>
               </Switch>
           </Router>
 

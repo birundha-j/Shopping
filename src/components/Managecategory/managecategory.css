@@ -1,0 +1,34 @@
+.maincontent{
+    width: 100%;
+    height: 75px;
+    box-shadow: 1px 0px 17px -2px rgba(173, 169, 169, 0.41);
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.headermanage{
+    color: rgb(27, 165, 27);
+    font-size: 18px;
+    width: 20%;
+    text-align: center;
+    padding-top: 2%;
+}
+.searchmanage{
+    margin-right: 5%;
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+}
+.Addedfeilds{
+    font-size: 45px;
+    border: 1px solid;
+    /* padding-top: 1%; */
+    background-color: rgb(100, 158, 6);
+    color: white;
+    /* padding-bottom: 4%; */
+    width: 50%;
+    border-radius: 50%;
+    padding: 2% 4%;
+    margin: 5%;
+}
