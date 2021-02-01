@@ -174,7 +174,7 @@ function AdvertisementBooking() {
                                     </div>
                                     <div className="PacementLocation">
                                         <div>Placement Location</div>
-                                        <Select style={{ width: 300 }} onChange={handleChange} >
+                                        <Select defaultValue="Home" style={{ width: 300 }} onChange={handleChange} >
                                             <Option value="Home" >Home</Option>
 
                                             <Option value="Category">Category</Option>

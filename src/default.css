@@ -10,7 +10,7 @@
     background: #fff ! important;
     border-color: white ! important;
 }
- .ant-modal {
+ .popupcontrol .ant-modal {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     

@@ -1,4 +1,4 @@
-.maincontent{
+.headercontent{
     width: 100%;
     height: 75px;
     box-shadow: 1px 0px 17px -2px rgba(173, 169, 169, 0.41);
@@ -15,20 +15,144 @@
     padding-top: 2%;
 }
 .searchmanage{
+    margin-top: 1%;
     margin-right: 5%;
     width: 15%;
     display: flex;
     justify-content: space-between;
 }
 .Addedfeilds{
-    font-size: 45px;
-    border: 1px solid;
+    font-size: 32px;
     /* padding-top: 1%; */
     background-color: rgb(100, 158, 6);
     color: white;
-    /* padding-bottom: 4%; */
-    width: 50%;
+    padding-bottom: 8% ;
     border-radius: 50%;
-    padding: 2% 4%;
-    margin: 5%;
+    /* padding-bottom: revert; */
+    cursor: pointer;
+    height: 40px;
+    width: 200%;
+    text-align: center;
+}
+/* .searchmanage div{
+    margin-top: 4%;
+
+}
+.popupaddscreen{
+   
+    height: 270px;
+} */
+
+.ManagePopup{
+    height: 200px;
+}
+.popupheader {
+    color: rgb(100, 158, 6);
+    font-size: 17px;
+    font-weight: 550;
+    width: 100%;
+    height: 35px;
+    text-align: left;
+    
+    border-bottom: 1px solid rgb(241, 235, 235);
+
+}
+.categoryfield{
+    width: 100%;
+    height: 50px;
+    padding: 1%;
+}
+.inputbox{
+    width: 100%;
+    height: 40px;
+}
+.activebox{
+    height: 33px;
+    padding: 1%;
+    width: 100%;
+    padding-left: 1%;
+}
+.submitButton{
+    height: 40px;
+    text-align: right;
+    padding: 1%;
+}
+.cancelbutton{
+    margin-right: 2%;
+}
+.Tablecontent{
+    width: 100%;
+    box-shadow: 14px 11px 12px -6px rgb(173 169 169 / 41%);
+    background-color: white;
+    margin-top: 1%;
+    padding: 1%;
+
+}
+table {
+    counter-reset: rowNumber;
+    width: 100%;
+    justify-content: space-around;
+}
+
+table tr {
+    counter-increment: rowNumber;
+    width: 94%;
+    margin-bottom: 1%;
+}
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+.TopHeader{
+    width: 20%;
+    padding: 2%;
+    font-size: 17px;
+    color: rgb(156, 151, 151);
+}
+.managechangebuttons{
+    width: 20%;
+    padding: 1% 1.5%;
+
+
+}
+.ManageEdit {
+    color: rgb(135, 185, 16);
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    font-size: 23px;
+}
+.ManageEdit:hover{
+    background-color: white;
+    border: none;
+}
+.ManageDelete svg{
+    color: red;
+    font-size: 22px;
+    border: none;
+}
+.ManageDelete .ant-btn{
+    border: none !important;
+}
+
+.ManageTableRows{
+    text-align: left;
+    font-size: 15px;
+    height: 60px;
+    border: 1px solid rgb(230, 225, 225);
+    padding-bottom: 5%;
+
+}
+.ManageTableRows:hover{
+    border: none;
+    
+    box-shadow: 1px 0px 17px -2px rgba(131, 127, 127, 0.41);
+    cursor: pointer ;
+
+}
+.TableDatas{
+    padding: 1% 2%;
+    font-size: 16px;
+    color: rgb(161, 152, 152);
 }
