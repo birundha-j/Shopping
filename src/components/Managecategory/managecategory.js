@@ -18,6 +18,7 @@ function ManageCategory() {
 
 
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [filedRequired,setfiledRequired] = useState(true)
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -55,11 +56,18 @@ function ManageCategory() {
 
 
     }
+
     function submitbutton() {
-        setAllrows([...Allrows, { AddFields: AddingCategory }])
+        if(AddingCategory.length>0){
+        setAllrows([...Allrows, { AddFields: AddingCategory,Checkboxvalue:checkboxes }])
+        setAddingCategory([])
+        }else{
+            setfiledRequired(false)
+        }
+
     }
     function Activecheckbox() {
-        setCheckboxes(false)
+        setCheckboxes(!checkboxes)
     }
 
     return (
@@ -81,7 +89,7 @@ function ManageCategory() {
                                 </div>
                             <div>
                                 <div className="Addedfeilds" onClick={showModal} >+</div>
-                                <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} >
+                                <Modal visible={isModalVisible} onOk={submitbutton} okText={"Submit"} onCancel={handleCancel} >
                                     <div className="ManagePopup">
                                         <div className="popupheader">ADD CATEGORY </div>
                                         <div>
@@ -94,17 +102,17 @@ function ManageCategory() {
                                                 >
                                                 </Form.Item>
                                             </div>
-                                            <Input className="inputbox" onChange={addChange} />
+                                            <Input className={filedRequired?"inputbox":"showRed"} onChange={addChange} value={AddingCategory}/>
                                             <br />
                                             <div className="activebox">
                                                 <Form.Item {...tailLayout} name="remember" valuePropName="checked">
                                                     <Checkbox onChange={Activecheckbox}>Active</Checkbox>
                                                 </Form.Item>
                                             </div>
-                                            <div className="submitButton">
+                                            {/* <div className="submitButton">
                                                 <Button className="cancelbutton">Cancel</Button>
                                                 <Button type="primary" onClick={submitbutton}>Submit</Button>
-                                            </div>
+                                            </div> */}
 
                                         </div>
                                     </div>
@@ -132,10 +140,10 @@ function ManageCategory() {
                                 <td className="TableDatas"></td>
                                 <td className="TableDatas">{data.AddFields}</td>
                                 <td className="TableDatas">
-                                    {checkboxes ?
-                                        "Unactive"
-                                        :
+                                    {data.Checkboxvalue ?
                                         "Active"
+                                        :
+                                        "InActive"
                                     }
                                 </td>
                                 <td className="managechangebuttons">
