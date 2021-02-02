@@ -22,8 +22,8 @@ function AdvertisementBooking() {
     const [endDate, setendDate] = useState([]);
     const [placement, setplacement] = useState();
     const [totalCost, settotalCost] = useState([])
-    const [full, setfull] = useState()
-    const [half, sethalf] = useState()
+    const [full, setfull] = useState(true)
+    const [half, sethalf] = useState(true)
     const [checkedbox, setcheckedbox] = useState(true)
     const [first, setfirst] = useState()
     const [AllData, setAllData] = useState([])
@@ -66,12 +66,12 @@ function AdvertisementBooking() {
         var textinput = document.getElementById("filename");
         textinput.value = fileinput.value;
     }
-    function changeFull() {
+    function changeFullbox() {
+        setfull(true)
         setcheckedbox(true)
     }
-    function changehalf() {
-        setcheckedbox(false)
-    }
+    // function changehalf() {
+    // }
     function Feeschange(e) {
         setFees(e)
     }
@@ -103,7 +103,7 @@ function AdvertisementBooking() {
         // setfeesamount(a)
 
 
-        setAllData([...AllData, { fee: Fees, startDate: b, EndDate: c, TotalAmount: totalCost }])
+        setAllData([...AllData, { fee: Fees, startDate: b, EndDate: c, TotalAmount: totalCost, Half: half, Fullobj: full }])
         // {fees:startDate}
 
         // setstartDate(b)
@@ -120,16 +120,21 @@ function AdvertisementBooking() {
 
     const showModal = () => {
         setIsModalVisible(true);
-      };
-    
-      const handleOk = () => {
+    };
+
+    const handleOk = () => {
         setIsModalVisible(false);
-      };
-    
-      const handleCancel = () => {
+    };
+
+    const handleCancel = () => {
         setIsModalVisible(false);
-    
-      };
+
+    };
+    function changehalfbox() {
+        setcheckedbox(false)
+
+        sethalf(true)
+    }
 
     return (
         <div>
@@ -159,8 +164,8 @@ function AdvertisementBooking() {
                                         <div>Start Date</div>
                                         <Space direction="vertical" > <DatePicker style={{ width: 300 }} id="startdate" /> </Space>
                                     </div>
-                                    <div className="Checkboxview"><Checkbox id="full" onClick={changeFull}>Full</Checkbox>
-                                        <Checkbox id="half" onClick={changehalf}>Half</Checkbox>
+                                    <div className="Checkboxview"><Checkbox id="full" onChange={changeFullbox}>Full</Checkbox>
+                                        <Checkbox id="half" onChange={changehalfbox}>Half</Checkbox>
                                     </div>
                                     <div className="FeeDayview">
                                         <div>Fee /Day(KWD) </div>
@@ -230,38 +235,52 @@ function AdvertisementBooking() {
 
                                         <div className="part1">
                                             {checkedbox ?
-                                                <div>
+                                                <div>{data.Fullobj ?
                                                     <div>
-                                                        <div>Full:</div>
+                                                        <div>Full:
                                                         <img src={FullFill} className="Filledimages" />
-                                                    </div>
-                                                    <div className="buttonsdesign">
-                                                        <Button className="editbutton" onClick={warning}>✎</Button>
-                                                        <div>
-                                                            <Button className="deletebutton" ><DeleteIcon onClick={showModal} /></Button>
-                                                            <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                                                                <p>Are You Sure Do You Want To Delete This Advertisement?</p>
-                                                                {/* <Button >No</Button>
-                                                                <Button type="primary" >Ok</Button> */}
-                                                            </Modal>
                                                         </div>
-                                                    </div>
+                                                        <div className="buttonsdesign">
+                                                            <Button className="editbutton" onClick={warning}>✎</Button>
+                                                            <div>
+                                                                <Button className="deletebutton" ><DeleteIcon onClick={showModal} /></Button>
+                                                                <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                                                                    <p>Are You Sure Do You Want To Delete This Advertisement?</p>
+                                                                    {/* <Button >No</Button>
+                                                                <Button type="primary" >Ok</Button> */}
+                                                                </Modal>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                        :
+                                                    <div>
+                                                                welcome
+                                                       
+                                                    </div>}
 
                                                 </div>
 
                                                 :
-                                                <div ><div>Half:</div><img src={HalfFill} className="Filledimages" />
-                                                    <div>
+                                                <div >{data.Half ?
+                                                    <div>Half: <img src={HalfFill} className="Filledimages" />
                                                         <div>
-                                                        <Button className="editbutton" onClick={warning}>✎</Button>
+                                                            <div>
+                                                                <Button className="editbutton" onClick={warning}>✎</Button>
+                                                            </div>
+                                                            <Button className="deletebutton" ><DeleteIcon onClick={showModal} /></Button>
+                                                            <Modal title="Delete Advertisement" className="popupmenus" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                                                                <p>Are You Sure Do You Want To Delete This Advertisement?</p>
+                                                                
+                                                            </Modal>
                                                         </div>
-                                                        <Button className="deletebutton" ><DeleteIcon onClick={showModal}/></Button>
-                                                        <Modal title="Delete Advertisement" className="popupmenus" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                                                            <p>Are You Sure Do You Want To Delete This Advertisement?</p>
-                                                            {/* <Button >No</Button>
-                                                            <Button type="primary" >Ok</Button> */}
-                                                        </Modal>
                                                     </div>
+                                                    :
+                                                    <div>
+                                                        hi
+                                                    </div>
+
+
+                                                }
                                                 </div>
                                             }
                                         </div>

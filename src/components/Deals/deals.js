@@ -2,6 +2,8 @@ import react, { useState } from 'react';
 import './deals.css'
 import CalenderRange from '../Calender/calender.js'
 import { Select, Input, DatePicker, Space, Radio,InputNumber,Checkbox, Button} from 'antd';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 const { Option } = Select;
 
@@ -15,6 +17,11 @@ function DealsList() {
     const [DealTitle,setDealTitle]=useState([])
     const [ValidateFrom,setValidateFrom]=useState([])
     const [ValidateTo,setValidateTo]=useState([])
+    const [checkboxes, setCheckboxes] = useState(false)
+    const [dealamount,setdealamount]=useState([])
+    const [Percentage,setPercentage]=useState([])
+
+
 
     function changeAdlist() {
 
@@ -55,10 +62,22 @@ function DealsList() {
         let b=document.getElementById("validateTo").value
         setValidateFrom(a)
         setValidateTo(b)
-        setAllDeals([...AllDeals,{testname:TestName,dealtite:DealTitle,vdateFrom:ValidateFrom,VdateTo:ValidateTo}])
+        setAllDeals([...AllDeals,{testname:TestName,dealtite:DealTitle,vdateFrom:a,VdateTo:b,Checkboxvalue:checkboxes,DealAmountvalue:dealamount,Percentagevalue:Percentage}])
+        setCheckboxes(false)
+        setdealamount([])
+        setPercentage([])
+    }
+    function Activechange(){
+        setCheckboxes(true)
 
     }
+    function ChangeDealAmount(e){
+        setdealamount(e)
+    }
 
+    function changeDealPercentage(e){
+        setPercentage(e)
+    }
 
 
     
@@ -74,14 +93,14 @@ function DealsList() {
 
                 <div className="CreateDealsList">
                     <div className="rightsidecontent">
-                        {CreateDeals ? <div className="ChangeButtons">
-                            <div className="CreateDealbutton1">Create Ad</div>
-                            <div className="Deallistbutton1" onClick={changeAdlist}>Ad List</div>
+                        {CreateDeals ? <div className="Changetwobuttons">
+                            <div className="CreateDealbutton1">Create Deals</div>
+                            <div className="Deallistbutton1" onClick={changeAdlist}>Deals List</div>
                         </div>
                             :
-                            <div className="ChangeButtons">
-                                <div className="CreateDealbutton2" onClick={changeCreatelist}>Create Ad</div>
-                                <div className="Deallistbutton2">Ad List</div>
+                            <div className="Changetwobuttons">
+                                <div className="CreateDealbutton2" onClick={changeCreatelist}>Create Deals</div>
+                                <div className="Deallistbutton2">Deals List</div>
                             </div>
                         }
                     </div>
@@ -137,13 +156,13 @@ function DealsList() {
                                         {Radiobutons ?
                                             <div>
                                                <div>Deal Amount</div>
-                                               <InputNumber style={{ width: 250 ,height:33}}  />    KWD
+                                               <InputNumber style={{ width: 250 ,height:33}} onChange={ChangeDealAmount} />    KWD
 
                                             </div>
                                             :
                                             <div>
                                                 <div>Deal Percentage</div>
-                                               <InputNumber style={{ width: 290 ,height:33}}  />    %
+                                               <InputNumber style={{ width: 250 ,height:33}} onChange={changeDealPercentage} />    %
                                                 
                                             </div>
                                         }
@@ -154,7 +173,7 @@ function DealsList() {
                                 </div>
                                 <div className="ActiveRadio">
                                 <div className="DealActiveCheck">
-                                    <Checkbox  >Deal Active</Checkbox>
+                                    <Checkbox onChange={Activechange} >Deal Active</Checkbox>
 
                                 </div>
                                 <div className="CancelSaveButtons">
@@ -168,23 +187,59 @@ function DealsList() {
                             <div>
                                {AllDeals.map((data)=>{
                                    return(
-                                    <div>
-                                    <div>
-                                        <div>Test Name</div>
-                                        <div>{data.testname}</div>
-                                    </div>
-                                    <div>
-                                        <div>Deal Title</div>
-                                        <div>{data.dealtite}</div>
-                                    </div>
-                                    <div>
-                                    <div>Start Date</div>
-                                    <div>{data.vdateFrom}</div>
-                                    </div>
-                                    <div>
-                                    <div>End Date</div>
-                                    <div>{data.VdateTo}</div>
-                                    </div>
+                                    <div className="dealsActivetable">
+                                        <div className="rows">
+                                            <div>
+                                                <div>Test Name</div>
+                                                <div>{data.testname}</div>
+                                            </div>
+                                            <div>
+                                                <div>Deal Title</div>
+                                                <div>{data.dealtite}</div>
+                                            </div>
+                                        </div>
+                                        <div className="rows">
+                                            <div>
+                                                <div>Start Date</div>
+                                                <div>{data.vdateFrom}</div>
+                                            </div>
+                                            <div>
+                                                {data.Checkboxvalue?
+                                                    <div>
+                                                        <div>Deal</div>
+                                                        <div>Active</div>
+                                                    </div>:
+                                                    <div>
+                                                        <div>Deal</div>
+                                                        <div>InActive</div>
+                                                     </div>
+                                            }
+                                            </div>
+                                        </div>
+                                        <div className="rows">
+                                            <div>End Date</div>
+                                            <div>{data.VdateTo}</div>
+                                        </div>
+                                        <div className="rows">
+                                            <div>
+                                            {Radiobutons?
+                                            <div>
+                                                <div>Amount</div>
+                                                <div>{data.DealAmountvalue} KWD</div>
+                                            </div>
+                                            :
+                                            <div>
+                                                <div>Percentage</div>
+                                                <div>{data.Percentagevalue} %</div>
+                                            </div>
+                                            }
+                                            </div>
+                                            <div>
+                                            <button className="ManageEdit">✎</button>
+                                    <Button className="ManageDelete"><DeleteIcon /></Button>
+                                            </div>
+
+                                        </div>
                                     </div>
 
                                    )

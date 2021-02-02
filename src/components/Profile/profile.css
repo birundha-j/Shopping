@@ -1,0 +1,115 @@
+.HeaderProfile{
+    width: 100%;
+    height: 130px;
+    background-color: rgb(105, 136, 47);
+}
+.HeaderProfile{
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 3%;
+    padding-left: 3%;
+}
+.Profilecontainer{
+    width: 100%;
+    height: 700px;
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px rgb(136 121 121 / 75%);
+    border-radius: 8px 8px 0px 0px;
+    position: relative;
+    bottom: 10px;
+    display: flex;
+}
+.Profileimage{
+    border: 1px solid gray;
+    width: 35%;
+    height: 600px;
+    margin: 2%;
+}
+
+.ProfileDetails{
+    width: 65%;
+    margin: 2%;
+}
+.ProfileEdit{
+    width: 100%;
+    text-align: right;
+    color: rgb(68, 221, 7);
+    font-size: 25px;
+    cursor: pointer;
+    padding-right: 3%;
+}
+.Labheading{
+    width: 100%;
+    height: 70px;
+    color: rgb(59, 58, 58);
+    font-size: 35px;
+}
+.changeProfilecontent{
+    width: 100%;
+    height: 230px;
+    color: rgb(104, 100, 100);
+}
+.StartYear{
+    color: rgb(121, 113, 113);
+    font-size: 23px;
+}
+.ProfileField{
+    width: 100%;
+    height: 47px;
+    padding-top: 1%;
+    display: flex;
+    font-size: 15px;
+}
+.ProfileField div{
+padding-left: 3%;
+}
+.workinghours{
+    width: 100%;
+    display: flex;
+    margin: 2% 0%;
+
+}
+.Daysview{
+    width: 50%;
+
+}
+.Daysview div{
+    padding: 1% 0%;
+}
+.HoursView{
+    width: 50%;
+
+}
+.HoursView div{
+    padding: 1% 0%;
+}
+.Footerprofile{
+    width: 100%;
+    display: flex;
+}
+.contactsfield{
+    width: 50%;
+
+}
+.contactsfield div{
+    padding: 1% 0%;
+
+}
+.referfields{
+    width: 50%;
+
+}
+.referfields div{
+    padding: 1% 0%;
+
+}
+.Popupmaincontent{
+    width: 100%;
+}
+.Profileimagepopup{
+    width: 12%;
+    height: 102px;
+    border: 1px solid rgb(224, 219, 219);
+    border-radius: 65px;
+}

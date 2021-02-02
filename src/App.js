@@ -52,6 +52,9 @@ import AdvertisementBook from './components/Advertisement/Adbooking.js';
 import DealsList from './components/Deals/deals.js';
 import Revenueitems from './components/Revenue/revenue.js';
 import ManageCategory from './components/Managecategory/managecategory.js';
+import ManageTest from './components/ManageTest/manageTest.js';
+import Profile from './components/Profile/profile'
+import MediaUpload from './components/MediaUpload/mediaupload.js'
 
 const drawerWidth = 240;
 
@@ -319,21 +322,25 @@ export default function Apps() {
               <ListItemText primary={'Manage catogory'} />
             </ListItem>
             </a>
-          
+          <a href={'./manageTest'}>
             <ListItem button key={'Manage Test'}>
               <ListItemIcon> <HourglassEmptyIcon /> </ListItemIcon>
               <ListItemText primary={'Manage Test'} />
             </ListItem>
-          
+            </a>
+            <a href={'./mediaupload'}>
             <ListItem button key={'Media Upload'}>
               <ListItemIcon> <CloudUploadIcon /> </ListItemIcon>
               <ListItemText primary={'Media Upload'} />
             </ListItem>
-          
+            </a>
+
+            <a href={'./profile'}>
             <ListItem button key={'Profile'}>
               <ListItemIcon> <AccountCircleIcon /> </ListItemIcon>
               <ListItemText primary={'Profile'} />
             </ListItem>
+            </a>
           
             <ListItem button key={'Report'}>
               <ListItemIcon> <ReportIcon /> </ListItemIcon>
@@ -357,6 +364,9 @@ export default function Apps() {
                 <Route path='/deals' component={DealsList} />
                 <Route path='/revenue' component={Revenueitems}/>
                 <Route path='/managecategory' component={ManageCategory}/>
+                <Route path='/manageTest' component={ManageTest}/>
+                <Route path='/mediaupload' component={MediaUpload}/>
+                <Route path='/profile' component={Profile}/>
               </Switch>
           </Router>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './managecategory.css';
-import { DatePicker, Space, Input, Layout, Menu, Breadcrumb, Modal, Button, Form, Checkbox } from 'antd';
+import { DatePicker, Space, Input, Layout, Menu, message, Modal, Button, Form, Checkbox } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -16,20 +16,41 @@ function ManageCategory() {
     const onSearch = value => console.log(value);
     //popup:
 
+    const [ModalVisible, setModalVisible] = useState(false);
 
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [filedRequired,setfiledRequired] = useState(true)
+    const [filedRequired, setfiledRequired] = useState(true)
 
     const showModal = () => {
         setIsModalVisible(true);
     };
+    
 
     const handleOk = () => {
         setIsModalVisible(false);
+
     };
 
     const handleCancel = () => {
         setIsModalVisible(false);
+    };
+    // Edit Model show:
+    const showEditmodel = () => {
+        setModalVisible(true);
+    };
+
+    const edithandleOk = () => {
+        alert("gsjdjs")
+        setModalVisible(false);
+
+    };
+
+    const edithandleCancel = () => {
+        setModalVisible(false);
+    };
+
+    const success = () => {
+        message.success('This is a success message');
     };
     // required error box
 
@@ -58,10 +79,11 @@ function ManageCategory() {
     }
 
     function submitbutton() {
-        if(AddingCategory.length>0){
-        setAllrows([...Allrows, { AddFields: AddingCategory,Checkboxvalue:checkboxes }])
-        setAddingCategory([])
-        }else{
+        if (AddingCategory.length > 0) {
+
+            setAllrows([...Allrows, { AddFields: AddingCategory, Checkboxvalue: checkboxes }])
+            setAddingCategory([])
+        } else {
             setfiledRequired(false)
         }
 
@@ -69,6 +91,7 @@ function ManageCategory() {
     function Activecheckbox() {
         setCheckboxes(!checkboxes)
     }
+    // message:
 
     return (
         <div className="maincontent">
@@ -86,10 +109,10 @@ function ManageCategory() {
                             <div>
                                 <Space direction="vertical"><Search placeholder="search" onSearch={onSearch} style={{ width: 150 }} /></Space>
 
-                                </div>
+                            </div>
                             <div>
                                 <div className="Addedfeilds" onClick={showModal} >+</div>
-                                <Modal visible={isModalVisible} onOk={submitbutton} okText={"Submit"} onCancel={handleCancel} >
+                                <Modal visible={isModalVisible} onOk={submitbutton} okText={"Submit"} onCancel={handleCancel} onClick={success}>
                                     <div className="ManagePopup">
                                         <div className="popupheader">ADD CATEGORY </div>
                                         <div>
@@ -102,7 +125,7 @@ function ManageCategory() {
                                                 >
                                                 </Form.Item>
                                             </div>
-                                            <Input className={filedRequired?"inputbox":"showRed"} onChange={addChange} value={AddingCategory}/>
+                                            <Input className={filedRequired ? "inputbox" : "showRed"} onChange={addChange} value={AddingCategory} />
                                             <br />
                                             <div className="activebox">
                                                 <Form.Item {...tailLayout} name="remember" valuePropName="checked">
@@ -117,6 +140,7 @@ function ManageCategory() {
                                         </div>
                                     </div>
                                 </Modal>
+
 
                             </div>
 
@@ -147,7 +171,14 @@ function ManageCategory() {
                                     }
                                 </td>
                                 <td className="managechangebuttons">
-                                    <button className="ManageEdit">✎</button>
+                                    <button className="ManageEdit" onClick={showEditmodel}>✎
+                                    <Modal title="Basic Modal" visible={ModalVisible} onOk={edithandleOk} onCancel={edithandleCancel}>
+                                            <p>Some contents...</p>
+                                            <p>Some contents...</p>
+                                            <p>Some contents...</p>
+                                        </Modal>
+
+                                    </button>
                                     <Button className="ManageDelete"><DeleteIcon /></Button>
                                 </td>
                             </tr>
