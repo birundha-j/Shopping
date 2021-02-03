@@ -1,7 +1,7 @@
 import react, { useState } from 'react';
 import './deals.css'
 import CalenderRange from '../Calender/calender.js'
-import { Select, Input, DatePicker, Space, Radio,InputNumber,Checkbox, Button} from 'antd';
+import { Select, Input, DatePicker, Space, Radio,InputNumber,Checkbox, message,Button,Modal} from 'antd';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 
@@ -79,6 +79,25 @@ function DealsList() {
         setPercentage(e)
     }
 
+    function warning() {
+        message.warning("Deals Experiod");
+    };
+    // popup model
+
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+
+    };
 
     
     return (
@@ -235,8 +254,13 @@ function DealsList() {
                                             }
                                             </div>
                                             <div>
-                                            <button className="ManageEdit">✎</button>
-                                    <Button className="ManageDelete"><DeleteIcon /></Button>
+                                            <button className="ManageEdit" onClick={warning}>✎</button>
+                                    <Button className="ManageDelete"><DeleteIcon onClick={showModal}/></Button>
+                                    <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                                                                    <p>Are You Sure Do You Want To Delete This Deal?</p>
+                                                                    {/* <Button >No</Button>
+                                                                <Button type="primary" >Ok</Button> */}
+                                                                </Modal>
                                             </div>
 
                                         </div>

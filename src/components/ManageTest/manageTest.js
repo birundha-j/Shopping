@@ -145,8 +145,8 @@ function ManageTestPage() {
 
                                                 </div>
                                                 :
-                                                <div>
-                                                    welcome
+                                                <div className="Preview"> 
+                                                    No Records Found
                                                 </div>}
                                         </div>
                                     </div>

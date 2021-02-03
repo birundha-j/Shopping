@@ -33,7 +33,7 @@
 } */
 
 .calenderside {
-    width: 50%;
+    width: 100%;
     padding: 1%;
     /* background-color: turquoise; */
     /* margin-right: 2%; */
@@ -268,4 +268,8 @@
 }
 .deletepopup{
     width: 70%;
+}
+.IroundImages{
+    width: 3%;
+    height: 19px;
 }

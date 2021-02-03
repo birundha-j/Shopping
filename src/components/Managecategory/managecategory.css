@@ -129,6 +129,7 @@ table tr td:first-child::before {
 }
 .ManageDelete svg{
     color: red;
+    content: "reqire";
     font-size: 22px;
     border: none;
 }

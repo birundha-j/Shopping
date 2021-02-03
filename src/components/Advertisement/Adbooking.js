@@ -1,5 +1,8 @@
 import react, { useState } from 'react';
 import './Adbooking.css';
+import IRound from './iround.jpg'
+import GreenCircle from './greencircle.png'
+
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import HalfFill from './halfimage.jpg'
 import FullFill from './fullimage.jpg'
@@ -135,6 +138,22 @@ function AdvertisementBooking() {
 
         sethalf(true)
     }
+    // inside popup
+
+    const [isModelVisible, setIsModelVisible] = useState(false);
+
+    const showModalnew = () => {
+        setIsModelVisible(true);
+    };
+
+    const handleOknew = () => {
+        setIsModelVisible(false);
+    };
+
+    const handleCancelnew = () => {
+        setIsModelVisible(false);
+    };
+
 
     return (
         <div>
@@ -194,9 +213,21 @@ function AdvertisementBooking() {
                                 </div>
                             </div>
                             <div className="UploadAd">
-                                <div>Uploade Advertisement </div>
+                                <div>Uploade Advertisement <img src={IRound} className="IroundImages" onClick={showModalnew}/>
+                                <Modal visible={isModelVisible} onOk={handleOknew} onCancel={handleCancelnew} header={null} width={900} bodyStyle={{ height: 220,marginTop:50 }} footer={null}>
+                                                <div>
+                                                    <div className="uploadinstruction">Upload Instruction</div>
+                                                    <div className="threepoints">
+                                                        <div><img src={GreenCircle} className="circleImage"/>Please Upload Image in JPG or PNG format</div>
+                                                        <div><img src={GreenCircle} className="circleImage"/>For Image,Image Size Should be 1080px by 566px</div>
+                                                        <div><img src={GreenCircle} className="circleImage"/>For Video, Video Size Should be less than 10 MB</div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </Modal>
+                                </div>
                                 <div className="Choosefile">
-                                    <input style={{ width: 550 }} placeholder="My image.jpg" />
+                                    <input style={{ width: 500 }} placeholder="My image.jpg" />
 
                                     <input type="file" class="custom-file-input" style={{ width: 97, background: "rgb(2, 167, 233)" }} /></div>
 

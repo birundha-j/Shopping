@@ -1,0 +1,48 @@
+.mediapopupHeader{
+    color: rgb(118, 185, 10);
+    font-size: large;
+    width: 100%;    
+    box-shadow: -2px 3px 1px -2px rgb(180 176 176 / 93%);
+    height: 55px;
+    padding: 1%;
+}
+.IroundImage{
+    width: 5%;
+    height: 18px;
+}
+.circleImage{
+    width: 1.5%;
+    height: 10px;
+    margin-right: 3%;
+}
+
+.mediainputs{
+    display: flex;
+    justify-content: space-between;
+    word-wrap: break-word;
+}
+.mediainputs div{
+    padding-top: 3%;
+}
+
+.mediadescription{
+    padding-top: 5%;
+}
+
+.mediaActive{
+    padding-top: 4%;
+}
+.uploadinstruction{
+    height: 45px;
+    border-bottom: 1px solid rgb(182, 175, 175);
+    color: rgb(118, 185, 10);
+    font-size: large;
+    padding-top: .5%;
+}
+.threepoints{
+    padding-top: 2%;
+}
+.threepoints div{
+    margin-bottom: 2%;
+    color: gray;
+}
