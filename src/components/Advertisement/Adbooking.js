@@ -12,6 +12,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { DatePicker, Space, InputNumber, Select, Input, Modal, Button, message, Checkbox } from 'antd';
 const { Option } = Select;
 
+let a = 5;
 
 
 
@@ -25,8 +26,8 @@ function AdvertisementBooking() {
     const [endDate, setendDate] = useState([]);
     const [placement, setplacement] = useState();
     const [totalCost, settotalCost] = useState([])
-    const [full, setfull] = useState(true)
-    const [half, sethalf] = useState(true)
+    const [full, setfull] = useState(false)
+    const [half, sethalf] = useState(false)
     const [checkedbox, setcheckedbox] = useState(true)
     const [first, setfirst] = useState()
     const [AllData, setAllData] = useState([])
@@ -69,10 +70,7 @@ function AdvertisementBooking() {
         var textinput = document.getElementById("filename");
         textinput.value = fileinput.value;
     }
-    function changeFullbox() {
-        setfull(true)
-        setcheckedbox(true)
-    }
+
     // function changehalf() {
     // }
     function Feeschange(e) {
@@ -89,7 +87,6 @@ function AdvertisementBooking() {
     //     setendDate(e)
     // }
     function TotalAmountchange(e) {
-        console.log(e, "totalamolunt")
 
         settotalCost(e)
     }
@@ -106,18 +103,18 @@ function AdvertisementBooking() {
         // setfeesamount(a)
 
 
-        setAllData([...AllData, { fee: Fees, startDate: b, EndDate: c, TotalAmount: totalCost, Half: half, Fullobj: full }])
+        setAllData([...AllData, { fee: Fees, startDate: b, EndDate: c, TotalAmount: totalCost ,Halfobj:half,Fullobj:full}])
         // {fees:startDate}
-
         // setstartDate(b)
         // setendDate(c)
         // settotalCost(d)
     }
+
+
     function warning() {
         message.warning("Advertisement Experiod");
     };
 
-    console.log(AllData, "alldata")
     //popup menu
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -125,8 +122,10 @@ function AdvertisementBooking() {
         setIsModalVisible(true);
     };
 
-    const handleOk = () => {
-        setIsModalVisible(false);
+    function handleOk(indexs) {
+        console.log(indexs,"id")
+        console.log(AllData[1],"alldata")
+
     };
 
     const handleCancel = () => {
@@ -135,8 +134,14 @@ function AdvertisementBooking() {
     };
     function changehalfbox() {
         setcheckedbox(false)
-
         sethalf(true)
+        setfull(false)
+    }
+
+    function changeFullbox() {
+        setfull(true)
+        sethalf(false)
+        setcheckedbox(true)
     }
     // inside popup
 
@@ -213,18 +218,18 @@ function AdvertisementBooking() {
                                 </div>
                             </div>
                             <div className="UploadAd">
-                                <div>Uploade Advertisement <img src={IRound} className="IroundImages" onClick={showModalnew}/>
-                                <Modal visible={isModelVisible} onOk={handleOknew} onCancel={handleCancelnew} header={null} width={900} bodyStyle={{ height: 220,marginTop:50 }} footer={null}>
-                                                <div>
-                                                    <div className="uploadinstruction">Upload Instruction</div>
-                                                    <div className="threepoints">
-                                                        <div><img src={GreenCircle} className="circleImage"/>Please Upload Image in JPG or PNG format</div>
-                                                        <div><img src={GreenCircle} className="circleImage"/>For Image,Image Size Should be 1080px by 566px</div>
-                                                        <div><img src={GreenCircle} className="circleImage"/>For Video, Video Size Should be less than 10 MB</div>
-                                                    </div>
-                                                </div>
-                                                
-                                            </Modal>
+                                <div>Uploade Advertisement <img src={IRound} className="IroundImages" onClick={showModalnew} />
+                                    <Modal visible={isModelVisible} onOk={handleOknew} onCancel={handleCancelnew} header={null} width={900} bodyStyle={{ height: 220, marginTop: 50 }} footer={null}>
+                                        <div>
+                                            <div className="uploadinstruction">Upload Instruction</div>
+                                            <div className="threepoints">
+                                                <div><img src={GreenCircle} className="circleImage" />Please Upload Image in JPG or PNG format</div>
+                                                <div><img src={GreenCircle} className="circleImage" />For Image,Image Size Should be 1080px by 566px</div>
+                                                <div><img src={GreenCircle} className="circleImage" />For Video, Video Size Should be less than 10 MB</div>
+                                            </div>
+                                        </div>
+
+                                    </Modal>
                                 </div>
                                 <div className="Choosefile">
                                     <input style={{ width: 500 }} placeholder="My image.jpg" />
@@ -242,7 +247,7 @@ function AdvertisementBooking() {
                         </div>
                         :
                         <div>
-                            {AllData.map((data) => {
+                            {AllData.map((data, indexs) => {
                                 return (
 
 
@@ -265,55 +270,27 @@ function AdvertisementBooking() {
                                         </div>
 
                                         <div className="part1">
-                                            {checkedbox ?
-                                                <div>{data.Fullobj ?
-                                                    <div>
-                                                        <div>Full:
-                                                        <img src={FullFill} className="Filledimages" />
-                                                        </div>
-                                                        <div className="buttonsdesign">
-                                                            <Button className="editbutton" onClick={warning}>✎</Button>
-                                                            <div>
-                                                                <Button className="deletebutton" ><DeleteIcon onClick={showModal} /></Button>
-                                                                <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                                                                    <p>Are You Sure Do You Want To Delete This Advertisement?</p>
-                                                                    {/* <Button >No</Button>
-                                                                <Button type="primary" >Ok</Button> */}
-                                                                </Modal>
-                                                            </div>
-                                                        </div>
-                                                        </div>
-                                                        :
-                                                    <div>
-                                                                welcome
-                                                       
-                                                    </div>}
+                                            
+                                                <div className="insidepart1">
+                                            {data.Fullobj&&<div><div>Full:</div><img src={FullFill} className="Filledimages" />
+                                                </div>}
+                                                
 
+                                                 {data.Halfobj&&<div><div>Half:</div><img src={HalfFill} className="Filledimages" />
+                                                </div>}
+
+                                            <div className="buttonsdesign">
+                                                <div className="editbutton" onClick={warning}>✎</div>
+                                                <div>
+                                                    <Button  ><DeleteIcon onClick={showModal} style={{color:"red",fontSize:15}}/></Button>
+                                                    <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk(indexs+1)} onCancel={handleCancel}>
+                                                        <p>Are You Sure Do You Want To Delete This Advertisement?</p>
+
+                                                    </Modal>
                                                 </div>
-
-                                                :
-                                                <div >{data.Half ?
-                                                    <div>Half: <img src={HalfFill} className="Filledimages" />
-                                                        <div>
-                                                            <div>
-                                                                <Button className="editbutton" onClick={warning}>✎</Button>
-                                                            </div>
-                                                            <Button className="deletebutton" ><DeleteIcon onClick={showModal} /></Button>
-                                                            <Modal title="Delete Advertisement" className="popupmenus" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                                                                <p>Are You Sure Do You Want To Delete This Advertisement?</p>
-                                                                
-                                                            </Modal>
-                                                        </div>
-                                                    </div>
-                                                    :
-                                                    <div>
-                                                        hi
-                                                    </div>
-
-
-                                                }
-                                                </div>
-                                            }
+                                            </div>
+                                            </div>
+                                            
                                         </div>
                                     </div>
 
@@ -332,3 +309,54 @@ function AdvertisementBooking() {
     )
 }
 export default AdvertisementBooking;
+
+
+// {checkedbox ?
+//     <div>{data.Fullobj ?
+//         <div>
+//             <div>Full:
+//             <img src={FullFill} className="Filledimages" />
+//             </div>
+//             <div className="buttonsdesign">
+//                 <div className="editbutton" onClick={warning}>✎</div>
+//                 <div>
+//                     <Button  ><DeleteIcon onClick={showModal} /></Button>
+//                     <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk(indexs)} onCancel={handleCancel}>
+//                         <p>Are You Sure Do You Want To Delete This Advertisement?</p>
+//                         {/* <Button >No</Button>
+//                     <Button type="primary" >Ok</Button> */}
+//                     </Modal>
+//                 </div>
+//             </div>
+//             </div>
+//             :
+//         <div>
+//                     welcome
+
+//         </div>}
+
+//     </div>
+
+//     :
+//     <div >{data.Halfobj ?
+//         <div>Half: <img src={HalfFill} className="Filledimages" />
+//             <div>
+//                 <div>
+//                     <Button className="editbutton" onClick={warning}>✎</Button>
+//                 </div>
+//                 <Button className="deletebutton" ><DeleteIcon onClick={showModal} /></Button>
+//                 <Modal title="Delete Advertisement" className="popupmenus" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+//                     <p>Are You Sure Do You Want To Delete This Advertisement?</p>
+
+//                 </Modal>
+//             </div>
+//         </div>
+//         :
+//         <div>
+//             hi
+//         </div>
+
+
+//     }
+//     </div>
+// }

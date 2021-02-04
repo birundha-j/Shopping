@@ -3,6 +3,9 @@ import './home.css';
 import NoFound from './nofound.png';
 import Appoint from '../AppoinmentList/appointedlist'
 import Tables from '../TableFormat/tableform.js';
+import ManageTest from '../ManageTest/manageTest'
+import Revenue from '../Revenue/revenue'
+
 
 // const optionbox = [
 //     { title: "Total Appoinments", number: "4" },
@@ -32,9 +35,12 @@ function Homepage() {
                     </div>
 
                     <div className="boxes2">
-                        <div className="titles">Manage Test</div>
-                        <hr className="lines" />
-                        <div className="number">25</div>
+                        <a href={'/manageTest'}>
+
+                            <div className="titles">Manage Test</div>
+                            <hr className="lines" />
+                            <div className="number">25</div>
+                        </a>
                     </div>
                     <div className="boxes3">
                         <a href={'/cancelApponiment'}>
@@ -44,9 +50,11 @@ function Homepage() {
                         </a>
                     </div>
                     <div className="boxes4">
+                        <a href={'/revenue'}>
                         <div className="titles">Total Revenue(KWD)</div>
                         <hr className="lines" />
                         <div className="number">0</div>
+                        </a>
                     </div>
 
                 </div>

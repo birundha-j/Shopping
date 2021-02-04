@@ -1,7 +1,8 @@
-.hearderrightside{
+.hearderrightside {
   padding-left: 70%;
 }
-.headerdisplay{
+
+.headerdisplay {
   display: flex;
   position: fixed;
   right: 0;
@@ -9,15 +10,16 @@
   width: 265px;
 }
 
-.profileimage{
+.profileimage {
 
   width: 20%;
-    height: 50px;
-    border-radius: 50%;
+  height: 50px;
+  border-radius: 50%;
   padding-left: 4%;
 
 }
-.Belldesign{
+
+.Belldesign {
   fill: currentColor;
   width: 1em;
   height: 1em;
@@ -26,81 +28,97 @@
   transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   flex-shrink: 0;
   user-select: none;
-padding-right: 5% ! important;
+  padding-right: 5% ! important;
 }
-.headerbutton{
+
+.headerbutton {
   color: white;
 }
-.headerline{
+
+.headerline {
   width: 1px;
   color: gray;
 }
-.popupheader{
+
+.popupfirstrow {
+  height: 160px;
   text-align: center;
-  height: 210px;
+  padding-top: 9%;
 }
-.popupfirstrow{
-  height: 130px;
+
+.popupfirstrow div {
+  padding-bottom: 1%;
 }
-.popupimage{
-  width: 41%;
-  height: 86px;
+
+.popupimage {
+  text-align: center;
+  width: 30%;
+  height: 75px;
   padding-top: 5%;
   border-radius: 50%;
-  
+
 }
-.labname{
+
+.labname {
   font-weight: 550;
-  font-size: 13px;
-    text-align: center;
-}
-.popupmail{
-  position: fixed;
-  color: rgb(121, 113, 113);
+  font-size: 15px;
   text-align: center;
-  font-size: 12px;
+  color: black;
 }
-.popuplogout{
-  
+
+.popupmail {
+  color: rgb(138, 133, 133);
+  text-align: center;
+  font-size: 15px;
+}
+
+.popuplogout {
+
   height: 30px;
   font-size: 13px;
   display: flex;
   justify-content: space-between;
 }
+
 .popupbutton {
- 
-    /* width: 6%; */
-    background-color: white;
-    border-color: white;
-  
-}
-.popupprofile{
-  font-size: 13px;
-color:rgb(65, 61, 61); 
+
+  /* width: 6%; */
+  background-color: white;
+  border-color: white;
 
 }
-.popupprivacy{
+
+.popupprofile {
+  font-size: 13px;
+  color: rgb(65, 61, 61);
+
+}
+
+.popupprivacy {
   margin-top: 5%;
   height: 30px;
-  font-size: 12px;
-text-align: center;
-color:rgb(151, 144, 144); 
+  font-size: 17px;
+  text-align: center;
+  color: rgb(151, 144, 144);
 }
-.headerdateform{
+
+.headerdateform {
   font-size: 11px;
   text-align: center;
   margin-top: 10px;
 }
-.Logoimage{
+
+.Logoimage {
   width: 43%;
-    height: auto;
-    /* position: fixed; */
-    
+  height: auto;
+  /* position: fixed; */
+
 }
-.iconsize{
+
+.iconsize {
   font-size: 2rem;
 }
 
-.iconView svg{
+.iconView svg {
   font-size: 30px;
 }

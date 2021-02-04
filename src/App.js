@@ -55,6 +55,7 @@ import ManageCategory from './components/Managecategory/managecategory.js';
 import ManageTest from './components/ManageTest/manageTest.js';
 import Profile from './components/Profile/profile'
 import MediaUpload from './components/MediaUpload/mediaupload.js'
+import Logout from './logout'
 
 const drawerWidth = 240;
 
@@ -205,8 +206,7 @@ export default function Apps() {
                     Lina Clinical Lab <CaretDownOutlined />
                   </Button>
 
-                  <div className={`${classes.root} popupcontent`}>
-                    <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} className={`${classes.root} popupcontrol`}>
+                    <Modal visible={isModalVisible} footer={null} width={380} bodyStyle={{ height: 350,paddingTop:30 }} header={null} style={{marginRight:0,paddingBottom:0}} zIndex={1111} maskClosable={false} onCancel={handleCancel}>
                       <div className="popupheader">
                         <div className="popupfirstrow">
                           <img src={profile} className="popupimage" />
@@ -218,7 +218,7 @@ export default function Apps() {
 
                         <div className="popuplogout">
                           <div className="popupprofile">Profile</div>
-                          <div><Button className="popupbutton">Logout</Button></div>
+                          <div><Button className="popupbutton"><a href={'/logout'}>Logout</a></Button></div>
 
                         </div>
                         <hr />
@@ -227,7 +227,6 @@ export default function Apps() {
                     </Modal>
 
 
-                  </div>
                 </div>
                 <div className="headerdateform">
                   {(d.getDate()) + "-" + (d.getMonth() + 1) + "-" + (d.getUTCFullYear()) + " " + hours + ":" + (minute < 10 ? "0" + minute : minute) + " " + datestandard}
@@ -367,6 +366,7 @@ export default function Apps() {
                 <Route path='/manageTest' component={ManageTest}/>
                 <Route path='/mediaupload' component={MediaUpload}/>
                 <Route path='/profile' component={Profile}/>
+                {/* <Route path='/logout' component={Logout} /> */}
               </Switch>
           </Router>
 

@@ -33,7 +33,7 @@
 } */
 
 .calenderside {
-    width: 100%;
+    width: 80%;
     padding: 1%;
     /* background-color: turquoise; */
     /* margin-right: 2%; */
@@ -205,19 +205,22 @@
 }
 .AddListBox{
     width: 94%;
-    height: 150px;
+    height: 115px;
     display: flex;
     justify-content: space-around;
-    padding: 2%;
     border: 1px solid gray;
     border-style: dashed;
     margin: auto;
     margin-bottom: 2%;
+    padding: 1%;
 }
 .part1{
-    width: 20%;
+    width: 25%;
     height: 70px;
-    padding:1%
+    
+}
+.insidepart1{
+    text-align: center;
 }
 .headingonAddlist{
     padding: 2% 0%;
@@ -225,20 +228,22 @@
     font-weight: 550;
 }
 .Filledimages{
-    width: 40%;
-    height: 70px;
+    width: 15%;
+    height: 40px;
 }
 .buttonsdesign{
-    width: 90%;
-    height: 50px;
+    width: 100%;
+    height: 20px;
     display: flex;
+    justify-content: center;
 }
- .editbutton span{
+ .editbutton {
     color: rgb(92, 128, 8);
     border: none;
     background-color: white;
     cursor: pointer;
     font-size: 15px;
+    padding: 2%;
 }
 /* .MuiSvgIcon-root {
     border: none !important;
@@ -248,19 +253,22 @@
     
     color: red !important;
 } */
-.deletebutton{
+/* .deletebutton span{
     border: none;
-    background-color: white;
+   
     cursor: pointer;
-}
+    color: red !important;
+
+    
+} */
 
 .ant-message{
     z-index: 10101 !important;
 
 }
-.deletebutton svg{
-    color: red;
+.deletebutton  svg{
     font-size: 15px;
+    color: red;
 }
 .buttonsdesign Button{
     border: none;

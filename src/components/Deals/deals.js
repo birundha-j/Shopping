@@ -20,6 +20,8 @@ function DealsList() {
     const [checkboxes, setCheckboxes] = useState(false)
     const [dealamount,setdealamount]=useState([])
     const [Percentage,setPercentage]=useState([])
+    const [Amt,setAmt]=useState(true)
+    const [per,setPer]=useState(false)
 
 
 
@@ -35,6 +37,7 @@ function DealsList() {
         setTestName(value)
 
     }
+    console.log(TestName,"TestName")
     // Radio buttons
 
     const [value, setValue] = useState(1);
@@ -45,11 +48,16 @@ function DealsList() {
     };
 
     function changeAmount(){
-        setRadiobuttons(true)
+        // setRadiobuttons(true)
+       setAmt(true)
+        setPer(false)
     }
 
     function changePercentage(){
-        setRadiobuttons(false)
+        // setRadiobuttons(false)
+        setAmt(false)
+        setPer(true)
+
     }
 
     function Dealtitlechange(e){
@@ -241,25 +249,20 @@ function DealsList() {
                                         </div>
                                         <div className="rows">
                                             <div>
-                                            {Radiobutons?
-                                            <div>
-                                                <div>Amount</div>
-                                                <div>{data.DealAmountvalue} KWD</div>
-                                            </div>
-                                            :
-                                            <div>
-                                                <div>Percentage</div>
-                                                <div>{data.Percentagevalue} %</div>
-                                            </div>
-                                            }
+                                           
+                                            
+                                               
+                                                {Amt &&<div>Amount :{data.DealAmountvalue} KWD</div>}
+                                                {per &&<div>Percent:{data.Percentagevalue} %</div>}
+                                            
+                                            
                                             </div>
                                             <div>
                                             <button className="ManageEdit" onClick={warning}>✎</button>
-                                    <Button className="ManageDelete"><DeleteIcon onClick={showModal}/></Button>
-                                    <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                                            <Button className="ManageDelete"><DeleteIcon onClick={showModal}/></Button>
+                                                <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                                                                     <p>Are You Sure Do You Want To Delete This Deal?</p>
-                                                                    {/* <Button >No</Button>
-                                                                <Button type="primary" >Ok</Button> */}
+                                                                    
                                                                 </Modal>
                                             </div>
 

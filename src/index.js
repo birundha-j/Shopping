@@ -4,11 +4,12 @@ import './index.css';
 import Apps from './App';
 // import reportWebVitals from './reportWebVitals';
 import "antd/dist/antd.css";
+import LogOut from './logout'
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Apps />
+    <LogOut/>
   </React.StrictMode>,
   document.getElementById('root')
 );

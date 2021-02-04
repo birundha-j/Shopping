@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './managecategory.css';
 import { DatePicker, Space, Input, Layout, Menu, message, Modal, Button, Form, Checkbox } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
+import { AudioOutlined, DeleteRowOutlined } from '@ant-design/icons';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 // import { makeStyles } from '@material-ui/core/styles';
@@ -16,7 +16,6 @@ function ManageCategory() {
     const onSearch = value => console.log(value);
     //popup:
 
-    const [ModalVisible, setModalVisible] = useState(false);
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [filedRequired, setfiledRequired] = useState(true)
@@ -24,7 +23,7 @@ function ManageCategory() {
     const showModal = () => {
         setIsModalVisible(true);
     };
-    
+
 
     const handleOk = () => {
         setIsModalVisible(false);
@@ -35,19 +34,21 @@ function ManageCategory() {
         setIsModalVisible(false);
     };
     // Edit Model show:
-    const showEditmodel = () => {
-        setModalVisible(true);
+
+    const [isModelVisible, setIsModelVisible] = useState(false);
+
+    const showModalnew = () => {
+        setIsModelVisible(true);
     };
 
-    const edithandleOk = () => {
-        alert("gsjdjs")
-        setModalVisible(false);
-
+    const handleOknew = () => {
+        setIsModelVisible(false);
     };
 
-    const edithandleCancel = () => {
-        setModalVisible(false);
+    const handleCancelnew = () => {
+        setIsModelVisible(false);
     };
+
 
     const success = () => {
         message.success('This is a success message');
@@ -93,6 +94,15 @@ function ManageCategory() {
     }
     // message:
 
+
+    function addChangedata(){
+
+    }
+
+    function DeleteRow(ind){
+        console.log(Allrows[ind],"ind")
+    }
+
     return (
         <div className="maincontent">
             <Form
@@ -132,10 +142,7 @@ function ManageCategory() {
                                                     <Checkbox onChange={Activecheckbox}>Active</Checkbox>
                                                 </Form.Item>
                                             </div>
-                                            {/* <div className="submitButton">
-                                                <Button className="cancelbutton">Cancel</Button>
-                                                <Button type="primary" onClick={submitbutton}>Submit</Button>
-                                            </div> */}
+
 
                                         </div>
                                     </div>
@@ -157,7 +164,7 @@ function ManageCategory() {
                     <th className="TopHeader">Status</th>
                     <th className="TopHeader">Action</th>
 
-                    {Allrows.map((data) => {
+                    {Allrows.map((data,index) => {
 
                         return (
                             <tr className="ManageTableRows">
@@ -171,14 +178,32 @@ function ManageCategory() {
                                     }
                                 </td>
                                 <td className="managechangebuttons">
-                                    <button className="ManageEdit" onClick={showEditmodel}>✎
-                                    <Modal title="Basic Modal" visible={ModalVisible} onOk={edithandleOk} onCancel={edithandleCancel}>
-                                            <p>Some contents...</p>
-                                            <p>Some contents...</p>
-                                            <p>Some contents...</p>
-                                        </Modal>
+                                    <div onClick={showModalnew}><button className="ManageEdit" onClick={DeleteRow(index)} >✎ </button></div>
+                                    <Modal visible={isModelVisible} onOk={handleOknew} okText={"Upgrade"} onCancel={handleCancelnew} header={null} width={900} bodyStyle={{ height: 220 }} >
+                                            <div className="ManagePopup">
+                                                <div className="popupheader">ADD CATEGORY </div>
+                                                <div>
 
-                                    </button>
+                                                    <div className="categoryfield">
+                                                        <Form.Item
+                                                            label="Test Category"
+                                                            name="username"
+                                                            rules={[{ required: true, message: 'Please input your username!' }]}
+                                                        >
+                                                        </Form.Item>
+                                                    </div>
+                                                    <Input className={filedRequired ? "inputbox" : "showRed"} onChange={addChangedata} value={"guu"} />
+                                                    <br />
+                                                    <div className="activebox">
+                                                        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+                                                            <Checkbox onChange={Activecheckbox}>Active</Checkbox>
+                                                        </Form.Item>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                    </Modal>
                                     <Button className="ManageDelete"><DeleteIcon /></Button>
                                 </td>
                             </tr>
