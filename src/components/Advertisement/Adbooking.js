@@ -122,11 +122,22 @@ function AdvertisementBooking() {
         setIsModalVisible(true);
     };
 
-    function handleOk(indexs) {
-        console.log(indexs,"id")
-        console.log(AllData[1],"alldata")
+    function handleOk() {
+        // let q=[];
+        // AllData.map((value,index)=>{
+        //     if(index+1 !==data){
+        //         q.push(value)
+        //     }
+        // })
+        // setAllData(q)
+        // console.log(AllData[1],"alldata")
 
     };
+    function hello(data){
+        console.log(data,"data")
+
+
+    }
 
     const handleCancel = () => {
         setIsModalVisible(false);
@@ -247,7 +258,7 @@ function AdvertisementBooking() {
                         </div>
                         :
                         <div>
-                            {AllData.map((data, indexs) => {
+                            {AllData.map((data, index) => {
                                 return (
 
 
@@ -282,9 +293,10 @@ function AdvertisementBooking() {
                                             <div className="buttonsdesign">
                                                 <div className="editbutton" onClick={warning}>✎</div>
                                                 <div>
-                                                    <Button  ><DeleteIcon onClick={showModal} style={{color:"red",fontSize:15}}/></Button>
-                                                    <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk(indexs+1)} onCancel={handleCancel}>
+                                                    <DeleteIcon onClick={showModal} style={{color:"red",fontSize:15}}/>
+                                                    <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                                                         <p>Are You Sure Do You Want To Delete This Advertisement?</p>
+                                                        <button  onClick={hello(index)}>hi</button>
 
                                                     </Modal>
                                                 </div>

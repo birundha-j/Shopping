@@ -1,5 +1,6 @@
 import react, { useState } from 'react'
 import './mediaupload.css'
+import $ from "jquery";
 import IRound from './iround.jpg'
 import GreenCircle from './greencircle.png'
 
@@ -7,7 +8,11 @@ import { DatePicker, Space, Input, Layout, Menu, message, Modal, Button, Form, C
 const { Search } = Input;
 
 function MediaUpload() {
+    const [Allmedia, setAllmedia] = useState([])
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [media, setMedia] = useState([]);
+    const [imageView, setImageView] = useState([])
+    const [allimages, setAllimages] = useState(false)
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -22,7 +27,13 @@ function MediaUpload() {
     };
 
     function handleupdate() {
+        setAllimages(true)
+        // setAllmedia([...Allmedia, { MediaTitle: media, Imageval: allimages,img:imageView}])
+        setAllmedia([...Allmedia, { MediaTitle: media, Imageval: allimages,img:event.target.files[0]}])
 
+        // setImageView([...imageView])
+// setImageView({AllIMM:event.target.files[0]})
+        console.log(imageView,"imageView")
     }
     // inside popup:
     const [isModelVisible, setIsModelVisible] = useState(false);
@@ -39,6 +50,36 @@ function MediaUpload() {
         setIsModelVisible(false);
     };
 
+    function changeMedia(e) {
+        setMedia(e.target.value)
+    }
+
+    // upload image:
+
+    $(function () {
+        $(":file").change(function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = imageIsLoaded;
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    });
+
+    function imageIsLoaded(e) {
+        $('#myImg').attr('src', e.target.result);
+        $('#yourImage').attr('src', e.target.result);
+    };
+
+    //image:
+
+    function changeimage(e) {
+       
+        setImageView(e.target.value)
+    }
+
+   
     return (
         <div>
             <div className="headercontent">
@@ -56,7 +97,7 @@ function MediaUpload() {
                                 <div className="mediainputs">
                                     <div>
                                         <div>Media title</div>
-                                        <Input style={{ width: 350 }} />
+                                        <Input style={{ width: 350 }} onChange={changeMedia} />
 
                                     </div>
                                     <div>
@@ -65,15 +106,16 @@ function MediaUpload() {
                                                 <div>
                                                     <div className="uploadinstruction">Upload Instruction</div>
                                                     <div className="threepoints">
-                                                        <div><img src={GreenCircle} className="circleImage"/>Please Upload Image in JPG or PNG format</div>
-                                                        <div><img src={GreenCircle} className="circleImage"/>For Image,Image Size Should be 1080px by 566px</div>
-                                                        <div><img src={GreenCircle} className="circleImage"/>For Video, Video Size Should be less than 10 MB</div>
+                                                        <div><img src={GreenCircle} className="circleImage" />Please Upload Image in JPG or PNG format</div>
+                                                        <div><img src={GreenCircle} className="circleImage" />For Image,Image Size Should be 1080px by 566px</div>
+                                                        <div><img src={GreenCircle} className="circleImage" />For Video, Video Size Should be less than 10 MB</div>
                                                     </div>
                                                 </div>
-                                                
+
                                             </Modal>
                                         </div>
-                                        <Input style={{ width: 350 }} />
+                                        <Input type='file' onChange={changeimage} style={{ color:"gray" }} id="sampleFile"/>
+
                                     </div>
                                 </div>
                                 <div className="mediadescription">
@@ -90,6 +132,24 @@ function MediaUpload() {
 
                 </div>
             </div>
+            <div>
+                {Allmedia.map((data) => {
+                    return (
+                        <div>
+                            <div>{data.MediaTitle}</div>
+                            <div><img id="myImg" src={data.img} alt="your image" accept="image/*"/></div>
+
+
+                        </div>
+                    )
+                })}
+
+            </div>
+            {/* {allimages &&
+                                <img id="myImg" src={imageView} alt="your image" accept="image/*"/>
+                            } */}
+          
+
         </div>
     )
 }
