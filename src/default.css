@@ -44,9 +44,9 @@
     pointer-events: auto;
     width: 40% ! important;
 }
-.popupcontrol,.ant-modal-wrap {
+/* .popupcontrol,.ant-modal-wrap {
     z-index: 2222 ! important;
-}
+} */
 /* .popupcontrol .ant-modal-body {
     padding: 5px;
     line-height: 1.5715;

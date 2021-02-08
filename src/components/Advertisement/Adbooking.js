@@ -117,14 +117,31 @@ function AdvertisementBooking() {
 
     //popup menu
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [deleteId,setdeleteId] = useState()
 
-    const showModal = () => {
+    const showModal = (id) => {
         setIsModalVisible(true);
+        setdeleteId(id)
+
+        
+
+
+        // let DeleteRows = []
+        // AllData.map((value, index) => {
+        //     if (index  !== id) {
+        //         DeleteRows.push(value)
+        //     }
+        // })
+        // setAllData(DeleteRows)
+
     };
 
-    function handleOk(indexs) {
-        console.log(indexs,"id")
-        console.log(AllData[1],"alldata")
+    function handleOk() {
+        alert(deleteId)
+        if (deleteId > -1) {
+            AllData.splice(deleteId, 1);
+          }
+          setAllData([...AllData])
 
     };
 
@@ -247,7 +264,7 @@ function AdvertisementBooking() {
                         </div>
                         :
                         <div>
-                            {AllData.map((data, indexs) => {
+                            {AllData.map((data, index) => {
                                 return (
 
 
@@ -282,11 +299,8 @@ function AdvertisementBooking() {
                                             <div className="buttonsdesign">
                                                 <div className="editbutton" onClick={warning}>✎</div>
                                                 <div>
-                                                    <Button  ><DeleteIcon onClick={showModal} style={{color:"red",fontSize:15}}/></Button>
-                                                    <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk(indexs+1)} onCancel={handleCancel}>
-                                                        <p>Are You Sure Do You Want To Delete This Advertisement?</p>
-
-                                                    </Modal>
+                                                    <Button  ><DeleteIcon onClick={()=>showModal(index)} style={{color:"red",fontSize:15}}/></Button>
+                                                    
                                                 </div>
                                             </div>
                                             </div>
@@ -305,6 +319,10 @@ function AdvertisementBooking() {
                 </div>
 
             </div>
+            {setIsModalVisible && <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+            <p>Are You Sure Do You Want To Delete This Advertisement?</p>
+
+        </Modal>}
         </div>
     )
 }

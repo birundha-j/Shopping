@@ -122,3 +122,7 @@
 .iconView svg {
   font-size: 30px;
 }
+
+.ant-select-open{
+  z-index: 14444;
+}

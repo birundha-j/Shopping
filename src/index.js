@@ -9,7 +9,7 @@ import LogOut from './logout'
 
 ReactDOM.render(
   <React.StrictMode>
-    <LogOut/>
+    <Apps/>
   </React.StrictMode>,
   document.getElementById('root')
 );
