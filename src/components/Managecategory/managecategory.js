@@ -3,6 +3,8 @@ import './managecategory.css';
 import { DatePicker, Space, Input, Layout, Menu, message, Modal, Button, Form, Checkbox } from 'antd';
 import { AudioOutlined, DeleteRowOutlined } from '@ant-design/icons';
 import DeleteIcon from '@material-ui/icons/Delete';
+import HeaderDesign from '../HeaderDesign/headerdesign';
+
 
 // import { makeStyles } from '@material-ui/core/styles';
 // import Popover from '@material-ui/core/Popover';
@@ -23,6 +25,7 @@ function ManageCategory() {
 
     const showModal = () => {
         setIsModalVisible(true);
+        
     };
 
 
@@ -37,9 +40,12 @@ function ManageCategory() {
     // Edit Model show:
 
     const [isModelVisible, setIsModelVisible] = useState(false);
+    const [deleteId,setdeleteId] = useState()
+
 
     const showModalnew = () => {
         setIsModelVisible(true);
+
     };
 
     const handleOknew = () => {
@@ -100,15 +106,41 @@ function ManageCategory() {
 
     }
 
-    function DeleteRow(a){
-        console.log(a,"aaaa")
-        Allrows.find((index)=>{
-            if(index+1 == a){
-                // setAddingCategory(value)
-                setIndexnum(index)
-            }
-        })
-    }
+    // function DeleteRow(){
+    //     alert(deleteId)
+    //     console.log(deleteId,"aaaa")
+        // if (deleteId > -1) {
+        //     Allrows.splice(deleteId, 1);
+        //   }
+        //   setAllrows([...Allrows])
+    // }
+
+
+
+    // delete popup:
+    const [isModalsVisible,setIsModalsVisible]=useState(false)
+
+    const showModaldelete = (id) => {
+        alert(id)
+        setIsModalsVisible(true);
+        setdeleteId(id)
+
+        console.log(indexnum,"indexnum")
+    };
+
+    const handleOkdelete = () => {
+        if (deleteId > -1) {
+            Allrows.splice(deleteId, 1);
+          }
+          setAllrows([...Allrows])
+          setIsModalsVisible(false);
+
+    };
+
+    const handleCanceldelete = () => {
+        setIsModalsVisible(false);
+    };
+
 
     return (
         <div className="maincontent">
@@ -120,16 +152,9 @@ function ManageCategory() {
                 onFinishFailed={onFinishFailed}
             >
                 <div >
-                    <div className="headercontent">
-                        <div className="headermanage">MANAGE CATEGORY</div>
-                        <div className="searchmanage">
-                            <div>
-                                <Space direction="vertical"><Search placeholder="search" onSearch={onSearch} style={{ width: 150 }} /></Space>
-
-                            </div>
-                            <div>
-                                <div className="Addedfeilds" onClick={showModal} >+</div>
-                                <Modal visible={isModalVisible} onOk={submitbutton} okText={"Submit"} onCancel={handleCancel} onClick={success}>
+                    <HeaderDesign value={"MANAGE CATEGORY"} modelOpen={showModal}/>
+                   
+                    <Modal visible={isModalVisible}zIndex={10000} onOk={submitbutton} okText={"Submit"} onCancel={handleCancel} onClick={success}>
                                     <div className="ManagePopup">
                                         <div className="popupheader">ADD CATEGORY </div>
                                         <div>
@@ -155,11 +180,6 @@ function ManageCategory() {
                                     </div>
                                 </Modal>
 
-
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
             </Form>
             <div className="Tablecontent">
@@ -185,12 +205,21 @@ function ManageCategory() {
                                     }
                                 </td>
                                 <td className="managechangebuttons">
-                                    <div onClick={showModalnew}><button className="ManageEdit" onClick={DeleteRow(index+1)} >✎ </button></div>
-                                    <Modal visible={isModelVisible} onOk={handleOknew} okText={"Upgrade"} onCancel={handleCancelnew} header={null} width={900} bodyStyle={{ height: 220 }} >
+                                    <div onClick={showModalnew}><button className="ManageEdit" onClick={()=>showModalnew()} >✎ </button></div>
+                                    
+                                    <Button className="ManageDelete"><DeleteIcon onClick={()=>showModaldelete(index)}/></Button>
+                                </td>
+                            </tr>
+
+                        )
+                    })}
+
+                </table>
+            </div>
+            {isModelVisible && <Modal zIndex={10000} visible={isModelVisible} onOk={handleOknew} okText={"Upgrade"} onCancel={handleCancelnew} header={null} width={900} bodyStyle={{ height: 220 }} >
                                             <div className="ManagePopup">
                                                 <div className="popupheader">ADD CATEGORY </div>
                                                 <div>
-
                                                     <div className="categoryfield">
                                                         <Form.Item
                                                             label="Test Category"
@@ -210,16 +239,14 @@ function ManageCategory() {
 
                                                 </div>
                                             </div>
+                                    </Modal>}
+
+                                    {
+                                        setIsModalsVisible && <Modal title="Delete Advertisement" visible={isModalsVisible} onOk={handleOkdelete} onCancel={handleCanceldelete}>
+                                        <p>Are You Sure  Want To Delete Record</p>
+                            
                                     </Modal>
-                                    <Button className="ManageDelete"><DeleteIcon /></Button>
-                                </td>
-                            </tr>
-
-                        )
-                    })}
-
-                </table>
-            </div>
+                                    }
 
 
         </div>

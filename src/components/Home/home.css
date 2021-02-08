@@ -150,14 +150,14 @@
     padding: 1% 4%;
 }
 .mediabutton{
-    width: 30%;
-    height: 45px;
+    width: 35%;
+    height: 54px;
     border: 1px solid crimson;
     text-align: center;
     padding-top: 2%;
     color: crimson;
     border-radius: 2px;
-    font-size: 17px;
+    font-size: 21px;
 
 }
 .mediabutton:hover{
@@ -169,14 +169,14 @@
 
 }
 .bookingbutton{
-    width: 50%;
-    height: 45px;
+    width: 55%;
+    height: 54px;
     border: 1px solid purple;
     text-align: center;
     padding-top: 2%;
     color: purple;
     border-radius: 2px;
-    font-size: 17px;
+    font-size: 21px;
     margin-left: 3%;
     box-shadow: 1px 0px 5px 0px rgba(143, 140, 140, 0.41);
 
@@ -196,4 +196,20 @@
 }
 .HomeTable{
     width: 100%;
+}
+
+.MediaShow{
+    color: crimson;
+}
+.AddShow{
+    color: purple;
+}
+.MediaShow:hover{
+    color: crimson;
+
+}
+
+.AddShow:hover{
+    color: purple;
+    
 }

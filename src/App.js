@@ -206,7 +206,7 @@ export default function Apps() {
                     Lina Clinical Lab <CaretDownOutlined />
                   </Button>
 
-                    <Modal visible={isModalVisible} footer={null} width={380} bodyStyle={{ height: 350,paddingTop:30 }} header={null} style={{marginRight:0,paddingBottom:0}} zIndex={1111} maskClosable={false} onCancel={handleCancel}>
+                    <Modal visible={isModalVisible} footer={null} width={380} bodyStyle={{ height: 350,paddingTop:30 }} header={null} style={{marginRight:"5px",paddingBottom:0}} zIndex={1111} maskClosable={false} onCancel={handleCancel}>
                       <div className="popupheader">
                         <div className="popupfirstrow">
                           <img src={profile} className="popupimage" />
@@ -267,81 +267,82 @@ export default function Apps() {
 
 
         <Divider />
-        <List className={"iconView"}>
+  
+        <List className={"iconView"} vlink={"red"}>
           {/* <img src={logoimage} className="Logoimage" /> */}
-          <a href={'/'}>
-            <ListItem button key={"Home"}  >
+          <a href={'/'} className="MenuList"  >
+            <ListItem button key={"Home"} >
               <ListItemIcon> <HomeIcon /> </ListItemIcon>
               <ListItemText primary={"Home"} />
             </ListItem>
             </a>
          
           
-            <a href={'/appointedlist'}>
-            <ListItem button key={'Appoinment list'}>
+            <a href={'/appointedlist'} className="MenuList" >
+            <ListItem button key={'Appoinment list'}  >
               <ListItemIcon> <ListAltIcon /> </ListItemIcon>
               <ListItemText primary={'Appoinment list'} />
             </ListItem>
             </a>
           
-          <a href={'/uploadResult'}>
+          <a href={'/uploadResult'}  className="MenuList" >
             <ListItem button key={'Upload Result'}>
               <ListItemIcon> <PublishIcon className="iconsize" /> </ListItemIcon>
               <ListItemText primary={'Upload Result'} />
             </ListItem>
             </a>
-          <a href={'/cancelApponiment'}>
+          <a href={'/cancelApponiment'} className="MenuList" >
             <ListItem button key={'Cancelled Appoinments'}>
               <ListItemIcon> <CancelPresentationIcon /> </ListItemIcon>
               <ListItemText primary={'Cancelled Appoinments'} />
             </ListItem>
             </a>
-          <a href={'/Adbooking'} >
+          <a href={'/Adbooking'}className="MenuList"  >
             <ListItem button key={'Advertisement Booking'}>
               <ListItemIcon> <PhoneBluetoothSpeakerIcon /> </ListItemIcon>
               <ListItemText primary={'Advertisement Booking'} />
             </ListItem>
             </a>
           
-          <a href={'./deals'}>
+          <a href={'./deals'} className="MenuList" >
             <ListItem button key={'Deals'}>
               <ListItemIcon> <LibraryBooksIcon /> </ListItemIcon>
               <ListItemText primary={'Deals'} />
             </ListItem>
             </a>
-          <a href={'./revenue'}>
+          <a href={'./revenue'} className="MenuList" >
             <ListItem button key={'Revenue'}>
               <ListItemIcon> <EqualizerIcon /> </ListItemIcon>
               <ListItemText primary={'Revenue'} />
             </ListItem>
             </a>
-          <a href={'./managecategory'}>
+          <a href={'./managecategory'} className="MenuList" >
             <ListItem button key={'Manage catogory'}>
               <ListItemIcon> <CategoryIcon /> </ListItemIcon>
               <ListItemText primary={'Manage catogory'} />
             </ListItem>
             </a>
-          <a href={'./manageTest'}>
+          <a href={'./manageTest'}  className="MenuList" >
             <ListItem button key={'Manage Test'}>
               <ListItemIcon> <HourglassEmptyIcon /> </ListItemIcon>
               <ListItemText primary={'Manage Test'} />
             </ListItem>
             </a>
-            <a href={'./mediaupload'}>
+            <a href={'./mediaupload'} className="MenuList" >
             <ListItem button key={'Media Upload'}>
               <ListItemIcon> <CloudUploadIcon /> </ListItemIcon>
               <ListItemText primary={'Media Upload'} />
             </ListItem>
             </a>
 
-            <a href={'./profile'}>
+            <a href={'./profile'}className="MenuList" >
             <ListItem button key={'Profile'}>
               <ListItemIcon> <AccountCircleIcon /> </ListItemIcon>
               <ListItemText primary={'Profile'} />
             </ListItem>
             </a>
           
-            <ListItem button key={'Report'}>
+            <ListItem button key={'Report'} className="MenuList" >
               <ListItemIcon> <ReportIcon /> </ListItemIcon>
               <ListItemText primary={'Report'} />
             </ListItem>

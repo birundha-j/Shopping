@@ -5,6 +5,8 @@ import Appoint from '../AppoinmentList/appointedlist'
 import Tables from '../TableFormat/tableform.js';
 import ManageTest from '../ManageTest/manageTest'
 import Revenue from '../Revenue/revenue'
+import MediaUpload from '../MediaUpload/mediaupload'
+import AddBook from '../Advertisement/Adbooking'
 
 
 // const optionbox = [
@@ -65,8 +67,8 @@ function Homepage() {
                 <div className="HomeTable">
                     <Tables />
                     <div className="mediabookingbutton">
-                        <div className="mediabutton">Media Upload</div>
-                        <div className="bookingbutton">Advertisement Booking</div>
+                        <div className="mediabutton"><a href={'/mediaupload'} className="MediaShow">Media Upload</a></div>
+                        <div className="bookingbutton"><a href={'/Adbooking'}className="AddShow" >Advertisement Booking </a></div>
                     </div>
                 </div>
 

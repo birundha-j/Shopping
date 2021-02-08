@@ -8,6 +8,8 @@ import Excel from './excel.jpg';
 import { Tab } from '@material-ui/core';
 import NoFound from './nofound.png'
 import Tables from '../TableFormat/tableform.js';
+import HeaderMenu from '../HeaderMenu/headermenu'
+
 
 
 
@@ -32,21 +34,7 @@ function UploadResult() {
     }
     return (
         <div>
-            <div className="content">
-                <div className="topcontent">UPLOAD RESULT</div>
-                <div className="selectdate">
-                    <div className="selectrangetext">Select Range:</div>
-                    <div className="rangepicker"><Space direction="vertical" size={2}> <RangePicker /></Space></div>
-                </div>
-                <div className="searchicons">
-                    <div>
-                        <Space direction="vertical"><Search placeholder="search" style={{ width: 150 }} /></Space>
-                    </div>
-                    <div ><a href={'/'} download><PictureAsPdfIcon className="pdficon" /></a></div>
-                    <img src={Excel} />
-                    <div className="printicon"><PrintIcon onClick={prints} /></div>
-                </div>
-            </div>
+            <HeaderMenu value={"UPLOAD RESULTS"}/>
             <div className="Uploadedpending">
                 {changeupload?<div className="changebuttons">
                     <div className="uploadingbutton1">UPLOADED</div>

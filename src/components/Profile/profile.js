@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Times from '../TimePicker/timepicker';
 
-import { Modal, Button, Input, InputNumber } from 'antd';
+import { Modal, Button, Input, InputNumber,message } from 'antd';
 import './profile.css';
 import Prince from './princess.jpg'
 import RoomIcon from '@material-ui/icons/Room';
@@ -65,7 +65,12 @@ function ProfilePage() {
         // }])
 
         // setAllProfiledatas([...allProfiledatas, { Addressval: address, personval: person, websiteval: website, sinceval: since, mobileval: mobilenumber, emailval: email }])
+        message.success(' Updated Successfully');
+
         setDisplay(false)
+        setIsModalVisible(false);
+
+
     }
     // onchange inputs
     function changeaddress(e) {
@@ -202,7 +207,7 @@ function ProfilePage() {
                         :
                         <div>
                             <div className="changeProfilecontent">
-                                <div className="StartYear">Started Since 2015</div>
+                    <div className="StartYear">Started Since    {valueinput4?"2015":<div className="SinceEntry"> {since}</div>}</div>
                                 <div className="ProfileField">
                                     <RoomIcon />{valueinput1 ?
                                         <div>Kuwaits</div> : <div>{address}</div>}

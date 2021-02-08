@@ -67,13 +67,12 @@ function ManageTestPage() {
         setInstruction(e.target.value)
     }
     function Activecheckbox() {
-        setCheckboxes(true)
+        setCheckboxes(!checkboxes)
     }
     function AddingTableData() {
         message.success('Test Added Successfully');
         setKeytest(true)
-        setFulldata([...fulldata, { testname: testName, costkwd: cost,Checkboxvalue:checkboxes,Instructionval:instruction }])
-        setCheckboxes(false)
+        setFulldata([...fulldata, { testname: testName, costkwd: cost,Checkboxvalue:checkboxes,Instructionval:instruction ,testval:category}])
         setTestName([])
         setCost([])
         setInstruction([])
@@ -93,7 +92,7 @@ function ManageTestPage() {
         <div>
             
             <HeaderDesign modelOpen={showModal} value={"MANAGE TEST"} /> <div>
-                <Modal visible={isModalVisible} onCancel={handleCancel} width={"60%"} bodyStyle={{marginTop: 45} } footer={null}>
+                <Modal visible={isModalVisible} zIndex={10000} onCancel={handleCancel} width={"60%"} bodyStyle={{marginTop: 45} } footer={null}>
                     <div className="ManagePopup">
                         <div className="popupheader">TEST ENTRY </div>
                         <div>
@@ -157,12 +156,9 @@ function ManageTestPage() {
                                                     <div className="Instruction">{data.Instructionval}</div>
                                                     <div className="ActiveStatus">
                                                     {data.Checkboxvalue?
-                                                        <div>
-                                                            <div>Active</div>
-                                                        </div>:
-                                                        <div>
-                                                            <div>Inactive</div>
-                                                        </div>
+                                                        "Active"
+                                                        :
+                                                        "Inactive"
                                                      }
                                                      </div>
                                             
@@ -187,6 +183,27 @@ function ManageTestPage() {
             </div>
 
             <div className="ViewTable">
+                <NewTable />
+                {keytest &&  fulldata.map((data,index) => {
+                                    return (
+                                       
+                                            <div>
+                                            
+                                                    <div>{data.testname}</div>
+                                                    <div>{data.costkwd} KWD</div>
+                                                
+
+                                                    <div>{data.Instructionval}</div>
+                                                    {data.Checkboxvalue?
+                                                        "Active"
+                                                        :
+                                                        "Inactive"
+                                                     }
+                                                     {data.testval}
+                                            
+                                        </div>       
+                )
+            })}
                 hu
                 
 

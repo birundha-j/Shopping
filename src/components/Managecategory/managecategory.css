@@ -109,7 +109,8 @@ table tr td:first-child::before {
 }
 .managechangebuttons{
     width: 20%;
-    padding: 1% 1.5%;
+    padding: 2% 1.5%;
+    display: flex;
 
 
 }
@@ -121,18 +122,14 @@ table tr td:first-child::before {
     font-size: 23px;
 }
 .ManageEdit:hover{
-    background-color: white;
     border: none;
 }
 .ManageDelete svg{
     color: red;
-    content: "reqire";
-    font-size: 22px;
+    font-size: 18px;
     border: none;
 }
-.ManageDelete .ant-btn{
-    border: none !important;
-}
+
 
 .ManageTableRows{
     text-align: left;
@@ -155,6 +152,6 @@ table tr td:first-child::before {
     color: rgb(161, 152, 152);
 }
 
-.showRed{
+/* .showRed{
     border-color: red !important;
-}
+} */

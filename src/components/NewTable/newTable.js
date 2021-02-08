@@ -9,31 +9,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
-const columns = [
-    { id: 'name', label: 'Name', minWidth: 170 },
-    { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-    {
-        id: 'population',
-        label: 'Population',
-        minWidth: 170,
-        align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'size',
-        label: 'Size\u00a0(km\u00b2)',
-        minWidth: 170,
-        align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'density',
-        label: 'Density',
-        minWidth: 170,
-        align: 'right',
-        format: (value) => value.toFixed(2),
-    },
-];
 
 function createData(name, code, population, size) {
     const density = population / size;
@@ -41,7 +16,7 @@ function createData(name, code, population, size) {
 }
 
 const rows = [
-    createData('India', 'IN', 1324171354, 3287263),
+    createData('India'),
     
     
 ];
@@ -55,7 +30,21 @@ const useStyles = makeStyles({
     },
 });
 
-export default function StickyHeadTable() {
+export default function StickyHeadTable(props) {
+
+
+    const columns = [
+        { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+        {
+            id: 'population',
+            label: 'Population',
+            minWidth: 170,
+            align: 'right',
+            format: (value) => value.toLocaleString('en-US'),
+        },
+        
+    ];
+
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);

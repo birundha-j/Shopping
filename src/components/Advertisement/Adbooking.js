@@ -93,7 +93,6 @@ function AdvertisementBooking() {
 
     //
     function success() {
-        message.success('Advertisement Added Successfully');
         // let a = document.getElementById("fees").value
 
         let b = document.getElementById("startdate").value
@@ -101,9 +100,16 @@ function AdvertisementBooking() {
         // let d = document.getElementById("totalcost").value
 
         // setfeesamount(a)
+        if(Fees==" "|| b ==" " && c==" " && totalCost==" "){
+            alert("Fill all the Fields")
+        }else{
+            setAllData([...AllData, { fee: Fees, startDate: b, EndDate: c, TotalAmount: totalCost ,Halfobj:half,Fullobj:full}])
+
+        }
+        message.success('Advertisement Added Successfully');
 
 
-        setAllData([...AllData, { fee: Fees, startDate: b, EndDate: c, TotalAmount: totalCost ,Halfobj:half,Fullobj:full}])
+
         // {fees:startDate}
         // setstartDate(b)
         // setendDate(c)
@@ -137,13 +143,13 @@ function AdvertisementBooking() {
     };
 
     function handleOk() {
-<<<<<<< HEAD
-        alert(deleteId)
         if (deleteId > -1) {
             AllData.splice(deleteId, 1);
           }
           setAllData([...AllData])
-=======
+          message.success(' Removed Successfully');
+          setIsModalVisible(false);
+
         // let q=[];
         // AllData.map((value,index)=>{
         //     if(index+1 !==data){
@@ -152,7 +158,6 @@ function AdvertisementBooking() {
         // })
         // setAllData(q)
         // console.log(AllData[1],"alldata")
->>>>>>> c6ba5a7706222863dad99b18f652dc09570a0c67
 
     };
     function hello(data){
@@ -219,24 +224,24 @@ function AdvertisementBooking() {
                                 <div className="leftCreatemodel">
                                     <div className="StartDateView">
                                         <div>Start Date</div>
-                                        <Space direction="vertical" > <DatePicker style={{ width: 300 }} id="startdate" /> </Space>
+                                        <Space direction="vertical" > <DatePicker style={{ width: "230%" }} id="startdate" /> </Space>
                                     </div>
                                     <div className="Checkboxview"><Checkbox id="full" onChange={changeFullbox}>Full</Checkbox>
                                         <Checkbox id="half" onChange={changehalfbox}>Half</Checkbox>
                                     </div>
                                     <div className="FeeDayview">
                                         <div>Fee /Day(KWD) </div>
-                                        <InputNumber style={{ width: 300, height: 35 }} onChange={Feeschange} />
+                                        <InputNumber style={{ width: "93%", height: 35 }} onChange={Feeschange} />
                                     </div>
                                 </div>
                                 <div className="rightCreatemodel">
                                     <div className="StartDateView">
                                         <div>End Date</div>
-                                        <Space direction="vertical" > <DatePicker style={{ width: 300 }} id="enddate" /> </Space>
+                                        <Space direction="vertical" > <DatePicker style={{ width: "230%" }} id="enddate" /> </Space>
                                     </div>
                                     <div className="PacementLocation">
                                         <div>Placement Location</div>
-                                        <Select defaultValue="Home" style={{ width: 300 }} onChange={handleChange} >
+                                        <Select defaultValue="Home" style={{ width: "93%" }} onChange={handleChange} >
                                             <Option value="Home" >Home</Option>
 
                                             <Option value="Category">Category</Option>
@@ -245,14 +250,14 @@ function AdvertisementBooking() {
                                     </div>
                                     <div className="Totalcost">
                                         <div>Total Cost(KWD) </div>
-                                        <InputNumber placeholder={"1500"} style={{ width: 300, height: 35 }} onChange={TotalAmountchange} />
+                                        <InputNumber placeholder={"1500"} style={{ width: "93%", height: 35 }} onChange={TotalAmountchange} />
                                     </div>
 
                                 </div>
                             </div>
                             <div className="UploadAd">
                                 <div>Uploade Advertisement <img src={IRound} className="IroundImages" onClick={showModalnew} />
-                                    <Modal visible={isModelVisible} onOk={handleOknew} onCancel={handleCancelnew} header={null} width={900} bodyStyle={{ height: 220, marginTop: 50 }} footer={null}>
+                                    <Modal visible={isModelVisible} onOk={handleOknew} onCancel={handleCancelnew} header={null} width={"93%"} bodyStyle={{ height: 220, marginTop: 50 }} footer={null} zIndex={10000}>
                                         <div>
                                             <div className="uploadinstruction">Upload Instruction</div>
                                             <div className="threepoints">
@@ -265,7 +270,7 @@ function AdvertisementBooking() {
                                     </Modal>
                                 </div>
                                 <div className="Choosefile">
-                                    <input style={{ width: 500 }} placeholder="My image.jpg" />
+                                    <input style={{ width: "80%" }} placeholder="My image.jpg" />
 
                                     <input type="file" class="custom-file-input" style={{ width: 97, background: "rgb(2, 167, 233)" }} /></div>
 
@@ -315,17 +320,10 @@ function AdvertisementBooking() {
                                             <div className="buttonsdesign">
                                                 <div className="editbutton" onClick={warning}>✎</div>
                                                 <div>
-<<<<<<< HEAD
                                                     <Button  ><DeleteIcon onClick={()=>showModal(index)} style={{color:"red",fontSize:15}}/></Button>
                                                     
-=======
-                                                    <DeleteIcon onClick={showModal} style={{color:"red",fontSize:15}}/>
-                                                    <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                                                        <p>Are You Sure Do You Want To Delete This Advertisement?</p>
-                                                        <button  onClick={hello(index)}>hi</button>
-
-                                                    </Modal>
->>>>>>> c6ba5a7706222863dad99b18f652dc09570a0c67
+                                                    
+                                                    
                                                 </div>
                                             </div>
                                             </div>
@@ -344,7 +342,7 @@ function AdvertisementBooking() {
                 </div>
 
             </div>
-            {setIsModalVisible && <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+            {setIsModalVisible && <Modal title="Delete Advertisement" zIndex={10000} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
             <p>Are You Sure Do You Want To Delete This Advertisement?</p>
 
         </Modal>}

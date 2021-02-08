@@ -1,6 +1,6 @@
 .PageHeader{
     width: 100%;
-    height: auto;
+    height: 80px;
     box-shadow: 0px 1px 5px 0px rgba(182, 180, 180, 0.75);
     border-radius: 1px;
     display: flex;
@@ -10,7 +10,7 @@
 
     width: 20%;
     height: 70px;
-    font-size: x-large;
+    font-size: 20px;
     color: rgb(134, 187, 9);
     padding: 2%;
 }

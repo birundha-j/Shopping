@@ -7,6 +7,7 @@ import Excel from './excel.jpg';
 import { Button, Tab } from '@material-ui/core';
 import NoFound from './nofound.png'
 import Tables from '../TableFormat/tableform.js';
+import HeaderMenu from '../HeaderMenu/headermenu'
 
 
 
@@ -21,21 +22,8 @@ function RevenuePage() {
     }
     return (
         <div className="revenuepage">
-            <div className="content">
-                <div className="topcontent">REVENUE</div>
-                <div className="selectdate">
-                    <div className="selectrangetext">Select Range:</div>
-                    <div className="rangepicker"><Space direction="vertical" size={2}> <RangePicker /></Space></div>
-                </div>
-                <div className="searchicons">
-                    <div>
-                        <Space direction="vertical"><Search placeholder="search" style={{ width: 150 }} /></Space>
-                    </div>
-                    <div ><a href={'/'} download><PictureAsPdfIcon className="pdficon" /></a></div>
-                    <img src={Excel} />
-                    <div className="printicon"><PrintIcon onClick={prints} /></div>
-                </div>
-            </div>
+           <HeaderMenu  value={"REVENUE"}/>
+            
             <div>
                 <Tables className="Revenuetable">
                 </Tables>

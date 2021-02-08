@@ -22,6 +22,8 @@ function DealsList() {
     const [Percentage,setPercentage]=useState([])
     const [Amt,setAmt]=useState(false)
     const [per,setPer]=useState(false)
+    const [deleterow,setDeleterow] = useState();
+
 
 
 
@@ -66,6 +68,7 @@ function DealsList() {
 
 
     function SaveDealsDetails(){
+        message.success('Advertisement Added Successfully');
         let a=document.getElementById("validatefrom").value
         let b=document.getElementById("validateTo").value
         setValidateFrom(a)
@@ -98,11 +101,19 @@ function DealsList() {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const showModal = () => {
+    function showModal (id){
+        console.log(id,"id")
+        setDeleterow(id)
         setIsModalVisible(true);
     };
 
     const handleOk = () => {
+        if (deleterow > -1) {
+            AllDeals.splice(deleterow, 1);
+          }
+          setAllDeals([...AllDeals])
+          message.success(' Removed Successfully');
+
         setIsModalVisible(false);
     };
 
@@ -216,7 +227,7 @@ function DealsList() {
                             </div>
                             :
                             <div>
-                               {AllDeals.map((data)=>{
+                               {AllDeals.map((data,index)=>{
                                    return(
                                     <div className="dealsActivetable">
                                         <div className="rows">
@@ -257,8 +268,8 @@ function DealsList() {
                                         <div>
 
                                             <button className="ManageEdit" onClick={warning}>✎</button>
-                                            <Button className="ManageDelete"><DeleteIcon onClick={showModal}/></Button>
-                                                <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                                            <Button className="ManageDelete"><DeleteIcon onClick={()=>showModal(index)}/></Button>
+                                                <Modal title="Delete Advertisement"zIndex={10000} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                                                                     <p>Are You Sure Do You Want To Delete This Deal?</p>
                                                                     
                                                                 </Modal>
