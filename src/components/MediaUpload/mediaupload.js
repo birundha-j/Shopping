@@ -1,5 +1,6 @@
 import react, { useState } from 'react'
 import './mediaupload.css'
+import $ from "jquery";
 import IRound from './iround.jpg'
 import GreenCircle from './greencircle.png'
 import { UploadOutlined } from '@ant-design/icons';
@@ -8,12 +9,19 @@ import { DatePicker, Space, Input, Layout, Upload, message, Modal, Button, Form,
 const { Search } = Input;
 
 function MediaUpload() {
+    const [Allmedia, setAllmedia] = useState([])
     const [isModalVisible, setIsModalVisible] = useState(false);
+<<<<<<< HEAD
     const [mediaTitle,setMediaTitle]=useState([])
     const [Allmedia,setAllmedia]=useState([])
     const [image,setImage]=useState([])
 
     
+=======
+    const [media, setMedia] = useState([]);
+    const [imageView, setImageView] = useState([])
+    const [allimages, setAllimages] = useState(false)
+>>>>>>> c6ba5a7706222863dad99b18f652dc09570a0c67
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -29,9 +37,19 @@ function MediaUpload() {
 
 
     function handleupdate() {
+<<<<<<< HEAD
         setAllmedia([...Allmedia,{MediaTitle:mediaTitle,img:image}])
 
         
+=======
+        setAllimages(true)
+        // setAllmedia([...Allmedia, { MediaTitle: media, Imageval: allimages,img:imageView}])
+        setAllmedia([...Allmedia, { MediaTitle: media, Imageval: allimages,img:event.target.files[0]}])
+
+        // setImageView([...imageView])
+// setImageView({AllIMM:event.target.files[0]})
+        console.log(imageView,"imageView")
+>>>>>>> c6ba5a7706222863dad99b18f652dc09570a0c67
     }
     // inside popup:
     const [isModelVisible, setIsModelVisible] = useState(false);
@@ -48,6 +66,7 @@ function MediaUpload() {
         setIsModelVisible(false);
     };
 
+<<<<<<< HEAD
     function changeMedia(e){
         setMediaTitle(e)
     }
@@ -74,6 +93,38 @@ function MediaUpload() {
     //upload image
     
 
+=======
+    function changeMedia(e) {
+        setMedia(e.target.value)
+    }
+
+    // upload image:
+
+    $(function () {
+        $(":file").change(function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = imageIsLoaded;
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    });
+
+    function imageIsLoaded(e) {
+        $('#myImg').attr('src', e.target.result);
+        $('#yourImage').attr('src', e.target.result);
+    };
+
+    //image:
+
+    function changeimage(e) {
+       
+        setImageView(e.target.value)
+    }
+
+   
+>>>>>>> c6ba5a7706222863dad99b18f652dc09570a0c67
     return (
         <div>
             <div className="headercontent">
@@ -108,11 +159,15 @@ function MediaUpload() {
 
                                             </Modal>
                                         </div>
+<<<<<<< HEAD
                                         <Upload {...props}>
                                             <Button icon={<UploadOutlined />}>Click to Upload</Button>
                                         </Upload>
 
 
+=======
+                                        <Input type='file' onChange={changeimage} style={{ color:"gray" }} id="sampleFile"/>
+>>>>>>> c6ba5a7706222863dad99b18f652dc09570a0c67
 
                                     </div>
                                 </div>
@@ -130,6 +185,7 @@ function MediaUpload() {
 
                 </div>
             </div>
+<<<<<<< HEAD
             {Allmedia.map((data)=>{
                 return(
                     <div>
@@ -138,6 +194,26 @@ function MediaUpload() {
                     </div>
                 )
             })}
+=======
+            <div>
+                {Allmedia.map((data) => {
+                    return (
+                        <div>
+                            <div>{data.MediaTitle}</div>
+                            <div><img id="myImg" src={data.img} alt="your image" accept="image/*"/></div>
+
+
+                        </div>
+                    )
+                })}
+
+            </div>
+            {/* {allimages &&
+                                <img id="myImg" src={imageView} alt="your image" accept="image/*"/>
+                            } */}
+          
+
+>>>>>>> c6ba5a7706222863dad99b18f652dc09570a0c67
         </div>
     )
 }

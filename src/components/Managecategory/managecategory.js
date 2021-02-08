@@ -13,6 +13,7 @@ function ManageCategory() {
     const [AddingCategory, setAddingCategory] = useState([])
     const [Allrows, setAllrows] = useState([])
     const [checkboxes, setCheckboxes] = useState(true)
+    const [indexnum,setIndexnum]=useState()
     const onSearch = value => console.log(value);
     //popup:
 
@@ -99,8 +100,14 @@ function ManageCategory() {
 
     }
 
-    function DeleteRow(ind){
-        console.log(Allrows[ind],"ind")
+    function DeleteRow(a){
+        console.log(a,"aaaa")
+        Allrows.find((index)=>{
+            if(index+1 == a){
+                // setAddingCategory(value)
+                setIndexnum(index)
+            }
+        })
     }
 
     return (
@@ -178,7 +185,7 @@ function ManageCategory() {
                                     }
                                 </td>
                                 <td className="managechangebuttons">
-                                    <div onClick={showModalnew}><button className="ManageEdit" onClick={DeleteRow(index)} >✎ </button></div>
+                                    <div onClick={showModalnew}><button className="ManageEdit" onClick={DeleteRow(index+1)} >✎ </button></div>
                                     <Modal visible={isModelVisible} onOk={handleOknew} okText={"Upgrade"} onCancel={handleCancelnew} header={null} width={900} bodyStyle={{ height: 220 }} >
                                             <div className="ManagePopup">
                                                 <div className="popupheader">ADD CATEGORY </div>

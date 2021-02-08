@@ -20,7 +20,7 @@ function DealsList() {
     const [checkboxes, setCheckboxes] = useState(false)
     const [dealamount,setdealamount]=useState([])
     const [Percentage,setPercentage]=useState([])
-    const [Amt,setAmt]=useState(true)
+    const [Amt,setAmt]=useState(false)
     const [per,setPer]=useState(false)
 
 
@@ -48,13 +48,13 @@ function DealsList() {
     };
 
     function changeAmount(){
-        // setRadiobuttons(true)
+        setRadiobuttons(true)
        setAmt(true)
         setPer(false)
     }
 
     function changePercentage(){
-        // setRadiobuttons(false)
+        setRadiobuttons(false)
         setAmt(false)
         setPer(true)
 
@@ -70,7 +70,7 @@ function DealsList() {
         let b=document.getElementById("validateTo").value
         setValidateFrom(a)
         setValidateTo(b)
-        setAllDeals([...AllDeals,{testname:TestName,dealtite:DealTitle,vdateFrom:a,VdateTo:b,Checkboxvalue:checkboxes,DealAmountvalue:dealamount,Percentagevalue:Percentage}])
+        setAllDeals([...AllDeals,{testname:TestName,dealtite:DealTitle,vdateFrom:a,VdateTo:b,Checkboxvalue:checkboxes,DealAmountvalue:dealamount,Percentagevalue:Percentage ,AMT:Amt,PER:per}])
         setCheckboxes(false)
         setdealamount([])
         setPercentage([])
@@ -81,10 +81,14 @@ function DealsList() {
     }
     function ChangeDealAmount(e){
         setdealamount(e)
+        setAmt(true)
+        setPer(false)
     }
 
     function changeDealPercentage(e){
         setPercentage(e)
+        setPer(true)
+        setAmt(false)
     }
 
     function warning() {
@@ -248,16 +252,10 @@ function DealsList() {
                                             <div>{data.VdateTo}</div>
                                         </div>
                                         <div className="rows">
-                                            <div>
-                                           
-                                            
-                                               
-                                                {Amt &&<div>Amount :{data.DealAmountvalue} KWD</div>}
-                                                {per &&<div>Percent:{data.Percentagevalue} %</div>}
-                                            
-                                            
-                                            </div>
-                                            <div>
+                                                {data.Amt &&<div>Amount :{data.DealAmountvalue} KWD</div>}
+                                                {data.per &&<div>Percent:{data.Percentagevalue} %</div>}
+                                        <div>
+
                                             <button className="ManageEdit" onClick={warning}>✎</button>
                                             <Button className="ManageDelete"><DeleteIcon onClick={showModal}/></Button>
                                                 <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>

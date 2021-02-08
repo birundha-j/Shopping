@@ -137,13 +137,29 @@ function AdvertisementBooking() {
     };
 
     function handleOk() {
+<<<<<<< HEAD
         alert(deleteId)
         if (deleteId > -1) {
             AllData.splice(deleteId, 1);
           }
           setAllData([...AllData])
+=======
+        // let q=[];
+        // AllData.map((value,index)=>{
+        //     if(index+1 !==data){
+        //         q.push(value)
+        //     }
+        // })
+        // setAllData(q)
+        // console.log(AllData[1],"alldata")
+>>>>>>> c6ba5a7706222863dad99b18f652dc09570a0c67
 
     };
+    function hello(data){
+        console.log(data,"data")
+
+
+    }
 
     const handleCancel = () => {
         setIsModalVisible(false);
@@ -299,8 +315,17 @@ function AdvertisementBooking() {
                                             <div className="buttonsdesign">
                                                 <div className="editbutton" onClick={warning}>✎</div>
                                                 <div>
+<<<<<<< HEAD
                                                     <Button  ><DeleteIcon onClick={()=>showModal(index)} style={{color:"red",fontSize:15}}/></Button>
                                                     
+=======
+                                                    <DeleteIcon onClick={showModal} style={{color:"red",fontSize:15}}/>
+                                                    <Modal title="Delete Advertisement" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                                                        <p>Are You Sure Do You Want To Delete This Advertisement?</p>
+                                                        <button  onClick={hello(index)}>hi</button>
+
+                                                    </Modal>
+>>>>>>> c6ba5a7706222863dad99b18f652dc09570a0c67
                                                 </div>
                                             </div>
                                             </div>

@@ -88,10 +88,14 @@
 
 }
 
-.popupprofile {
+.popupprofile a  {
   font-size: 13px;
   color: rgb(65, 61, 61);
 
+}
+.popupprofile a:hover {
+  font-size: 13px;
+  color: rgb(65, 61, 61);
 }
 
 .popupprivacy {

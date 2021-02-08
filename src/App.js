@@ -217,7 +217,7 @@ export default function Apps() {
                         <hr></hr>
 
                         <div className="popuplogout">
-                          <div className="popupprofile">Profile</div>
+                          <div className="popupprofile"><a href={'/profile'}>Profile</a></div>
                           <div><Button className="popupbutton"><a href={'/logout'}>Logout</a></Button></div>
 
                         </div>
