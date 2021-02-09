@@ -1,11 +1,10 @@
-.Rowpage{
-    text-align: right;
-    font-size: 18px;
+.IconShow{
+    display: flex;
+    width: 35%;
+    justify-content: space-evenly;
 }
-
-.classes{
-    font-size: 40px;
-}
-.TableRow{
-    font-size: 20px !important;
+.EditView{
+    color: rgb(105, 207, 8);
+    font-size: 17px;
+    cursor: pointer;
 }

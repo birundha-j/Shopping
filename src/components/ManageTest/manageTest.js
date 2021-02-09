@@ -16,25 +16,29 @@ import './manageTest.css';
 import NewTable from '../NewTable/newTable'
 import HeaderDesign from '../HeaderDesign/headerdesign';
 import XImage from '../../image/Ximage.png'
+import DeleteIcon from '@material-ui/icons/Delete';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+
 
 const { Option } = Select;
 const { TabPane } = Tabs;
 let A = [];
 let B = [];
+var d;
 
 const headCells = [
     { id: 'sno', numeric: false, disablePadding: true, label: 'S.No' },
     { id: 'testname', numeric: false, disablePadding: false, label: 'Test' },
     { id: 'costkwd', numeric: true, disablePadding: false, label: 'Cost KWD' },
-    { id: 'date', numeric: true, disablePadding: false, label: 'Created Date' },
-    { id: 'Checkboxvalue', numeric: true, disablePadding: false, label: 'Action' },
+    { id: 'createdate', numeric: true, disablePadding: false, label: 'Created Date' },
+    { id: 'actions', numeric: true, disablePadding: false, label: 'Action' },
 ];
 
 // function createData(name, calories, fat, carbs, protein) {
 //     return { name, calories, fat, carbs, protein };
 // }
 
-function ManageTestPage() {
+function ManageTestPage(props) {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [changeentrytest, setchangeentrytest] = useState(true)
     const [category, setCategory] = useState([])
@@ -45,17 +49,18 @@ function ManageTestPage() {
     const [keytest, setKeytest] = useState(false)
     const [checkboxes, setCheckboxes] = useState(false)
     const [addrow,setAddrow]=useState(true)
+    const [currentdate,setCurrentdate]=useState([])
+    const [actionsicons,setActionicons] = useState()
+    const[isModalVisibles,setIsModalVisibles]=useState(false)
 
+    
+    var dateFormat = require("dateformat");
+     d = dateFormat(d, "dd mmm yyyy")
 
     console.log(A, "rowdata")
 
     const [rowdata, setRowdata] = React.useState([
-    { sno:1,testname: "test", costkwd: 100,date:"now",Checkboxvalue: "checkboxes"},
-    { sno:1,testname: "test", costkwd: 100,date:"now", Checkboxvalue: "checkboxes"},
-    { sno:3,testname: "test3", costkwd: 300,date:"now",Checkboxvalue: "Active"},
-    { sno:1,testname: "test", costkwd: 100,date:"now",Checkboxvalue: "checkboxes"},
-    { sno:1,testname: "test", costkwd: 100,date:"now", Checkboxvalue: "checkboxes"},
-    { sno:3,testname: "test3", costkwd: 300,date:"now",Checkboxvalue: "Active"},
+    
 
 
 
@@ -99,10 +104,14 @@ function ManageTestPage() {
     function Activecheckbox() {
         setCheckboxes(!checkboxes)
     }
+
     function AddingTableData() {
+        // setActionicons(probs.icons)
+        alert(d)
         message.success('Test Added Successfully');
         setKeytest(true)
-        setRowdata([...rowdata, {sno:rowdata.length, testname: testName, costkwd: cost, Checkboxvalue: checkboxes}])
+        setCurrentdate()
+        setRowdata([...rowdata, {sno:rowdata.length+1, testname: testName, costkwd: cost, createdate:d}])
         A.push(rowdata)
         B.push(testName)
         setAddrow(false)
@@ -123,11 +132,29 @@ function ManageTestPage() {
         setFulldata([...fulldata])
     }
 
+    // ViewTestDetails
+
+    
+    function EditTestEntry(){
+        alert("test3")
+    }
+
+    function DeleteTestEntry(){
+        alert("testy5")
+    }
+    // visible model:
+    const showModalVisible = () => {
+        setIsModalVisibles(true);
+    };
+    const handleCancels = () => {
+        setIsModalVisibles(false);
+    };
+    
     return (
         <div>
 
             <HeaderDesign modelOpen={showModal} value={"MANAGE TEST"} /> <div>
-                <Modal visible={isModalVisible} zIndex={10000} onCancel={handleCancel} width={"60%"} bodyStyle={{ marginTop: 45 }} footer={null}>
+                <Modal visible={isModalVisible}  onCancel={handleCancel} width={"60%"} bodyStyle={{ marginTop: 45 }} footer={null}>
                     <div className="ManagePopup">
                         <div className="popupheader">TEST ENTRY </div>
                         <div>
@@ -218,7 +245,46 @@ function ManageTestPage() {
             </div>
 
             <div className="ViewTable">
-                <NewTable headCell={headCells} rows={rowdata} addrows={"false"}/>
+                <NewTable headCell={headCells} rows={rowdata} addrows={"false"} Visible={showModalVisible} EditIcon={()=>EditTestEntry()} DeleteIcon={()=>DeleteTestEntry()}/>
+                <Modal visible={isModalVisibles}  onCancel={handleCancels} width={"45%"} bodyStyle={{ marginTop: 45 }} footer={null}>
+                    <div className="ModelTitle">TEXT DETAILS</div><br/>
+                    <div className="ModelGeneral">
+                        <div className="ModelGeneralScan">General Scan 1</div>
+                        <div>
+                        {fulldata.map((data, index) => {
+                            console.log(testName,"testName")
+                                            return (
+                                                <div>{data.testName}</div>
+
+
+                                                // <div className="PreviewPage" >
+                                                //     <div className="PreviewLeft">
+                                                //         <div>{data.testname}</div>
+                                                //         <div>{data.costkwd} KWD</div>
+                                                //     </div>
+                                                //     <div className="PreviewRight">
+                                                        
+                                                //         <div className="InstructActive">
+
+                                                //             <div className="Instruction">{data.Instructionval}</div>
+                                                //             <div className="ActiveStatus">
+                                                //                 {data.Checkboxvalue ?
+                                                //                     "Active"
+                                                //                     :
+                                                //                     "Inactive"
+                                                //                 }
+                                                //             </div>
+
+                                                //         </div>
+                                                //     </div>
+                                                // </div>
+                                            )
+                                        })}
+                            
+                        </div>
+                    </div>
+                </Modal>
+
                 {keytest && fulldata.map((data, index) => {
                     return (
 
