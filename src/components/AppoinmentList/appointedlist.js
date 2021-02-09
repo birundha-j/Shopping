@@ -1,16 +1,27 @@
-import react from 'react';
+import react,{useState} from 'react';
 import './appointedlist.css';
 import { DatePicker, Space, Input } from 'antd';
 import NoFound from './nofound.png'
 import HeaderMenu from '../HeaderMenu/headermenu'
 import Tables from '../TableFormat/tableform.js';
+import NewTables from '../NewTable/newTable'
 
+
+const headCells = [
+    { id: 'sno', numeric: false, disablePadding: true, label: 'S.No' },
+    { id: 'customer', numeric: false, disablePadding: false, label: 'Customer Name' },
+    { id: 'date', numeric: true, disablePadding: false, label: 'Date' },
+    { id: 'time', numeric: true, disablePadding: false, label: 'Time' },
+    { id: 'action', numeric: true, disablePadding: false, label: 'Action' },
+];
 
 // import { Input, Space } from 'antd';
 
 const { Search } = Input;
 const { RangePicker } = DatePicker;
 function AppoinmentList() {
+
+    const [rowdata, setRowdata] = useState([])
     function prints() {
         window.print();
     }
@@ -32,7 +43,7 @@ function AppoinmentList() {
                     <div className="printicon"><PrintIcon onClick={prints} /></div>
                 </div>
             </div> */}
-            <Tables/>
+            <NewTables headCell={headCells} rows={rowdata}/>
         </div>
     )
 }

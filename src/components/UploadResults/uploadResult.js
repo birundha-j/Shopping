@@ -9,6 +9,24 @@ import { Tab } from '@material-ui/core';
 import NoFound from './nofound.png'
 import Tables from '../TableFormat/tableform.js';
 import HeaderMenu from '../HeaderMenu/headermenu'
+import NewTable from '../NewTable/newTable'
+
+const headCells = [
+    { id: 'sno', numeric: false, disablePadding: true, label: 'S.No' },
+    { id: 'customer', numeric: false, disablePadding: false, label: 'Customer ' },
+    { id: 'date', numeric: true, disablePadding: false, label: 'Uploaded Date' },
+    { id: 'time', numeric: true, disablePadding: false, label: 'Time' },
+    { id: 'status', numeric: true, disablePadding: false, label: 'Status' },
+    { id: 'action', numeric: true, disablePadding: false, label: 'Action' },
+];
+const pendingheadCells = [
+    { id: 'sno', numeric: false, disablePadding: true, label: 'S.No' },
+    { id: 'customer', numeric: false, disablePadding: false, label: 'Customer ' },
+    { id: 'date', numeric: true, disablePadding: false, label: 'Text Date' },
+    { id: 'time', numeric: true, disablePadding: false, label: 'Time' },
+    { id: 'status', numeric: true, disablePadding: false, label: 'Status' },
+    { id: 'action', numeric: true, disablePadding: false, label: 'Action' },
+];
 
 
 
@@ -20,6 +38,9 @@ const { Header, Content, Footer } = Layout;
 
 function UploadResult() {
     const [changeupload, setchangeupload] = useState(true);
+    const [rowdata, setRowdata] = useState([])
+    const [pendingrowdata,setPendingrowdata]=useState([])
+
     function prints() {
         window.print();
     }
@@ -48,9 +69,9 @@ function UploadResult() {
                 }
                 
             </div>
-            {changeupload?<Tables />
+            {changeupload?<NewTable headCell={headCells} rows={rowdata}/>
                 :
-                <Tables />
+                <NewTable headCell={pendingheadCells} rows={pendingrowdata} />
                 
                 }
 

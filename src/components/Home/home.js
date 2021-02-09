@@ -1,13 +1,21 @@
-import react from 'react';
+import react,{useState} from 'react';
 import './home.css';
 import NoFound from './nofound.png';
 import Appoint from '../AppoinmentList/appointedlist'
-import Tables from '../TableFormat/tableform.js';
 import ManageTest from '../ManageTest/manageTest'
 import Revenue from '../Revenue/revenue'
 import MediaUpload from '../MediaUpload/mediaupload'
 import AddBook from '../Advertisement/Adbooking'
+import NewTable from '../NewTable/newTable'
 
+
+const headCells = [
+    { id: 'sno', numeric: false, disablePadding: true, label: 'S.No' },
+    { id: 'customer', numeric: false, disablePadding: false, label: 'Customer' },
+    { id: 'time', numeric: true, disablePadding: false, label: 'Time' },
+    { id: 'charge', numeric: true, disablePadding: false, label: 'Charge KWD' },
+    { id: 'action', numeric: true, disablePadding: false, label: 'Action' },
+];
 
 // const optionbox = [
 //     { title: "Total Appoinments", number: "4" },
@@ -18,6 +26,14 @@ import AddBook from '../Advertisement/Adbooking'
 function Homepage() {
     let d = new Date();
     var dateFormat = require("dateformat");
+    const [rowdata, setRowdata] = useState([
+        // <img src={NoFound}></img>
+
+        
+    
+        // { testname: B[1], costkwd: "cost", Checkboxvalue: "checkboxes", Instructionval: "instruction", testval: "category" },
+        ]
+        )
 
     return (
         <div>
@@ -65,7 +81,7 @@ function Homepage() {
                     <div className="currentdate">{dateFormat(d, "dd mmm yyyy")}</div>
                 </div>
                 <div className="HomeTable">
-                    <Tables />
+                    <NewTable headCell={headCells} rows={rowdata}  className="NewTable"/>
                     <div className="mediabookingbutton">
                         <div className="mediabutton"><a href={'/mediaupload'} className="MediaShow">Media Upload</a></div>
                         <div className="bookingbutton"><a href={'/Adbooking'}className="AddShow" >Advertisement Booking </a></div>

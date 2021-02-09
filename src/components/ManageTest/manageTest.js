@@ -19,18 +19,20 @@ import XImage from '../../image/Ximage.png'
 
 const { Option } = Select;
 const { TabPane } = Tabs;
+let A = [];
+let B = [];
 
 const headCells = [
-    { id: 'name', numeric: false, disablePadding: true, label: 'Dessert' },
-    { id: 'calories', numeric: false, disablePadding: false, label: 'Calories' },
-    { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-    { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-    { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
-  ];
+    { id: 'sno', numeric: false, disablePadding: true, label: 'S.No' },
+    { id: 'testname', numeric: false, disablePadding: false, label: 'Test' },
+    { id: 'costkwd', numeric: true, disablePadding: false, label: 'Cost KWD' },
+    { id: 'date', numeric: true, disablePadding: false, label: 'Created Date' },
+    { id: 'Checkboxvalue', numeric: true, disablePadding: false, label: 'Action' },
+];
 
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
+// function createData(name, calories, fat, carbs, protein) {
+//     return { name, calories, fat, carbs, protein };
+// }
 
 function ManageTestPage() {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -40,25 +42,26 @@ function ManageTestPage() {
     const [cost, setCost] = useState([])
     const [instruction, setInstruction] = useState([])
     const [fulldata, setFulldata] = useState([])
-    const [keytest,setKeytest]=useState(false)
+    const [keytest, setKeytest] = useState(false)
     const [checkboxes, setCheckboxes] = useState(false)
-    const [rowdata,setRowdata] = React.useState([
-        {name: "Cupcake", calories: 305, fat: 3.7, carbs: 67, protein: 4.3},//send data in object
-            createData('Donut', 5, 25.0, 51, 4.9),
-            createData('Eclair', 262, 16.0, 24, 6.0),
-            createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-            createData('Gingerbread', 356, 16.0, 49, 3.9),
-            createData('Honeycomb', 408, 3.2, 87, 6.5),
-            createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-            createData('Jelly Bean', 375, 0.0, 94, 0.0),
-            createData('KitKat', 518, 26.0, 65, 7.0),
-            createData('Lollipop', 392, 0.2, 98, 0.0),
-            createData('Marshmallow', 318, 0, 81, 2.0),
-            createData('Nougat', 360, 19.0, 9, 37.0),
-            createData('Oreo', 437, 18.0, 63, 4.0),
-          ]
-      )
+    const [addrow,setAddrow]=useState(true)
 
+
+    console.log(A, "rowdata")
+
+    const [rowdata, setRowdata] = React.useState([
+    { sno:1,testname: "test", costkwd: 100,date:"now",Checkboxvalue: "checkboxes"},
+    { sno:1,testname: "test", costkwd: 100,date:"now", Checkboxvalue: "checkboxes"},
+    { sno:3,testname: "test3", costkwd: 300,date:"now",Checkboxvalue: "Active"},
+    { sno:1,testname: "test", costkwd: 100,date:"now",Checkboxvalue: "checkboxes"},
+    { sno:1,testname: "test", costkwd: 100,date:"now", Checkboxvalue: "checkboxes"},
+    { sno:3,testname: "test3", costkwd: 300,date:"now",Checkboxvalue: "Active"},
+
+
+
+    // { testname: B[1], costkwd: "cost", Checkboxvalue: "checkboxes", Instructionval: "instruction", testval: "category" },
+    ]
+    )
 
 
 
@@ -66,7 +69,7 @@ function ManageTestPage() {
 
     function callback(key) {
         console.log(key);
-        
+
     }
 
     function handleChange(value) {
@@ -99,27 +102,32 @@ function ManageTestPage() {
     function AddingTableData() {
         message.success('Test Added Successfully');
         setKeytest(true)
-        setFulldata([...fulldata, { testname: testName, costkwd: cost,Checkboxvalue:checkboxes,Instructionval:instruction ,testval:category}])
-        setTestName([])
-        setCost([])
-        setInstruction([])
+        setRowdata([...rowdata, {sno:rowdata.length, testname: testName, costkwd: cost, Checkboxvalue: checkboxes}])
+        A.push(rowdata)
+        B.push(testName)
+        setAddrow(false)
+
+        // setFulldata([...fulldata, { testname: testName,costkwd: cost, Checkboxvalue: checkboxes, Instructionval: instruction, testval: category }])
         
 
     }
+    console.log(rowdata,"headrow")
+
+
     // delete:
-    function DeleteRow(id){
+    function DeleteRow(id) {
         alert("dehjhdjf")
         if (id > -1) {
             fulldata.splice(id, 1);
-          }
-          setFulldata([...fulldata])
+        }
+        setFulldata([...fulldata])
     }
 
     return (
         <div>
-            
+
             <HeaderDesign modelOpen={showModal} value={"MANAGE TEST"} /> <div>
-                <Modal visible={isModalVisible} zIndex={10000} onCancel={handleCancel} width={"60%"} bodyStyle={{marginTop: 45} } footer={null}>
+                <Modal visible={isModalVisible} zIndex={10000} onCancel={handleCancel} width={"60%"} bodyStyle={{ marginTop: 45 }} footer={null}>
                     <div className="ManagePopup">
                         <div className="popupheader">TEST ENTRY </div>
                         <div>
@@ -144,7 +152,7 @@ function ManageTestPage() {
                                             <div className="EntryNamecost">
                                                 <div className="EntryTest">
                                                     <div>Test Name</div>
-                                                    <div><Input style={{ width:"100%" }} onChange={TestNameChange} /></div>
+                                                    <div><Input style={{ width: "100%" }} onChange={TestNameChange} /></div>
                                                 </div>
                                                 <div className="EntryCostNumber">
                                                     <div>Cost KWD</div>
@@ -166,37 +174,37 @@ function ManageTestPage() {
 
                                 </TabPane>
                                 <TabPane tab="Preview" key="2">
-                                    {keytest?<div >
-                                {fulldata.map((data,index) => {
-                                    return (
-                                       
-                                            
-                                            <div className="PreviewPage" >
-                                                <div className="PreviewLeft">
-                                                    <div>{data.testname}</div>
-                                                    <div>{data.costkwd} KWD</div>
-                                                </div>
-                                                <div className="PreviewRight">
-                                                <div className="DeleteList"><img src={XImage} onClick={()=>DeleteRow(index)} className="CloseImage"/></div>
-                                                <div className="InstructActive">
+                                    {keytest ? <div >
+                                        {fulldata.map((data, index) => {
+                                            return (
 
-                                                    <div className="Instruction">{data.Instructionval}</div>
-                                                    <div className="ActiveStatus">
-                                                    {data.Checkboxvalue?
-                                                        "Active"
-                                                        :
-                                                        "Inactive"
-                                                     }
-                                                     </div>
-                                            
+
+                                                <div className="PreviewPage" >
+                                                    <div className="PreviewLeft">
+                                                        <div>{data.testname}</div>
+                                                        <div>{data.costkwd} KWD</div>
+                                                    </div>
+                                                    <div className="PreviewRight">
+                                                        <div className="DeleteList"><img src={XImage} onClick={() => DeleteRow(index)} className="CloseImage" /></div>
+                                                        <div className="InstructActive">
+
+                                                            <div className="Instruction">{data.Instructionval}</div>
+                                                            <div className="ActiveStatus">
+                                                                {data.Checkboxvalue ?
+                                                                    "Active"
+                                                                    :
+                                                                    "Inactive"
+                                                                }
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                </div>
-                                            </div>
-                )
-            })}
-            </div>
-            :
-            <div>No Found Data</div>}
+                                            )
+                                        })}
+                                    </div>
+                                        :
+                                        <div>No Found Data</div>}
                                 </TabPane>
 
                             </Tabs>
@@ -210,27 +218,27 @@ function ManageTestPage() {
             </div>
 
             <div className="ViewTable">
-                <NewTable headCell={headCells} rows={rowdata} />
-                {keytest &&  fulldata.map((data,index) => {
-                                    return (
-                                       
-                                            <div>
-                                            
-                                                    <div>{data.testname}</div>
-                                                    <div>{data.costkwd} KWD</div>
-                                                
+                <NewTable headCell={headCells} rows={rowdata} addrows={"false"}/>
+                {keytest && fulldata.map((data, index) => {
+                    return (
 
-                                                    <div>{data.Instructionval}</div>
-                                                    {data.Checkboxvalue?
-                                                        "Active"
-                                                        :
-                                                        "Inactive"
-                                                     }
-                                                     {data.testval}
-                                            
-                                        </div>       
-                )
-            })}
+                        <div>
+
+                            <div>{data.testname}</div>
+                            <div>{data.costkwd} KWD</div>
+
+
+                            <div>{data.Instructionval}</div>
+                            {data.Checkboxvalue ?
+                                "Active"
+                                :
+                                "Inactive"
+                            }
+                            {data.testval}
+
+                        </div>
+                    )
+                })}
 
             </div>
         </div>
