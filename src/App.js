@@ -268,7 +268,7 @@ export default function Apps() {
 
         <Divider />
   
-        <List className={"iconView"} vlink={"red"}>
+        <List className={"iconView"} vlink="red">
           {/* <img src={logoimage} className="Logoimage" /> */}
           <a href={'/'} className="MenuList"  >
             <ListItem button key={"Home"} >

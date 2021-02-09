@@ -96,11 +96,11 @@ table tr {
     width: 94%;
     margin-bottom: 1%;
 }
-table tr td:first-child::before {
+/* table tr td:first-child::before {
     content: counter(rowNumber);
     min-width: 1em;
     margin-right: 0.5em;
-}
+} */
 .TopHeader{
     width: 20%;
     padding: 2%;

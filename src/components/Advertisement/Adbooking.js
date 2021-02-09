@@ -224,24 +224,24 @@ function AdvertisementBooking() {
                                 <div className="leftCreatemodel">
                                     <div className="StartDateView">
                                         <div>Start Date</div>
-                                        <Space direction="vertical" > <DatePicker style={{ width: "230%" }} id="startdate" /> </Space>
+                                        <Space direction="vertical" > <DatePicker style={{ width: "185%" }} id="startdate" /> </Space>
                                     </div>
                                     <div className="Checkboxview"><Checkbox id="full" onChange={changeFullbox}>Full</Checkbox>
                                         <Checkbox id="half" onChange={changehalfbox}>Half</Checkbox>
                                     </div>
                                     <div className="FeeDayview">
                                         <div>Fee /Day(KWD) </div>
-                                        <InputNumber style={{ width: "93%", height: 35 }} onChange={Feeschange} />
+                                        <InputNumber style={{ width: "92%", height: 35 }} onChange={Feeschange} />
                                     </div>
                                 </div>
                                 <div className="rightCreatemodel">
                                     <div className="StartDateView">
                                         <div>End Date</div>
-                                        <Space direction="vertical" > <DatePicker style={{ width: "230%" }} id="enddate" /> </Space>
+                                        <Space direction="vertical" > <DatePicker style={{ width: "185%" }} id="enddate" /> </Space>
                                     </div>
                                     <div className="PacementLocation">
                                         <div>Placement Location</div>
-                                        <Select defaultValue="Home" style={{ width: "93%" }} onChange={handleChange} >
+                                        <Select defaultValue="Home" style={{ width: "90%" }} onChange={handleChange} >
                                             <Option value="Home" >Home</Option>
 
                                             <Option value="Category">Category</Option>
@@ -250,14 +250,14 @@ function AdvertisementBooking() {
                                     </div>
                                     <div className="Totalcost">
                                         <div>Total Cost(KWD) </div>
-                                        <InputNumber placeholder={"1500"} style={{ width: "93%", height: 35 }} onChange={TotalAmountchange} />
+                                        <InputNumber placeholder={"1500"} style={{ width: "90%", height: 35 }} onChange={TotalAmountchange} />
                                     </div>
 
                                 </div>
                             </div>
                             <div className="UploadAd">
                                 <div>Uploade Advertisement <img src={IRound} className="IroundImages" onClick={showModalnew} />
-                                    <Modal visible={isModelVisible} onOk={handleOknew} onCancel={handleCancelnew} header={null} width={"93%"} bodyStyle={{ height: 220, marginTop: 50 }} footer={null} zIndex={10000}>
+                                    <Modal visible={isModelVisible} onOk={handleOknew} onCancel={handleCancelnew} header={null} width={"90%"} bodyStyle={{ height: 220, marginTop: 50 }} footer={null} zIndex={10000}>
                                         <div>
                                             <div className="uploadinstruction">Upload Instruction</div>
                                             <div className="threepoints">
