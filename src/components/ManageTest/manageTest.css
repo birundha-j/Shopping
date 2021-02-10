@@ -139,8 +139,8 @@
  }
  .ModelGeneral{
      width: 100%;
-     height: auto;
- }
+height: auto;
+    }
 .ModelGeneralScan{
     width: 40%;
     height: 45px;
@@ -151,4 +151,46 @@
     padding: 2%;
     margin: auto;
 
+}
+.PreviewSide{
+    display: flex;
+    justify-content: space-around;
+}
+
+.ModelDeleteLine{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+}
+
+.Buttondelete{
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+.Cancelbutton{
+    margin-right: 1%;
+    width: 15%;
+    height: 35px;
+    border: 1px solid rgb(167, 164, 164);
+    text-align: center;
+    padding-top: 1%;
+    background-color: rgb(194, 189, 189);
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.Deletebutton{
+    margin-left: 1%;
+    width: 15%;
+    height: 35px;
+    border: 1px solid rgb(44, 137, 224);
+    text-align: center;
+    padding-top: 1%;
+    background-color: rgb(44, 137, 224);
+    color: white;
+    border-radius: 5px;
+cursor: pointer;
 }

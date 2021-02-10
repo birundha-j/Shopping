@@ -185,7 +185,16 @@ export default function EnhancedTable(props) {
 
   useEffect(() => {
     setRows(props.rows)
+    // {<img src={NoFound}/>}
+    if(props.rows>=0){
+      alert(props.rows)
+      setAddrows(false)
+    // alert(addrows)
+
+  
+    }
   }, [props.rows])
+  
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -322,7 +331,7 @@ export default function EnhancedTable(props) {
               headCellss={props.headCell}
             />
 
-            <TableBody >
+            <TableBody id="tbody">
 
               {/* // <img src={NoFound}/> */}
 
@@ -339,14 +348,17 @@ export default function EnhancedTable(props) {
                   }
 
                   return (
+                    // <div>
+                    //  {addrows?<img src={NoFound}></img>
+                    //   :
                     <TableRow
 
-
+                      id={props.index}
                       hover
                       onClick={(event) => handleClick(event, row.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
-                      tabIndex={-1}
+                      tabIndex={row.selectedIndex}
                       key={row.name}
                       selected={isItemSelected}
                     >
@@ -368,7 +380,11 @@ export default function EnhancedTable(props) {
                             return <TableCell align="center">{row[data.id]}</TableCell>  //dynamically add the data in td data
                           })
                       } */}
-                      {arrval}
+                     
+                       {arrval}
+                     
+
+                      
                       <TableCell align="center" >
                         <div className="IconShow">
                           <VisibilityIcon color="primary" fontSize="small" onClick={props.Visible}/>
@@ -377,6 +393,8 @@ export default function EnhancedTable(props) {
                         </div>
                       </TableCell>
                     </TableRow>
+                // }
+                //     </div>
                   );
                 })}
               {emptyRows > 0 && (

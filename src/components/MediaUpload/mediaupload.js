@@ -5,9 +5,21 @@ import IRound from './iround.jpg'
 import GreenCircle from './greencircle.png'
 import { UploadOutlined } from '@ant-design/icons';
 import HeaderDesign from '../HeaderDesign/headerdesign';
-
-
 import { DatePicker, Space, Input, Layout, Upload, message, Modal, Button, Form, Checkbox } from 'antd';
+import NewTable from '../NewTable/newTable'
+
+
+const headCells = [
+    { id: 'sno', numeric: false, disablePadding: true, label: 'S.No' },
+    { id: 'mediatitles', numeric: false, disablePadding: false, label: 'Media Title' },
+    { id: 'mediatype', numeric: true, disablePadding: false, label: 'Media Type' },
+    { id: 'uploadon', numeric: true, disablePadding: false, label: 'Upload On' },
+    { id: 'status', numeric: true, disablePadding: false, label: 'Status' },
+    { id: 'action', numeric: true, disablePadding: false, label: 'Action' },
+
+];
+
+
 const { Search } = Input;
 
 function MediaUpload() {
@@ -20,6 +32,10 @@ function MediaUpload() {
     const [Checkboxes, setCheckboxes] = useState(true);
     const [imageView, setImageView] = useState([])
     const [allimages, setAllimages] = useState(false)
+    const [rowdata, setRowdata] = useState([
+        // { testname: B[1], costkwd: "cost", Checkboxvalue: "checkboxes", Instructionval: "instruction", testval: "category" },
+    ]
+    )
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -35,6 +51,7 @@ function MediaUpload() {
 
 
     function handleupdate() {
+        setRowdata([...rowdata,{sno: rowdata.length + 1,mediatitles:mediaTitle,mediatype:"Image",uploadon:"Date",status:"Active"}])
         setAllmedia([...Allmedia, { MediaTitle: mediaTitle, img: image ,descriptval:Description,Checkboxvalue: Checkboxes}])
 
 
@@ -128,6 +145,7 @@ function MediaUpload() {
     return (
         <div>
             <HeaderDesign value={" MEDIA UPLOADS"} modelOpen={showModal}/>
+            <NewTable headCell={headCells} rows={rowdata}/>
             <Modal header={null} visible={isModalVisible} zIndex={10000} onOk={handleOk} onCancel={handleCancel} width={850} bodyStyle={{ height: 400 }} okText={"Update"} onOk={handleupdate}>
                             <div>
                                 <div className="mediapopupHeader">New Media Uploads</div>
@@ -169,7 +187,7 @@ function MediaUpload() {
                         </Modal>
 
            
-    {
+    {/* {
         Allmedia.map((data) => {
             return (
                 <div>
@@ -184,7 +202,7 @@ function MediaUpload() {
                 </div>
             )
         })
-    }
+    } */}
             {/* <div>
                 {Allmedia.map((data) => {
                     return (
