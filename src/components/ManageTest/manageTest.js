@@ -57,6 +57,11 @@ function ManageTestPage(props) {
     const [displayRow, setDisplayRow] = useState(false)
     const [isModalVisibleEdit, setIsModalVisibleEdit] = useState(false);
     const [isModalVisibleDelete, setIsModalVisibleDelete] = useState(false);
+    const [editrow, setEditrow] = useState([])
+    const [editid,setEditid]=useState()
+    //edit
+
+    const [testNameedit,setTestNameedit]=useState([])
 
 
 
@@ -115,17 +120,15 @@ function ManageTestPage(props) {
     }
 
     function AddingTableData() {
+
         // setActionicons(probs.icons)
         message.success('Test Added Successfully');
-        setKeytest(true)
         setCurrentdate()
         setRowdata([...rowdata, { sno: rowdata.length + 1, testname: testName, costkwd: cost, createdate: d }])
         A.push(rowdata)
         B.push(testName)
-        setAddrow(false)
 
         setFulldata([...fulldata, { testnames: testName, costkwds: cost, code: "KWD", Checkboxvalues: checkboxes, Instructionvals: instruction, testvals: category }])
-        setDisplayRow(true)
 
 
 
@@ -150,21 +153,24 @@ function ManageTestPage(props) {
 
     // visible model:
     const showModalVisible = (x) => {
-        alert(x, "xxx")
+        console.log(x, "Index")
         setIndexrow(x)
-        setSelectrow([selectrow, fulldata[x]])
+        setSelectrow([...selectrow, fulldata[x]])
 
         setIsModalVisibles(true);
 
 
     };
-    console.log(selectrow, "selectrow")
     const handleCancels = () => {
         setIsModalVisibles(false);
+        setSelectrow([])
+
     };
     // edit model
 
-    function EditTestEntry() {
+    function EditTestEntry(id) {
+        setEditid(id)
+        setEditrow([...editrow, fulldata[id]])
         setIsModalVisibleEdit(true);
     }
 
@@ -182,15 +188,34 @@ function ManageTestPage(props) {
         setIsModalVisibleDelete(false)
 
     }
-    function  HandleNoDelete(){
+    function HandleNoDelete() {
         setIsModalVisibleDelete(false)
 
     }
     // update row:
 
-    function UpdateRow(){
+    function UpdateRow() {
+        rowdata.map((data,index)=>{
+            
+                if(editid == index){
+                    setTestNameedit(rowdata[editid]={sno: rowdata.length + 1,testname:testName,costkwd: cost, createdate: d})
+
+
+                }
+                console.log(testNameedit,"testNameedit")
+            
+        })
+        
+        // setRowdata([...rowdata,{sno: rowdata.length + 1,testname:testName,costkwd: cost, createdate: d}])
 
     }
+    //edit onchange function:
+    function TestNameChanges(e){
+        
+        setTestName(e.target.value)
+    }
+    console.log(testName,"testNametestName")
+
 
     return (
         <div>
@@ -291,20 +316,23 @@ function ManageTestPage(props) {
 
 
 
-                    <NewTable headCell={headCells} rows={rowdata} addrows={"false"} Visible={() => showModalVisible(rowdata.index)}
-                        EditIcon={() => EditTestEntry()} DeleteIcon={() => DeleteTestEntry()} />
+            <NewTable headCell={headCells} rows={rowdata} addrows={"false"} Visibles={(index) => showModalVisible(index)} EditIcon={(index) => EditTestEntry(index)} DeleteIcon={(index) => DeleteTestEntry(index)} viewOpen={false} />
 
-{/* 
+            {/* 
                 )
             })} */}
             <Modal visible={isModalVisibles} onCancel={handleCancels} width={"45%"} bodyStyle={{ marginTop: 45 }} footer={null}>
                 <div className="ModelTitle">TEXT DETAILS</div><br />
                 <div className="ModelGeneral">
                     <div className="ModelGeneralScan">General Scan 1</div>
-                    <div>
 
+
+                    <div>
                         {selectrow.map((datas) => {
                             return (
+
+
+
                                 <div className="PreviewPage">
                                     <div className="PreviewLeft">
                                         <div>{datas.testnames}</div>
@@ -312,18 +340,18 @@ function ManageTestPage(props) {
                                             <div> {datas.code}</div></div>
 
                                     </div>
-                                    <div className="InstructActive">
-                                        <div className="Instruction">{datas.Instructionvals}</div>
+                                    <div className="InstructActives">
+                                        <div className="Instructions">{datas.Instructionvals}</div>
 
 
-                                        {/* <div>
-                                                        hi
-                                                        {/* {data.Checkboxvalues ?
-                                                            "Active"
-                                                            :
-                                                            "Inactive"
-                                                        } */}
-                                        {/* </div> */}
+                                        <div className="ActiveStatuss">
+
+                                            {datas.Checkboxvalues ?
+                                                "Active"
+                                                :
+                                                "Inactive"
+                                            }
+                                        </div>
 
                                     </div>
 
@@ -337,52 +365,62 @@ function ManageTestPage(props) {
 
 
 
+
                     </div>
+
                 </div>
             </Modal>
             <Modal visible={isModalVisibleEdit} onCancel={handleCancelEdit} width={"45%"} bodyStyle={{ marginTop: 45 }} footer={null}>
                 <Tabs defaultActiveKey="1" onChange={callback} centered>
-
-                    <TabPane tab="Entry" key="1">
-                        <div className="EntryPage">
-                            <div className="SelectBox">
-                                <div>Test Category</div>
-                                <Select defaultValue="General Scan 1" style={{ width: "90%", padding: "2%" }} onChange={handleChange} >
-                                    <Option value="General Scan 1">General Scan 1</Option>
-                                    <Option value="BloodTest">BloodTest</Option>
-                                    <Option value="Ultrasound whole abdomen">Ultrasound whole abdomen</Option>
-                                    <Option value="Pregnency Scan" > Pregnency Scan</Option>
-                                    <Option value="Check one">Check one</Option>
-                                    <Option value="Endoscopy">Endoscopy</Option>
-                                    <Option value="Yiminghe">yiminghe</Option>
-                                </Select>
-                            </div>
-                            <div className="EntryFeilds">
-
-                                <div className="EntryNamecost">
-                                    <div className="EntryTest">
-                                        <div>Test Name</div>
-                                        <div><Input style={{ width: "100%" }} onChange={TestNameChange} /></div>
+                    {editrow.map((data) => {
+                        return (
+                            <TabPane tab="Entry" key="1">
+                                <div className="EntryPage">
+                                    <div className="SelectBox">
+                                        <div>Test Category</div>
+                                        <Select defaultValue="General Scan 1" style={{ width: "90%", padding: "2%" }} onChange={handleChange}  >
+                                            <Option value="General Scan 1">General Scan 1</Option>
+                                            <Option value="BloodTest">BloodTest</Option>
+                                            <Option value="Ultrasound whole abdomen">Ultrasound whole abdomen</Option>
+                                            <Option value="Pregnency Scan" > Pregnency Scan</Option>
+                                            <Option value="Check one">Check one</Option>
+                                            <Option value="Endoscopy">Endoscopy</Option>
+                                            <Option value="Yiminghe">yiminghe</Option>
+                                        </Select>
                                     </div>
-                                    <div className="EntryCostNumber">
-                                        <div>Cost KWD</div>
-                                        <div><InputNumber style={{ width: "100%" }} onChange={ChangeCost} /></div>
+                                    <div className="EntryFeilds">
+
+                                        <div className="EntryNamecost">
+                                            <div className="EntryTest">
+                                                <div>Test Name</div>
+                                                <div><Input style={{ width: "100%" }} onChange={TestNameChanges} value={testName}/></div>
+                                            </div>
+                                            <div className="EntryCostNumber">
+                                                <div>Cost KWD</div>
+                                                <div><InputNumber style={{ width: "100%" }} onChange={ChangeCost} /></div>
+                                            </div>
+
+                                        </div>
+                                        <div className="entryinstruction">
+                                            <div>Patient Instruction</div>
+                                            <div><textarea name="Text1" cols="40" rows="5" style={{ width: "100%", height: "80px" }} onChange={changeInstruction} /></div>
+
+                                        </div>
+                                        <div className="Activecheckbox">
+                                            <Checkbox onChange={Activecheckbox}>Active</Checkbox>
+                                            <div className="Addbutton" onClick={UpdateRow}>Update</div>
+                                        </div>
                                     </div>
-
                                 </div>
-                                <div className="entryinstruction">
-                                    <div>Patient Instruction</div>
-                                    <div><textarea name="Text1" cols="40" rows="5" style={{ width: "100%", height: "80px" }} onChange={changeInstruction} /></div>
 
-                                </div>
-                                <div className="Activecheckbox">
-                                    <Checkbox onChange={Activecheckbox}>Active</Checkbox>
-                                    <div className="Addbutton" onClick={UpdateRow}>Update</div>
-                                </div>
-                            </div>
-                        </div>
+                            </TabPane>
 
-                    </TabPane>
+                        )
+                    })}
+
+
+
+
                 </Tabs>
 
             </Modal>
@@ -390,7 +428,7 @@ function ManageTestPage(props) {
                 <div className="ModelTitle">Delete</div>
                 <div className="ModelDeleteLine">Are You Sure Want to Delete This Record?</div>
                 <div className="Buttondelete"><div className="Cancelbutton" onClick={HandleNoDelete}>No</div>
-                <div className="Deletebutton">Yes</div></div>
+                    <div className="Deletebutton">Yes</div></div>
             </Modal>
 
 

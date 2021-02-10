@@ -158,7 +158,7 @@ function ManageCategory() {
 
             <div >
                 <HeaderDesign value={"MANAGE CATEGORY"} modelOpen={showModal} />
-                <NewTable headCell={headCells} rows={rowdata} />
+                <NewTable headCell={headCells} rows={rowdata} viewOpen={true} />
 
                 <Modal visible={isModalVisible} zIndex={10000} onOk={submitbutton} okText={"Submit"} onCancel={handleCancel} onClick={success}>
                     <div className="ManagePopup">

@@ -194,3 +194,20 @@ height: auto;
     border-radius: 5px;
 cursor: pointer;
 }
+
+.Instructions{
+    width: 70%;
+
+
+}
+.InstructActives{
+    width: 100%;
+    display: flex;
+}
+.ActiveStatuss{
+    width: 25%;
+    color: rgb(84, 175, 9);
+    padding-top: 50px;
+    margin-right: 1%;
+
+}

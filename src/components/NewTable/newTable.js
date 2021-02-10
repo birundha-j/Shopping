@@ -187,7 +187,6 @@ export default function EnhancedTable(props) {
     setRows(props.rows)
     // {<img src={NoFound}/>}
     if(props.rows>=0){
-      alert(props.rows)
       setAddrows(false)
     // alert(addrows)
 
@@ -387,9 +386,9 @@ export default function EnhancedTable(props) {
                       
                       <TableCell align="center" >
                         <div className="IconShow">
-                          <VisibilityIcon color="primary" fontSize="small" onClick={props.Visible}/>
-                          <div className="EditView" onClick={props.EditIcon}>✎</div>
-                          <DeleteIcon color="secondary" fontSize="small" onClick={props.DeleteIcon}/>
+                          {!props.viewOpen && <VisibilityIcon color="primary" fontSize="small" onClick={()=>props.Visibles(index)}/>}
+                          <div className="EditView" onClick={()=>props.EditIcon(index)}>✎</div>
+                          <DeleteIcon color="secondary" fontSize="small" onClick={()=>props.DeleteIcon(index)}/>
                         </div>
                       </TableCell>
                     </TableRow>
