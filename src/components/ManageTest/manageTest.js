@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import HeaderDesign from '../HeaderDesign/headerdesign'
 // function ManageTest() {
 //     return (
@@ -27,7 +27,6 @@ let B = [];
 var d;
 
 const headCells = [
-    { id: 'sno', numeric: false, disablePadding: true, label: 'S.No' },
     { id: 'testname', numeric: false, disablePadding: false, label: 'Test' },
     { id: 'costkwd', numeric: true, disablePadding: false, label: 'Cost KWD' },
     { id: 'createdate', numeric: true, disablePadding: false, label: 'Created Date' },
@@ -104,8 +103,23 @@ function ManageTestPage(props) {
     };
     // inputs on change:
 
-    function TestNameChange(e) {
+    useEffect(()=>{
+        setEditrow(editrow)
+    },[testName])
+
+    function TestNameChange(e,id) {
+        console.log(e.target.value,"e.target.value")
+        if(id){
+            // editrow.map((data,index)=>{
+            //     if(id === index){
+                    
+            //     }
+            // })
+            editrow[id].testName = e.target.value
+            setEditrow(editrow)
+        }else
         setTestName(e.target.value)
+
     }
 
     function ChangeCost(e) {
@@ -125,7 +139,7 @@ function ManageTestPage(props) {
         // setActionicons(probs.icons)
         message.success('Test Added Successfully');
         setCurrentdate()
-        setRowdata([...rowdata, { sno: rowdata.length + 1, testname: testName, costkwd: cost, createdate: d }])
+        setRowdata([...rowdata, {  testname: testName, costkwd: cost, createdate: d }])
         A.push(rowdata)
         B.push(testName)
 
@@ -215,7 +229,7 @@ function ManageTestPage(props) {
 
 
             if (editid == index) {
-                setTestNameedit(rowdata[editid] = { sno: rowdata.length + 1, testname: testName, costkwd: cost, createdate: d })
+                setTestNameedit(rowdata[editid] = { testname: testName, costkwd: cost, createdate: d })
 
 
             }
@@ -232,7 +246,7 @@ function ManageTestPage(props) {
 
         setTestName(e.target.value)
     }
-    console.log(rowdata, "testNametestName")
+    console.log(editrow, "testNametestName")
 
 
     return (
@@ -395,7 +409,7 @@ function ManageTestPage(props) {
             </Modal>
             <Modal visible={isModalVisibleEdit} onCancel={handleCancelEdit} width={"45%"} bodyStyle={{ marginTop: 45 }} footer={null}>
                 <Tabs defaultActiveKey="1" onChange={callback} centered>
-                    {editrow.map((data) => {
+                    {editrow.map((data,index) => {
                         return (
                             <TabPane tab="Entry" key="1">
                                 <div className="EntryPage">
@@ -416,7 +430,7 @@ function ManageTestPage(props) {
                                         <div className="EntryNamecost">
                                             <div className="EntryTest">
                                                 <div>Test Name</div>
-                                                <div><Input style={{ width: "100%" }} value={data.testname} onChange={TestNameChange} /></div>
+                                                <div><Input style={{ width: "100%" }} value={data.testname} onChange={(e)=>TestNameChange(e,index)} /></div>
                                             </div>
                                             <div className="EntryCostNumber">
                                                 <div>Cost KWD</div>

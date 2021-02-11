@@ -77,6 +77,9 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
+      <TableCell padding="checkbox">
+        S.No
+      </TableCell>
         {/* <TableCell padding="checkbox">
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -361,6 +364,7 @@ export default function EnhancedTable(props) {
                       key={row.name}
                       selected={isItemSelected}
                     >
+                      <TableCell align="center">{rowsPerPage * page + index+1}</TableCell>
                       {/* <TableCell padding="checkbox">
                         <Checkbox
                           checked={isItemSelected}
