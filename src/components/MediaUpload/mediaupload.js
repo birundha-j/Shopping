@@ -36,6 +36,10 @@ function MediaUpload() {
         // { testname: B[1], costkwd: "cost", Checkboxvalue: "checkboxes", Instructionval: "instruction", testval: "category" },
     ]
     )
+    const [isModalVisibleEdit, setIsModalVisibleEdit] = useState(false);
+    const [isModalVisibleDelete, setIsModalVisibleDelete] = useState(false);
+    const [isModalVisibles, setIsModalVisibles] = useState(false)
+
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -141,11 +145,48 @@ function MediaUpload() {
     function Activecheckbox() {
         setCheckboxes(!Checkboxes)
     }
+// visible model:
+const showModalVisible = (x) => {
+    console.log(x, "Index")
+    
+    setIsModalVisibles(true);
+
+
+};
+const handleCancels = () => {
+    setIsModalVisibles(false);
+
+};
+
+    // edit model
+
+    function EditTestEntry(id) {
+        
+        setIsModalVisibleEdit(true);
+    }
+
+    function handleCancelEdit() {
+        setIsModalVisibleEdit(false)
+    }
+
+    // delete rows:
+    function DeleteTestEntry() {
+        setIsModalVisibleDelete(true)
+    }
+
+    function handleCancelDelete() {
+        setIsModalVisibleDelete(false)
+
+    }
+    function HandleNoDelete() {
+        setIsModalVisibleDelete(false)
+
+    }
 
     return (
         <div>
             <HeaderDesign value={" MEDIA UPLOADS"} modelOpen={showModal}/>
-            <NewTable headCell={headCells} rows={rowdata}/>
+            <NewTable headCell={headCells} rows={rowdata} Visibles={(index) => showModalVisible(index)} EditIcon={(index) => EditTestEntry(index)} DeleteIcon={(index) => DeleteTestEntry(index)} viewOpen={false}/>
             <Modal header={null} visible={isModalVisible} zIndex={10000} onOk={handleOk} onCancel={handleCancel} width={850} bodyStyle={{ height: 400 }} okText={"Update"} onOk={handleupdate}>
                             <div>
                                 <div className="mediapopupHeader">New Media Uploads</div>

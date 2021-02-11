@@ -58,11 +58,12 @@ function ManageTestPage(props) {
     const [isModalVisibleEdit, setIsModalVisibleEdit] = useState(false);
     const [isModalVisibleDelete, setIsModalVisibleDelete] = useState(false);
     const [editrow, setEditrow] = useState([])
-    const [editid,setEditid]=useState()
+    const [editid, setEditid] = useState()
+    const [deleteid, setDeleteid] = useState()
     //edit
 
-    const [testNameedit,setTestNameedit]=useState([])
-
+    const [testNameedit, setTestNameedit] = useState([])
+    // const [editfullrow,setEditfullrow] =useState()
 
 
 
@@ -130,6 +131,9 @@ function ManageTestPage(props) {
 
         setFulldata([...fulldata, { testnames: testName, costkwds: cost, code: "KWD", Checkboxvalues: checkboxes, Instructionvals: instruction, testvals: category }])
 
+        setTestName([])
+        setCost([])
+
 
 
     }
@@ -155,7 +159,7 @@ function ManageTestPage(props) {
     const showModalVisible = (x) => {
         console.log(x, "Index")
         setIndexrow(x)
-        setSelectrow([...selectrow, fulldata[x]])
+        setSelectrow([...selectrow, rowdata[x]])
 
         setIsModalVisibles(true);
 
@@ -169,18 +173,21 @@ function ManageTestPage(props) {
     // edit model
 
     function EditTestEntry(id) {
+
         setEditid(id)
-        setEditrow([...editrow, fulldata[id]])
+        setEditrow([...editrow, rowdata[id]])
         setIsModalVisibleEdit(true);
     }
 
     function handleCancelEdit() {
         setIsModalVisibleEdit(false)
+        setEditrow([])
     }
 
     // delete model:
 
-    function DeleteTestEntry() {
+    function DeleteTestEntry(id) {
+        setDeleteid(id)
         setIsModalVisibleDelete(true)
     }
 
@@ -192,29 +199,40 @@ function ManageTestPage(props) {
         setIsModalVisibleDelete(false)
 
     }
+    function Deleterow() {
+        if (deleteid > -1) {
+            rowdata.splice(deleteid, 1);
+        }
+        setRowdata([...rowdata])
+        setIsModalVisibleDelete(false)
+
+
+    }
     // update row:
 
     function UpdateRow() {
-        rowdata.map((data,index)=>{
-            
-                if(editid == index){
-                    setTestNameedit(rowdata[editid]={sno: rowdata.length + 1,testname:testName,costkwd: cost, createdate: d})
+        rowdata.map((data, index) => {
 
 
-                }
-                console.log(testNameedit,"testNameedit")
-            
+            if (editid == index) {
+                setTestNameedit(rowdata[editid] = { sno: rowdata.length + 1, testname: testName, costkwd: cost, createdate: d })
+
+
+            }
+
+            console.log(testNameedit, "testNameedit")
+
         })
-        
+        // setTestName([ ])
         // setRowdata([...rowdata,{sno: rowdata.length + 1,testname:testName,costkwd: cost, createdate: d}])
 
     }
     //edit onchange function:
-    function TestNameChanges(e){
-        
+    function TestNameChanges(e) {
+
         setTestName(e.target.value)
     }
-    console.log(testName,"testNametestName")
+    console.log(rowdata, "testNametestName")
 
 
     return (
@@ -247,11 +265,11 @@ function ManageTestPage(props) {
                                             <div className="EntryNamecost">
                                                 <div className="EntryTest">
                                                     <div>Test Name</div>
-                                                    <div><Input style={{ width: "100%" }} onChange={TestNameChange} /></div>
+                                                    <div><Input style={{ width: "100%" }} onChange={TestNameChange} value={testName} /></div>
                                                 </div>
                                                 <div className="EntryCostNumber">
                                                     <div>Cost KWD</div>
-                                                    <div><InputNumber style={{ width: "100%" }} onChange={ChangeCost} /></div>
+                                                    <div><InputNumber style={{ width: "100%" }} onChange={ChangeCost} value={cost} /></div>
                                                 </div>
 
                                             </div>
@@ -263,6 +281,9 @@ function ManageTestPage(props) {
                                             <div className="Activecheckbox">
                                                 <Checkbox onChange={Activecheckbox}>Active</Checkbox>
                                                 <div className="Addbutton" onClick={AddingTableData}>Add</div>
+                                                {/* {displayRow?<div className="Addbutton" onClick={AddingTableData}>Add</div>
+                                                :
+                                                <div className="Addbutton" onClick={AddingTableData}>Update</div>} */}
                                             </div>
                                         </div>
                                     </div>
@@ -328,39 +349,41 @@ function ManageTestPage(props) {
 
 
                     <div>
-                        {selectrow.map((datas) => {
-                            return (
 
 
 
-                                <div className="PreviewPage">
+
+                        <div className="PreviewPage">
+                            {selectrow.map((datas) => {
+                                return (
                                     <div className="PreviewLeft">
-                                        <div>{datas.testnames}</div>
-                                        <div className="PreviewSide">{datas.costkwds}
-                                            <div> {datas.code}</div></div>
+                                        <div>{datas.testname}</div>
+                                        <div className="PreviewSide"><div>{datas.costkwd}</div>
+                                            KWD</div>
 
                                     </div>
-                                    <div className="InstructActives">
-                                        <div className="Instructions">{datas.Instructionvals}</div>
+                                )
+                            })
+
+                            }
+                            {/* <div className="InstructActives">
+                                <div className="Instructions">{datas.Instructionvals}</div>
 
 
-                                        <div className="ActiveStatuss">
+                                <div className="ActiveStatuss">
 
-                                            {datas.Checkboxvalues ?
-                                                "Active"
-                                                :
-                                                "Inactive"
-                                            }
-                                        </div>
-
-                                    </div>
-
-
+                                    {datas.Checkboxvalues ?
+                                        "Active"
+                                        :
+                                        "Inactive"
+                                    }
                                 </div>
-                            )
-                        })
 
-                        }
+                            </div> */}
+
+
+                        </div>
+
 
 
 
@@ -393,17 +416,17 @@ function ManageTestPage(props) {
                                         <div className="EntryNamecost">
                                             <div className="EntryTest">
                                                 <div>Test Name</div>
-                                                <div><Input style={{ width: "100%" }} onChange={TestNameChanges} value={testName}/></div>
+                                                <div><Input style={{ width: "100%" }} value={data.testname} onChange={TestNameChange} /></div>
                                             </div>
                                             <div className="EntryCostNumber">
                                                 <div>Cost KWD</div>
-                                                <div><InputNumber style={{ width: "100%" }} onChange={ChangeCost} /></div>
+                                                <div><InputNumber style={{ width: "100%" }} onChange={ChangeCost} value={data.costkwd} /></div>
                                             </div>
 
                                         </div>
                                         <div className="entryinstruction">
                                             <div>Patient Instruction</div>
-                                            <div><textarea name="Text1" cols="40" rows="5" style={{ width: "100%", height: "80px" }} onChange={changeInstruction} /></div>
+                                            <div><textarea name="Text1" cols="40" rows="5" style={{ width: "100%", height: "80px" }} onChange={changeInstruction} value={data.Instructionvals} /></div>
 
                                         </div>
                                         <div className="Activecheckbox">
@@ -428,7 +451,7 @@ function ManageTestPage(props) {
                 <div className="ModelTitle">Delete</div>
                 <div className="ModelDeleteLine">Are You Sure Want to Delete This Record?</div>
                 <div className="Buttondelete"><div className="Cancelbutton" onClick={HandleNoDelete}>No</div>
-                    <div className="Deletebutton">Yes</div></div>
+                    <div className="Deletebutton" onClick={() => Deleterow()}>Yes</div></div>
             </Modal>
 
 
