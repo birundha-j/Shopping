@@ -46,3 +46,15 @@
     margin-bottom: 2%;
     color: gray;
 }
+
+.Modelmediaview{
+    color: rgb(112, 165, 43);
+     font-size: 18px;
+     width: 100%;
+     height: 40px;
+     border-bottom: 1px solid rgb(182, 179, 179);
+}
+.ModelmediaContent{
+    width: 100%;
+    height: 250px;
+}

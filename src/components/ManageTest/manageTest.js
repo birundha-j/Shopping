@@ -39,30 +39,41 @@ const headCells = [
 
 function ManageTestPage(props) {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [changeentrytest, setchangeentrytest] = useState(true)
     const [category, setCategory] = useState([])
-    const [testName, setTestName] = useState([])
-    const [cost, setCost] = useState([])
-    const [instruction, setInstruction] = useState([])
     const [fulldata, setFulldata] = useState([])
     const [keytest, setKeytest] = useState(false)
     const [checkboxes, setCheckboxes] = useState(false)
-    const [addrow, setAddrow] = useState(true)
+    const [addrow, setAddrow] = useState([])
     const [currentdate, setCurrentdate] = useState([])
-    const [actionsicons, setActionicons] = useState()
     const [isModalVisibles, setIsModalVisibles] = useState(false)
     const [indexrow, setIndexrow] = useState()
     const [selectrow, setSelectrow] = useState([])
-    const [displayRow, setDisplayRow] = useState(false)
-    const [isModalVisibleEdit, setIsModalVisibleEdit] = useState(false);
+    const [displayRow, setDisplayRow] = useState(true)
     const [isModalVisibleDelete, setIsModalVisibleDelete] = useState(false);
     const [editrow, setEditrow] = useState([])
-    const [editid, setEditid] = useState()
+    const [editfulldata, setEditifulldata] = useState()
+    const [updateid,setUpdateid] = useState()
     const [deleteid, setDeleteid] = useState()
     //edit
 
     const [testNameedit, setTestNameedit] = useState([])
     // const [editfullrow,setEditfullrow] =useState()
+
+    // single on change:
+
+    const [state, setState] = React.useState({
+        txtname: "",
+        costkwd: "",
+        instruction: "",
+    })
+
+    function handleChange(evt) {
+        const value = evt.target.value;
+        setState({
+            ...state,
+            [evt.target.name]: value
+        });
+    }
 
 
 
@@ -71,13 +82,7 @@ function ManageTestPage(props) {
 
     console.log(A, "rowdata")
 
-    const [rowdata, setRowdata] = React.useState([
-
-
-
-
-        // { testname: B[1], costkwd: "cost", Checkboxvalue: "checkboxes", Instructionval: "instruction", testval: "category" },
-    ]
+    const [rowdata, setRowdata] = React.useState([]
     )
 
 
@@ -89,25 +94,27 @@ function ManageTestPage(props) {
 
     }
 
-    function handleChange(value) {
+    function handleChanges(value) {
         setCategory(value)
         console.log(`selected ${value}`);
     }
 
 
-    const showModal = () => {
+    const showModal = (a) => {
         setIsModalVisible(true);
+        setUpdateid(a)
+        console.log(a,"index")
     };
     const handleCancel = () => {
         setIsModalVisible(false);
     };
     // inputs on change:
 
-    useEffect(()=>{
+    useEffect(() => {
         setEditrow(editrow)
-    },[testName])
+    }, [])
 
-    function TestNameChange(e,id) {
+    /*function TestNameChange(e,id) {
         console.log(e.target.value,"e.target.value")
         if(id){
             // editrow.map((data,index)=>{
@@ -120,14 +127,9 @@ function ManageTestPage(props) {
         }else
         setTestName(e.target.value)
 
-    }
+    }*/
 
-    function ChangeCost(e) {
-        setCost(e)
-    }
-    function changeInstruction(e) {
-        setInstruction(e.target.value)
-    }
+
     function Activecheckbox() {
         // setCheckboxes(!checkboxes)
         setCheckboxes(!checkboxes)
@@ -135,23 +137,15 @@ function ManageTestPage(props) {
     }
 
     function AddingTableData() {
+        setKeytest(true)
 
-        // setActionicons(probs.icons)
         message.success('Test Added Successfully');
         setCurrentdate()
-        setRowdata([...rowdata, {  testname: testName, costkwd: cost, createdate: d }])
+        setRowdata([...rowdata, { testname: state.txtname, costkwd: state.costkwd, createdate: d }])
         A.push(rowdata)
-        B.push(testName)
-
-        setFulldata([...fulldata, { testnames: testName, costkwds: cost, code: "KWD", Checkboxvalues: checkboxes, Instructionvals: instruction, testvals: category }])
-
-        setTestName([])
-        setCost([])
-
-
-
+        setFulldata([...fulldata, { testnames: state.txtname, costkwds: state.costkwd, code: "KWD", Checkboxvalues: checkboxes, Instructionvals: state.instruction, testvals: category }])
     }
-    console.log(rowdata, "headrow")
+    console.log(category, "category")
 
 
     // delete:
@@ -162,19 +156,12 @@ function ManageTestPage(props) {
         }
         setFulldata([...fulldata])
     }
-
-    // ViewTestDetails
-
-
-
-
-
     // visible model:
     const showModalVisible = (x) => {
         console.log(x, "Index")
         setIndexrow(x)
         setSelectrow([...selectrow, rowdata[x]])
-
+        setAddrow([...addrow, fulldata[x]])
         setIsModalVisibles(true);
 
 
@@ -182,21 +169,22 @@ function ManageTestPage(props) {
     const handleCancels = () => {
         setIsModalVisibles(false);
         setSelectrow([])
+        setAddrow([])
 
     };
     // edit model
 
-    function EditTestEntry(id) {
+    // function EditTestEntry(id) {
 
-        setEditid(id)
-        setEditrow([...editrow, rowdata[id]])
-        setIsModalVisibleEdit(true);
-    }
+    //     setEditid(id)
+    //     setEditrow([...editrow, rowdata[id]])
+    //     setIsModalVisibleEdit(true);
+    // }
 
-    function handleCancelEdit() {
-        setIsModalVisibleEdit(false)
-        setEditrow([])
-    }
+    // function handleCancelEdit() {
+    //     setIsModalVisibleEdit(false)
+    //     setEditrow([])
+    // }
 
     // delete model:
 
@@ -224,35 +212,27 @@ function ManageTestPage(props) {
     }
     // update row:
 
-    function UpdateRow() {
+    function updateTabledata() {
         rowdata.map((data, index) => {
-
-
-            if (editid == index) {
-                setTestNameedit(rowdata[editid] = { testname: testName, costkwd: cost, createdate: d })
-
-
+            if (updateid == index) {
+                setTestNameedit(rowdata[updateid] = { testname: state.txtname, costkwd: state.costkwd, createdate: d })
+                setEditifulldata(fulldata[updateid]={Checkboxvalues: checkboxes, Instructionvals: state.instruction, testvals: category})
             }
+         })
+         setIsModalVisible(false);
+         message.success('Updated Successfully');
 
-            console.log(testNameedit, "testNameedit")
 
-        })
-        // setTestName([ ])
-        // setRowdata([...rowdata,{sno: rowdata.length + 1,testname:testName,costkwd: cost, createdate: d}])
 
     }
-    //edit onchange function:
-    function TestNameChanges(e) {
-
-        setTestName(e.target.value)
-    }
+    
     console.log(editrow, "testNametestName")
 
 
     return (
         <div>
 
-            <HeaderDesign modelOpen={showModal} value={"MANAGE TEST"} /> <div>
+            <HeaderDesign modelOpen={() => showModal(setDisplayRow(true))} value={"MANAGE TEST"} /> <div>
                 <Modal visible={isModalVisible} onCancel={handleCancel} width={"60%"} bodyStyle={{ marginTop: 45 }} footer={null}>
                     <div className="ManagePopup">
                         <div className="popupheader">TEST ENTRY </div>
@@ -264,7 +244,7 @@ function ManageTestPage(props) {
                                     <div className="EntryPage">
                                         <div className="SelectBox">
                                             <div>Test Category</div>
-                                            <Select defaultValue="General Scan 1" style={{ width: "90%", padding: "2%" }} onChange={handleChange} >
+                                            <Select defaultValue="General Scan 1" name="textcategory" style={{ width: "90%", padding: "2%" }} onChange={handleChanges} >
                                                 <Option value="General Scan 1">General Scan 1</Option>
                                                 <Option value="BloodTest">BloodTest</Option>
                                                 <Option value="Ultrasound whole abdomen">Ultrasound whole abdomen</Option>
@@ -279,31 +259,30 @@ function ManageTestPage(props) {
                                             <div className="EntryNamecost">
                                                 <div className="EntryTest">
                                                     <div>Test Name</div>
-                                                    <div><Input style={{ width: "100%" }} onChange={TestNameChange} value={testName} /></div>
+                                                    <div><Input style={{ width: "100%" }} name="txtname" onChange={handleChange} value={state.txtname} /></div>
                                                 </div>
                                                 <div className="EntryCostNumber">
                                                     <div>Cost KWD</div>
-                                                    <div><InputNumber style={{ width: "100%" }} onChange={ChangeCost} value={cost} /></div>
+                                                    <div><input style={{ width: "100%" }} name="costkwd" onChange={handleChange} value={state.costkwd} /></div>
                                                 </div>
 
                                             </div>
                                             <div className="entryinstruction">
                                                 <div>Patient Instruction</div>
-                                                <div><textarea name="Text1" cols="40" rows="5" style={{ width: "100%", height: "80px" }} onChange={changeInstruction} /></div>
+                                                <div><textarea name="Text1" cols="40" rows="5" name="instruction" style={{ width: "100%", height: "80px" }} onChange={handleChange} /></div>
 
                                             </div>
                                             <div className="Activecheckbox">
-                                                <Checkbox onChange={Activecheckbox}>Active</Checkbox>
-                                                <div className="Addbutton" onClick={AddingTableData}>Add</div>
-                                                {/* {displayRow?<div className="Addbutton" onClick={AddingTableData}>Add</div>
-                                                :
-                                                <div className="Addbutton" onClick={AddingTableData}>Update</div>} */}
+                                                <Checkbox onChange={Activecheckbox} name="activecheck">Active</Checkbox>
+                                                {displayRow ? <div className="Addbutton" onClick={AddingTableData}>Add</div>
+                                                    :
+                                                    <div className="Addbutton" onClick={updateTabledata}>Update</div>}
                                             </div>
                                         </div>
                                     </div>
 
                                 </TabPane>
-                                <TabPane tab="Preview" key="2">
+                                {displayRow && <TabPane tab="Preview" key="2">
                                     {keytest ? <div >
                                         {fulldata.map((data, index) => {
                                             return (
@@ -336,7 +315,7 @@ function ManageTestPage(props) {
                                         :
                                         <div>No Found Data</div>}
                                 </TabPane>
-
+                                }
                             </Tabs>
                         </div>
 
@@ -346,33 +325,26 @@ function ManageTestPage(props) {
 
 
             </div>
-            {/* {rowdata.map((data, index) => {
-                return ( */}
-
-
-
-            <NewTable headCell={headCells} rows={rowdata} addrows={"false"} Visibles={(index) => showModalVisible(index)} EditIcon={(index) => EditTestEntry(index)} DeleteIcon={(index) => DeleteTestEntry(index)} viewOpen={false} />
-
-            {/* 
-                )
-            })} */}
+            <NewTable headCell={headCells} rows={rowdata} addrows={"false"} Visibles={(index) => showModalVisible(index)} EditIcon={(index) => showModal(index, setDisplayRow(false))} DeleteIcon={(index) => DeleteTestEntry(index)} viewOpen={false} />
             <Modal visible={isModalVisibles} onCancel={handleCancels} width={"45%"} bodyStyle={{ marginTop: 45 }} footer={null}>
                 <div className="ModelTitle">TEXT DETAILS</div><br />
                 <div className="ModelGeneral">
-                    <div className="ModelGeneralScan">General Scan 1</div>
+                    {addrow.map((data) => {
+                        return (
+                            <div className="ModelGeneralScan">{data.testvals}</div>
+
+                        )
+                    })}
 
 
                     <div>
-
-
-
-
                         <div className="PreviewPage">
-                            {selectrow.map((datas) => {
+                            {selectrow.map((data) => {
                                 return (
                                     <div className="PreviewLeft">
-                                        <div>{datas.testname}</div>
-                                        <div className="PreviewSide"><div>{datas.costkwd}</div>
+                                        <div>{data.testname}</div>
+                                        <div className="PreviewSide"><div>{data.costkwd}</div>
+
                                             KWD</div>
 
                                     </div>
@@ -380,26 +352,29 @@ function ManageTestPage(props) {
                             })
 
                             }
-                            {/* <div className="InstructActives">
-                                <div className="Instructions">{datas.Instructionvals}</div>
+                            {addrow.map((data, index) => {
+                                return (
+                                    <div className="InstructActives">
+                                        <div className="Instructions">{data.Instructionvals}</div>
 
 
-                                <div className="ActiveStatuss">
+                                        <div className="ActiveStatuss">
 
-                                    {datas.Checkboxvalues ?
-                                        "Active"
-                                        :
-                                        "Inactive"
-                                    }
-                                </div>
+                                            {data.Checkboxvalues ?
+                                                "Active"
+                                                :
+                                                "Inactive"
+                                            }
+                                        </div>
 
-                            </div> */}
+                                    </div>
+
+                                )
+                            })}
+
 
 
                         </div>
-
-
-
 
 
 
@@ -407,60 +382,7 @@ function ManageTestPage(props) {
 
                 </div>
             </Modal>
-            <Modal visible={isModalVisibleEdit} onCancel={handleCancelEdit} width={"45%"} bodyStyle={{ marginTop: 45 }} footer={null}>
-                <Tabs defaultActiveKey="1" onChange={callback} centered>
-                    {editrow.map((data,index) => {
-                        return (
-                            <TabPane tab="Entry" key="1">
-                                <div className="EntryPage">
-                                    <div className="SelectBox">
-                                        <div>Test Category</div>
-                                        <Select defaultValue="General Scan 1" style={{ width: "90%", padding: "2%" }} onChange={handleChange}  >
-                                            <Option value="General Scan 1">General Scan 1</Option>
-                                            <Option value="BloodTest">BloodTest</Option>
-                                            <Option value="Ultrasound whole abdomen">Ultrasound whole abdomen</Option>
-                                            <Option value="Pregnency Scan" > Pregnency Scan</Option>
-                                            <Option value="Check one">Check one</Option>
-                                            <Option value="Endoscopy">Endoscopy</Option>
-                                            <Option value="Yiminghe">yiminghe</Option>
-                                        </Select>
-                                    </div>
-                                    <div className="EntryFeilds">
-
-                                        <div className="EntryNamecost">
-                                            <div className="EntryTest">
-                                                <div>Test Name</div>
-                                                <div><Input style={{ width: "100%" }} value={data.testname} onChange={(e)=>TestNameChange(e,index)} /></div>
-                                            </div>
-                                            <div className="EntryCostNumber">
-                                                <div>Cost KWD</div>
-                                                <div><InputNumber style={{ width: "100%" }} onChange={ChangeCost} value={data.costkwd} /></div>
-                                            </div>
-
-                                        </div>
-                                        <div className="entryinstruction">
-                                            <div>Patient Instruction</div>
-                                            <div><textarea name="Text1" cols="40" rows="5" style={{ width: "100%", height: "80px" }} onChange={changeInstruction} value={data.Instructionvals} /></div>
-
-                                        </div>
-                                        <div className="Activecheckbox">
-                                            <Checkbox onChange={Activecheckbox}>Active</Checkbox>
-                                            <div className="Addbutton" onClick={UpdateRow}>Update</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </TabPane>
-
-                        )
-                    })}
-
-
-
-
-                </Tabs>
-
-            </Modal>
+            
             <Modal visible={isModalVisibleDelete} onCancel={handleCancelDelete} width={"45%"} bodyStyle={{ marginTop: 45 }} footer={null}>
                 <div className="ModelTitle">Delete</div>
                 <div className="ModelDeleteLine">Are You Sure Want to Delete This Record?</div>
@@ -476,63 +398,3 @@ function ManageTestPage(props) {
     )
 }
 export default ManageTestPage;
-/*
-{rowdata.map((data, index) => {
-    return (
-
-        <div className="ViewTable">
-
-            <NewTable headCell={headCells} rows={rowdata} addrows={"false"} Visible={() => showModalVisible(index)} EditIcon={() => EditTestEntry()} DeleteIcon={() => DeleteTestEntry()} />
-            <Modal visible={isModalVisibles} onCancel={handleCancels} width={"45%"} bodyStyle={{ marginTop: 45 }} footer={null}>
-                <div className="ModelTitle">TEXT DETAILS</div><br />
-                <div className="ModelGeneral">
-                {selectrow.map((datas) => {
-                            return (
-                    <div>
-                    <div className="ModelGeneralScan">{datas.testvals}</div>
-                    <div>
-
-
-                                <div className="PreviewPage">
-                                    <div className="PreviewLeft">
-                                        <div>{datas.testnames}</div>
-                                        <div className="PreviewSide">{datas.costkwds}
-                                            <div> {datas.code}</div></div>
-
-                                    </div>
-                                    <div className="InstructActive">
-                                        <div className="Instruction">{datas.Instructionvals}</div>
-
-
-                                        <div>
-
-                                            {data.Checkboxvalues ?
-                                                "Active"
-                                                :
-                                                "Inactive"
-                                            }
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-
-
-
-
-
-                    </div>
-                    </div>
-                    )
-                })
-
-                }
-                </div>
-            </Modal>
-
-
-
-        </div>
-    )
-})}*/

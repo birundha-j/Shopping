@@ -7,7 +7,6 @@ import HeaderDesign from '../HeaderDesign/headerdesign';
 import NewTable from '../NewTable/newTable'
 
 const headCells = [
-    { id: 'sno', numeric: false, disablePadding: true, label: 'S.No' },
     { id: 'testname', numeric: false, disablePadding: false, label: 'Test Category' },
     { id: 'status', numeric: true, disablePadding: false, label: 'Status' },
     { id: 'actions', numeric: true, disablePadding: false, label: 'Action' },
@@ -25,11 +24,18 @@ function ManageCategory() {
     const [Allrows, setAllrows] = useState([])
     const [checkboxes, setCheckboxes] = useState(false)
     const [indexnum, setIndexnum] = useState()
+    const [updateid, setUpdateid] = useState()
     const onSearch = value => console.log(value);
+    const [deleteId, setDeleteId] = useState()
+
+    const [isModalVisibleDelete, setIsModalVisibleDelete] = useState(false);
+
     const [rowdata, setRowdata] = React.useState([
         // { testname: B[1], costkwd: "cost", Checkboxvalue: "checkboxes", Instructionval: "instruction", testval: "category" },
     ]
     )
+    const [displayRow, setDisplayRow] = useState(true)
+
 
 
     //popup:
@@ -38,7 +44,8 @@ function ManageCategory() {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [filedRequired, setfiledRequired] = useState(true)
 
-    const showModal = () => {
+    const showModal = (a) => {
+        setUpdateid(a)
         setIsModalVisible(true);
 
     };
@@ -55,7 +62,6 @@ function ManageCategory() {
     // Edit Model show:
 
     const [isModelVisible, setIsModelVisible] = useState(false);
-    const [deleteId, setdeleteId] = useState()
 
 
     const showModalnew = () => {
@@ -73,7 +79,7 @@ function ManageCategory() {
 
 
     const success = () => {
-        
+
         message.success('This is a success message');
     };
     // required error box
@@ -103,7 +109,7 @@ function ManageCategory() {
     }
 
     function submitbutton() {
-        setRowdata([...rowdata, { sno: rowdata.length + 1, testname: AddingCategory, status: checkboxes?"Active":"inactive" }])
+        setRowdata([...rowdata, { testname: AddingCategory, status: checkboxes ? "Active" : "inactive" }])
 
         // if (AddingCategory.length > 0) {
 
@@ -112,6 +118,8 @@ function ManageCategory() {
         // } else {
         //     setfiledRequired(false)
         // }
+        setAddingCategory([])
+
 
     }
     function Activecheckbox() {
@@ -120,47 +128,57 @@ function ManageCategory() {
     // message:
 
 
-    function addChangedata() {
+    // delete popup:
+    function DeleteTestEntry(id) {
+        setDeleteId(id)
+        setIsModalVisibleDelete(true)
+    }
+
+    function handleCancelDelete() {
+        setIsModalVisibleDelete(false)
+
+    }
+    function HandleNoDelete() {
+        setIsModalVisibleDelete(false)
+
+    }
+    function Deleterow() {
+        if (deleteId > -1) {
+            rowdata.splice(deleteId, 1);
+        }
+        setRowdata([...rowdata])
+        setIsModalVisibleDelete(false)
+
 
     }
 
 
+    // update button:
+    function updatebutton() {
+        rowdata.map((data, index) => {
+            if (updateid == index) {
+                setIndexnum(rowdata[updateid] = { testname: AddingCategory, status: checkboxes ? "Active" : "inactive" })
+                // setEditifulldata(fulldata[updateid]={Checkboxvalues: checkboxes, Instructionvals: state.instruction, testvals: category})
+            }
+        })
+        setIsModalVisible(false);
+        message.success('Updated Successfully');
+        setAddingCategory([])
 
+    }
 
+    // delete row:
 
-    // delete popup:
-    const [isModalsVisible, setIsModalsVisible] = useState(false)
-
-    const showModaldelete = (id) => {
-        alert(id)
-        setIsModalsVisible(true);
-        setdeleteId(id)
-
-        console.log(indexnum, "indexnum")
-    };
-
-    const handleOkdelete = () => {
-        if (deleteId > -1) {
-            Allrows.splice(deleteId, 1);
-        }
-        setAllrows([...Allrows])
-        setIsModalsVisible(false);
-
-    };
-
-    const handleCanceldelete = () => {
-        setIsModalsVisible(false);
-    };
 
 
     return (
         <div className="maincontent">
 
             <div >
-                <HeaderDesign value={"MANAGE CATEGORY"} modelOpen={showModal} />
-                <NewTable headCell={headCells} rows={rowdata} viewOpen={true} />
+                <HeaderDesign value={"MANAGE CATEGORY"} modelOpen={() => showModal(setDisplayRow(true))} />
+                <NewTable headCell={headCells} rows={rowdata} viewOpen={true} EditIcon={(index) => showModal(index, setDisplayRow(false))} DeleteIcon={(index) => DeleteTestEntry(index)} />
 
-                <Modal visible={isModalVisible} zIndex={10000} onOk={submitbutton} okText={"Submit"} onCancel={handleCancel} onClick={success}>
+                <Modal visible={isModalVisible} zIndex={10000} onOk={displayRow ? () => submitbutton() : () => updatebutton()} okText={displayRow ? "Submit" : "Update"} onCancel={handleCancel} onClick={success}>
                     <div className="ManagePopup">
                         <div className="popupheader">ADD CATEGORY </div>
                         <div>
@@ -176,9 +194,7 @@ function ManageCategory() {
                             <Input className={filedRequired ? "inputbox" : "showRed"} onChange={addChange} value={AddingCategory} />
                             <br />
                             <div className="activebox">
-                                <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-                                    <Checkbox onChange={Activecheckbox}>Active</Checkbox>
-                                </Form.Item>
+                                <Checkbox onChange={Activecheckbox}>Active</Checkbox>
                             </div>
 
 
@@ -188,7 +204,7 @@ function ManageCategory() {
 
             </div>
 
-            {isModelVisible && <Modal zIndex={10000} visible={isModelVisible} onOk={handleOknew} okText={"Upgrade"} onCancel={handleCancelnew} header={null} width={900} bodyStyle={{ height: 220 }} >
+            {/* {isModelVisible && <Modal zIndex={10000} visible={isModelVisible} onOk={handleOknew} okText={"Upgrade"} onCancel={handleCancelnew} header={null} width={900} bodyStyle={{ height: 220 }} >
                 <div className="ManagePopup">
                     <div className="popupheader">ADD CATEGORY </div>
                     <div>
@@ -211,14 +227,16 @@ function ManageCategory() {
 
                     </div>
                 </div>
-            </Modal>}
+            </Modal>} */}
 
-            {
-                setIsModalsVisible && <Modal title="Delete Advertisement" visible={isModalsVisible} onOk={handleOkdelete} onCancel={handleCanceldelete}>
-                    <p>Are You Sure  Want To Delete Record</p>
 
-                </Modal>
-            }
+            <Modal visible={isModalVisibleDelete} onCancel={handleCancelDelete} width={"45%"} bodyStyle={{ marginTop: 45 }} footer={null}>
+                <div className="ModelTitle">Delete</div>
+                <div className="ModelDeleteLine">Are You Sure Want to Delete This Record?</div>
+                <div className="Buttondelete"><div className="Cancelbutton" onClick={HandleNoDelete}>No</div>
+                    <div className="Deletebutton" onClick={() => Deleterow()}>Yes</div></div>
+            </Modal>
+
 
 
         </div>
@@ -232,34 +250,3 @@ export default ManageCategory;
 
 
 
-{/* <table>
-
-<th className="TopHeader">S.No</th>
-<th className="TopHeader">Test Category</th>
-<th className="TopHeader">Status</th>
-<th className="TopHeader">Action</th>
-
-{Allrows.map((data,index) => {
-
-    return (
-        <tr className="ManageTableRows">
-            <td className="TableDatas"></td>
-            <td className="TableDatas">{data.AddFields}</td>
-            <td className="TableDatas">
-                {data.Checkboxvalue ?
-                    "Active"
-                    :
-                    "InActive"
-                }
-            </td>
-            <td className="managechangebuttons">
-                <div onClick={showModalnew}><button className="ManageEdit" onClick={()=>showModalnew()} >✎ </button></div>
-                
-                <Button className="ManageDelete"><DeleteIcon onClick={()=>showModaldelete(index)}/></Button>
-            </td>
-        </tr>
-
-    )
-})}
-
-</table> */}

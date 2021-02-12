@@ -388,7 +388,7 @@ export default function EnhancedTable(props) {
                      
 
                       
-                      <TableCell align="center" >
+                      <TableCell align="left" >
                         <div className="IconShow">
                           {!props.viewOpen && <VisibilityIcon color="primary" fontSize="small" onClick={()=>props.Visibles(index)}/>}
                           <div className="EditView" onClick={()=>props.EditIcon(index)}>✎</div>
