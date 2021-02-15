@@ -52,6 +52,13 @@ function MediaUpload() {
     const showModal = (id) => {
         setUpdateid(id)
         setIsModalVisible(true);
+        rowdata.filter((data, index) => {
+            if (id === index) {
+                setMediaTitle(data.mediatitles)
+                setCheckboxes(data.status)
+
+            }
+        })
     };
 
     const handleOk = () => {
@@ -66,12 +73,14 @@ function MediaUpload() {
     function handleupload() {
         setRowdata([...rowdata, { mediatitles: mediaTitle, mediatype: "Image", uploadon: d, status: "Active" }])
         setAllmedia([...Allmedia, { MediaTitle: mediaTitle, img: image, descriptval: Description, Checkboxvalue: Checkboxes ? "active" : "inactive" }])
+        setIsModalVisible(false);
+
     }
 
     function handleupdate() {
         rowdata.map((data, index) => {
             if (updateid == index) {
-                setEditrow(rowdata[updateid] = { mediatitles: mediaTitle, mediatype: "Image", uploadon: d, status: "Active" })
+                setChangerow(rowdata[updateid] = { mediatitles: mediaTitle, mediatype: "Image", uploadon: d, status: Checkboxes ? "active" : "inactive" })
                 // setAllmedia([...Allmedia, { MediaTitle: mediaTitle, img: image, descriptval: Description, Checkboxvalue: Checkboxes }])
             }
         })
@@ -163,12 +172,17 @@ function MediaUpload() {
     const showModalVisible = (x) => {
         console.log(x, "Index")
         setEditid(x)
-        setChangerow([rowdata[x] = { MediaTitle: mediaTitle, img: image, descriptval: Description, Checkboxvalue: Checkboxes ? "active" : "inactive" }])
+        
+                setEditrow([...editrow, Allmedia[x]])
+
+            
+
         setIsModalVisibles(true);
 
 
     };
     const handleCancels = () => {
+        setEditrow([])
         setIsModalVisibles(false);
 
     };
@@ -246,7 +260,7 @@ function MediaUpload() {
             <Modal visible={isModalVisibles} onCancel={handleCancels} width={"45%"} bodyStyle={{ marginTop: 45 }} footer={null}>
                 <div className="Modelmediaview">VIEW MEDIA</div>
                 <div className="ModelmediaContent">
-                    {changerow.map((data) => {
+                    {editrow.map((data) => {
                         return (
                             <div>
                                 <div>{data.descriptval}</div>

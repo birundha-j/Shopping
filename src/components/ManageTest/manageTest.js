@@ -52,7 +52,7 @@ function ManageTestPage(props) {
     const [isModalVisibleDelete, setIsModalVisibleDelete] = useState(false);
     const [editrow, setEditrow] = useState([])
     const [editfulldata, setEditifulldata] = useState()
-    const [updateid,setUpdateid] = useState()
+    const [updateid, setUpdateid] = useState()
     const [deleteid, setDeleteid] = useState()
     //edit
 
@@ -103,7 +103,19 @@ function ManageTestPage(props) {
     const showModal = (a) => {
         setIsModalVisible(true);
         setUpdateid(a)
-        console.log(a,"index")
+        console.log(a, "index")
+        rowdata.filter((data, index) => {
+            if (a === index) {
+                console.log(data, "data<<")
+
+                setState({
+                    txtname: data.testname,
+                    costkwd: data.costkwd,
+                    instruction: data.instruction,
+                })
+            }
+        })
+
     };
     const handleCancel = () => {
         setIsModalVisible(false);
@@ -117,11 +129,11 @@ function ManageTestPage(props) {
     /*function TestNameChange(e,id) {
         console.log(e.target.value,"e.target.value")
         if(id){
-            // editrow.map((data,index)=>{
-            //     if(id === index){
+            editrow.map((data,index)=>{
+                if(id === index){
                     
-            //     }
-            // })
+                }
+            })
             editrow[id].testName = e.target.value
             setEditrow(editrow)
         }else
@@ -144,6 +156,14 @@ function ManageTestPage(props) {
         setRowdata([...rowdata, { testname: state.txtname, costkwd: state.costkwd, createdate: d }])
         A.push(rowdata)
         setFulldata([...fulldata, { testnames: state.txtname, costkwds: state.costkwd, code: "KWD", Checkboxvalues: checkboxes, Instructionvals: state.instruction, testvals: category }])
+        
+        setState({
+            txtname: "",
+            costkwd: "",
+            instruction: "",
+        })
+        setIsModalVisible(false);
+
     }
     console.log(category, "category")
 
@@ -216,16 +236,16 @@ function ManageTestPage(props) {
         rowdata.map((data, index) => {
             if (updateid == index) {
                 setTestNameedit(rowdata[updateid] = { testname: state.txtname, costkwd: state.costkwd, createdate: d })
-                setEditifulldata(fulldata[updateid]={Checkboxvalues: checkboxes, Instructionvals: state.instruction, testvals: category})
+                setEditifulldata(fulldata[updateid] = { Checkboxvalues: checkboxes, Instructionvals: state.instruction, testvals: category })
             }
-         })
-         setIsModalVisible(false);
-         message.success('Updated Successfully');
+        })
+        setIsModalVisible(false);
+        message.success('Updated Successfully');
 
 
 
     }
-    
+
     console.log(editrow, "testNametestName")
 
 
@@ -382,7 +402,7 @@ function ManageTestPage(props) {
 
                 </div>
             </Modal>
-            
+
             <Modal visible={isModalVisibleDelete} onCancel={handleCancelDelete} width={"45%"} bodyStyle={{ marginTop: 45 }} footer={null}>
                 <div className="ModelTitle">Delete</div>
                 <div className="ModelDeleteLine">Are You Sure Want to Delete This Record?</div>

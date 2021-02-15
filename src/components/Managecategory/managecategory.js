@@ -47,6 +47,13 @@ function ManageCategory() {
     const showModal = (a) => {
         setUpdateid(a)
         setIsModalVisible(true);
+        rowdata.filter((data, index) => {
+            if (a === index) {
+                setAddingCategory(data.testname)
+                setCheckboxes(data.status)
+               
+            }
+        })
 
     };
 
@@ -119,6 +126,8 @@ function ManageCategory() {
         //     setfiledRequired(false)
         // }
         setAddingCategory([])
+        setIsModelVisible(false);
+
 
 
     }
