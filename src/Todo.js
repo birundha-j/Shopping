@@ -1,26 +1,32 @@
-import React  from 'react'
+import React, { useState }  from 'react'
 // import DeleteIcon from '@material-ui/icons/Delete';
 // import EditIcon from '@material-ui/icons/Edit';
 import './todo.css'
 
 function TodoList() {
+    const [days,setdays]=useState()
 
-    const [state, setState] = React.useState({
-        name: "",
-        age: "",
-        degree: "",
-        place: "",
-        phone: ""
-      })
+    function calculate(){
+        
+
+    }
+
+    // const [state, setState] = React.useState({
+    //     name: "",
+    //     age: "",
+    //     degree: "",
+    //     place: "",
+    //     phone: ""
+    //   })
       
-      function handleChange(evt) {
-        const value = evt.target.value;
-        setState({
-          ...state,
-          [evt.target.name]: value
-        });
-        console.log(state,"state")
-      }
+    //   function handleChange(evt) {
+    //     const value = evt.target.value;
+    //     setState({
+    //       ...state,
+    //       [evt.target.name]: value
+    //     });
+    //     console.log(state,"state")
+    //   }
     //   function Adddata(){
     //     setState(state)
 
@@ -64,6 +70,8 @@ function TodoList() {
     // }
     return (
         <div>
+            number:<input/>
+            <button onClick={calculate}>Find</button>
             {/* <input type="test" onChange={handleChange} value={input}></input>
             {btnchange ?
                 <button onClick={AddDatas}>Add</button>
@@ -84,7 +92,7 @@ function TodoList() {
 
                 )
             })} */}
-            <div>
+           {/* <div>
                 Name   :       <input type="text" name="name" onChange={handleChange} value={state.name}/><br /><br/>
                 Age    :        <input type="number" name="age" onChange={handleChange} value={state.age}/><br /><br/>
                 degree :     <input type="text" name="degree" onChange={handleChange} value={state.degree}/><br /><br/>
@@ -96,7 +104,7 @@ function TodoList() {
             {state.age}
             {state.degree}
             {state.place}
-            {state.phone}
+            {state.phone}  */}
 
 
 

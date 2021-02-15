@@ -6,11 +6,12 @@ import Apps from './App';
 import "antd/dist/antd.css";
 import LogOut from './logout'
 import TodoList from './Todo.js'
+import NowProjects from './Nowproject'
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Apps/>
+    <NowProjects/>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -5,6 +5,7 @@ import { AudioOutlined, DeleteRowOutlined } from '@ant-design/icons';
 import DeleteIcon from '@material-ui/icons/Delete';
 import HeaderDesign from '../HeaderDesign/headerdesign';
 import NewTable from '../NewTable/newTable'
+import InputText from '../InputFileds/input'
 
 const headCells = [
     { id: 'testname', numeric: false, disablePadding: false, label: 'Test Category' },
@@ -192,15 +193,17 @@ function ManageCategory() {
                         <div className="popupheader">ADD CATEGORY </div>
                         <div>
 
-                            <div className="categoryfield">
+                            {/* <div className="categoryfield">
                                 <Form.Item
                                     label="Test Category"
                                     name="username"
                                     rules={[{ required: true, message: 'Please input your username!' }]}
                                 >
                                 </Form.Item>
-                            </div>
-                            <Input className={filedRequired ? "inputbox" : "showRed"} onChange={addChange} value={AddingCategory} />
+                            </div> */}
+                            
+                            <InputText   onChange={addChange} value={AddingCategory}/>
+                            {/* <Input className={filedRequired ? "inputbox" : "showRed"} /> */}
                             <br />
                             <div className="activebox">
                                 <Checkbox onChange={Activecheckbox}>Active</Checkbox>
