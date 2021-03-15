@@ -107,13 +107,6 @@ function AdvertisementBooking() {
 
         }
         message.success('Advertisement Added Successfully');
-
-
-
-        // {fees:startDate}
-        // setstartDate(b)
-        // setendDate(c)
-        // settotalCost(d)
     }
 
 

@@ -1,78 +1,70 @@
-import react, { useState } from 'react'
-import './nowprojects.css'
-import Img1 from '../src/image/image1.jpg'
-import Img2 from '../src/image/image2.jpg'
-import Img3 from '../src/image/image3.jpg'
-import Img4 from '../src/image/image4.jpg'
-import Img5 from '../src/image/image5.jpg'
-import Img6 from '../src/image/image6.jpg'
-import Img7 from '../src/image/image7.jpg'
-import Img8 from '../src/image/image8.jpg'
-import Img9 from '../src/image/image9.jpg'
-import { Check } from '@material-ui/icons'
+// import react, { useEffect, useState } from 'react';
+// import { Modal, Button } from 'antd';
 
-let a;
-const Frames = [{ img: Img1 }, { img: Img2 }, { img: Img3 }, { img: Img4 }, { img: Img5 }, { img: Img6 }, { img: Img7 }, { img: Img8 }]
+// function NowProjects() {
+//     const [post, setPost] = useState([])
+//     const [content, setContent] = useState()
+//     const [isModalVisible, setIsModalVisible] = useState(false);
+//     const [test, setTest] = useState()
 
-function NowProjects() {
+//     const showModal = (id) => {
+//         setTest(post[id])
+//     // console.log(test.id, "test") if (id <=100) {
 
-    // var slideIndex = 1;
-    // showSlides(slideIndex);
+//             post.find((data) => {
+//                 setContent(data.title)
 
-    // function plusSlides(n) {
-    //     showSlides(slideIndex += n);
-    // }
+//             })
 
-    // function currentSlide(n) {
-    //     showSlides(slideIndex = n);
-    // }
+//         }
+//         setIsModalVisible(true);
+//     };
 
-    // function showSlides(n) {
-    //     var i;
-    //     var slides = document.getElementsByClassName("mySlides");
-    //     var dots = document.getElementsByClassName("dot");
-    //     if (n > slides.length) { slideIndex = 1 }
-    //     if (n < 1) { slideIndex = slides.length }
-    //     for (i = 0; i < slides.length; i++) {
-    //         slides[i].style.display = "none";
-    //     }
-    //     for (i = 0; i < dots.length; i++) {
-    //         dots[i].className = dots[i].className.replace(" active", "");
-    //     }
-    //     slides[slideIndex - 1].style.display = "block";
-    //     dots[slideIndex - 1].className += " active";
-    // }
 
-    return (
-        // <div>
-        //     <div className="mySlides fade"><img src={Img1} /></div>
-        //     <div className="mySlides fade"><img src={Img2} /></div>
-        //     <div className="mySlides fade"><img src={Img3} /></div>
+//     const handleOk = () => {
+//         setIsModalVisible(false);
+//         setTest()
+//     };
 
-        //     <div>
-        //         <a className="prev" onclick="plusSlides(-1)">&#10094;</a>
-        //         <a className="next" onclick="plusSlides(1)">&#10095;</a>
+//     const handleCancel = () => {
+//         setIsModalVisible(false);
+//     };
 
-        //     </div>
-        //     <div style="text-align:center">
-        //         <span className="dot" onclick="currentSlide(1)"></span>
-        //         <span className="dot" onclick="currentSlide(2)"></span>
-        //         <span className="dot" onclick="currentSlide(3)"></span>
-        //     </div>
-        // </div>
-        <div>
-            <div className="Mainimage">
-                <img src={Img9} />
-            </div>
-            <div className="Screensize">
+//     useEffect(() => {
+//         const url = 'https://jsonplaceholder.typicode.com/todos';
+//         fetch(url).then(resp => resp.json())
+//             .then(resp => setPost(resp))
+//     }, [])
 
-                {Frames.map((data) => {
-                    return (
-                        <img src={data.img} className="imageView" />
-                    )
-                })}
-            </div>
-        </div>
-    )
-}
-export default NowProjects;
+
+//     return (
+//         <div>
+
+//             <table>
+//                 <tr>
+//                     <th>User Id</th>
+//                     <th> Id</th>
+
+
+//                 </tr>
+//                 {post.map((data, index) => {
+//                     return (
+//                         <tr>
+//                             <td>{data.userId} </td>
+//                             <td onClick={() => showModal(index)}>{data.id} </td>
+
+
+//                         </tr>
+//                     )
+//                 })}
+//             </table>
+//             <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+//                 {content}
+
+//             </Modal>
+
+
+//         </div>
+//     )
+// }
+// export default NowProjects;

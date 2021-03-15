@@ -11,7 +11,7 @@ import NowProjects from './Nowproject'
 
 ReactDOM.render(
   <React.StrictMode>
-    <NowProjects/>
+    <Apps/>
   </React.StrictMode>,
   document.getElementById('root')
 );
