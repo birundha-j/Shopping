@@ -22,7 +22,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import React, { useState ,Component, useEffect } from 'react';
+import React, { useState, Component, useEffect } from 'react';
 import { Modal, Button } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
 import logoimage from './image/logo.jpg';
@@ -43,7 +43,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ReportIcon from '@material-ui/icons/Report';
 // Router:
-import { BrowserRouter as Router, Switch, Route,Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
 import Home from './components/Home/home.js';
 import AppointmentList from './components/AppoinmentList/appointedlist';
 import UploadResults from './components/UploadResults/uploadResult.js'
@@ -129,7 +129,7 @@ export default function Apps() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [dateform, setdateform] = useState();
-  const [redirectPath,setRedirectPath] = useState("")
+  const [redirectPath, setRedirectPath] = useState("")
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -171,42 +171,43 @@ export default function Apps() {
   // })
 
   return (
-    <div className={`${classes.root} drawerContainer`}>
+    <Router >
+      <div className={`${classes.root} drawerContainer`}>
 
 
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
 
-        <Toolbar>
+          <Toolbar>
 
 
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className="hearderrightside" >
-            <div className="headerdisplay">
-              <div ><NotificationsIcon className="Belldesign" /></div>
-              <div className="headerline"></div>
-              <div>
-                <div >
-                  <Button onClick={showModal} className={`${classes.root} headerbutton`}>
-                    Lina Clinical Lab <CaretDownOutlined />
-                  </Button>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                [classes.hide]: open,
+              })}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" className="hearderrightside" >
+              <div className="headerdisplay">
+                <div ><NotificationsIcon className="Belldesign" /></div>
+                <div className="headerline"></div>
+                <div>
+                  <div >
+                    <Button onClick={showModal} className={`${classes.root} headerbutton`}>
+                      Lina Clinical Lab <CaretDownOutlined />
+                    </Button>
 
-                    <Modal visible={isModalVisible} footer={null} width={380} bodyStyle={{ height: 350,paddingTop:30 }} header={null} style={{marginRight:"5px",paddingBottom:0}} zIndex={1111} maskClosable={false} onCancel={handleCancel}>
+                    <Modal visible={isModalVisible} footer={null} width={380} bodyStyle={{ height: 350, paddingTop: 30 }} header={null} style={{ marginRight: "5px", paddingBottom: 0 }} zIndex={1111} maskClosable={false} onCancel={handleCancel}>
                       <div className="popupheader">
                         <div className="popupfirstrow">
                           <img src={profile} className="popupimage" />
@@ -217,8 +218,8 @@ export default function Apps() {
                         <hr></hr>
 
                         <div className="popuplogout">
-                          <div className="popupprofile"><a href={'/profile'}>Profile</a></div>
-                          <div><Button className="popupbutton"><a href={'/logout'}>Logout</a></Button></div>
+                          <div className="popupprofile"> <Link to={'/profile'}>Profile</Link></div>
+                          <div><Button className="popupbutton"> <Link to={'/logout'}>Logout</Link></Button></div>
 
                         </div>
                         <hr />
@@ -227,153 +228,154 @@ export default function Apps() {
                     </Modal>
 
 
+                  </div>
+                  <div className="headerdateform">
+                    {(d.getDate()) + "-" + (d.getMonth() + 1) + "-" + (d.getUTCFullYear()) + " " + hours + ":" + (minute < 10 ? "0" + minute : minute) + " " + datestandard}
+                  </div>
                 </div>
-                <div className="headerdateform">
-                  {(d.getDate()) + "-" + (d.getMonth() + 1) + "-" + (d.getUTCFullYear()) + " " + hours + ":" + (minute < 10 ? "0" + minute : minute) + " " + datestandard}
-                </div>
+
+
+                <img src={profile} className="profileimage" />
+
               </div>
+              {/* Mini variant drawer */}
+            </Typography>
 
-
-              <img src={profile} className="profileimage" />
-
-            </div>
-            {/* Mini variant drawer */}
-          </Typography>
-
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
-          }),
-        }}
-      >
+          })}
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open,
+            }),
+          }}
+        >
 
-        <div className={`${classes.toolbar} logoonsider`}>
-
-
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </div>
-
+          <div className={`${classes.toolbar} logoonsider`}>
 
 
-        <Divider />
-  
-        <List className={"iconView"} vlink="red">
-          {/* <img src={logoimage} className="Logoimage" /> */}
-          <a href={'/'} className="MenuList"  >
-            <ListItem button key={"Home"} >
-              <ListItemIcon> <HomeIcon /> </ListItemIcon>
-              <ListItemText primary={"Home"} />
-            </ListItem>
-            </a>
-         
-          
-            <a href={'/appointedlist'} className="MenuList" >
-            <ListItem button key={'Appoinment list'}  >
-              <ListItemIcon> <ListAltIcon /> </ListItemIcon>
-              <ListItemText primary={'Appoinment list'} />
-            </ListItem>
-            </a>
-          
-          <a href={'/uploadResult'}  className="MenuList" >
-            <ListItem button key={'Upload Result'}>
-              <ListItemIcon> <PublishIcon className="iconsize" /> </ListItemIcon>
-              <ListItemText primary={'Upload Result'} />
-            </ListItem>
-            </a>
-          <a href={'/cancelApponiment'} className="MenuList" >
-            <ListItem button key={'Cancelled Appoinments'}>
-              <ListItemIcon> <CancelPresentationIcon /> </ListItemIcon>
-              <ListItemText primary={'Cancelled Appoinments'} />
-            </ListItem>
-            </a>
-          <a href={'/Adbooking'}className="MenuList"  >
-            <ListItem button key={'Advertisement Booking'}>
-              <ListItemIcon> <PhoneBluetoothSpeakerIcon /> </ListItemIcon>
-              <ListItemText primary={'Advertisement Booking'} />
-            </ListItem>
-            </a>
-          
-          <a href={'./deals'} className="MenuList" >
-            <ListItem button key={'Deals'}>
-              <ListItemIcon> <LibraryBooksIcon /> </ListItemIcon>
-              <ListItemText primary={'Deals'} />
-            </ListItem>
-            </a>
-          <a href={'./revenue'} className="MenuList" >
-            <ListItem button key={'Revenue'}>
-              <ListItemIcon> <EqualizerIcon /> </ListItemIcon>
-              <ListItemText primary={'Revenue'} />
-            </ListItem>
-            </a>
-          <a href={'./managecategory'} className="MenuList" >
-            <ListItem button key={'Manage catogory'}>
-              <ListItemIcon> <CategoryIcon /> </ListItemIcon>
-              <ListItemText primary={'Manage catogory'} />
-            </ListItem>
-            </a>
-          <a href={'./manageTest'}  className="MenuList" >
-            <ListItem button key={'Manage Test'}>
-              <ListItemIcon> <HourglassEmptyIcon /> </ListItemIcon>
-              <ListItemText primary={'Manage Test'} />
-            </ListItem>
-            </a>
-            <a href={'./mediaupload'} className="MenuList" >
-            <ListItem button key={'Media Upload'}>
-              <ListItemIcon> <CloudUploadIcon /> </ListItemIcon>
-              <ListItemText primary={'Media Upload'} />
-            </ListItem>
-            </a>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </div>
 
-            <a href={'./profile'}className="MenuList" >
-            <ListItem button key={'Profile'}>
-              <ListItemIcon> <AccountCircleIcon /> </ListItemIcon>
-              <ListItemText primary={'Profile'} />
-            </ListItem>
-            </a>
-          
+
+
+          <Divider />
+
+          <List className={"iconView"} vlink="red">
+            {/* <img src={logoimage} className="Logoimage" /> */}
+            <Link to={'/'} className="MenuList"  >
+              <ListItem button key={"Home"} >
+                <ListItemIcon> <HomeIcon /> </ListItemIcon>
+                <ListItemText primary={"Home"} />
+              </ListItem>
+            </Link>
+
+
+             <Link to={'/appointedlist'} className="MenuList" >
+              <ListItem button key={'Appoinment list'}  >
+                <ListItemIcon> <ListAltIcon /> </ListItemIcon>
+                <ListItemText primary={'Appoinment list'} />
+              </ListItem>
+             </Link>
+
+             <Link to={'/uploadResult'} className="MenuList" >
+              <ListItem button key={'Upload Result'}>
+                <ListItemIcon> <PublishIcon className="iconsize" /> </ListItemIcon>
+                <ListItemText primary={'Upload Result'} />
+              </ListItem>
+             </Link>
+             <Link to={'/cancelApponiment'} className="MenuList" >
+              <ListItem button key={'Cancelled Appoinments'}>
+                <ListItemIcon> <CancelPresentationIcon /> </ListItemIcon>
+                <ListItemText primary={'Cancelled Appoinments'} />
+              </ListItem>
+             </Link>
+             <Link to={'/Adbooking'} className="MenuList"  >
+              <ListItem button key={'Advertisement Booking'}>
+                <ListItemIcon> <PhoneBluetoothSpeakerIcon /> </ListItemIcon>
+                <ListItemText primary={'Advertisement Booking'} />
+              </ListItem>
+             </Link>
+
+             <Link to={'./deals'} className="MenuList" >
+              <ListItem button key={'Deals'}>
+                <ListItemIcon> <LibraryBooksIcon /> </ListItemIcon>
+                <ListItemText primary={'Deals'} />
+              </ListItem>
+             </Link>
+             <Link to={'./revenue'} className="MenuList" >
+              <ListItem button key={'Revenue'}>
+                <ListItemIcon> <EqualizerIcon /> </ListItemIcon>
+                <ListItemText primary={'Revenue'} />
+              </ListItem>
+             </Link>
+             <Link to={'./managecategory'} className="MenuList" >
+              <ListItem button key={'Manage catogory'}>
+                <ListItemIcon> <CategoryIcon /> </ListItemIcon>
+                <ListItemText primary={'Manage catogory'} />
+              </ListItem>
+             </Link>
+             <Link to={'./manageTest'} className="MenuList" >
+              <ListItem button key={'Manage Test'}>
+                <ListItemIcon> <HourglassEmptyIcon /> </ListItemIcon>
+                <ListItemText primary={'Manage Test'} />
+              </ListItem>
+             </Link>
+             <Link to={'./mediaupload'} className="MenuList" >
+              <ListItem button key={'Media Upload'}>
+                <ListItemIcon> <CloudUploadIcon /> </ListItemIcon>
+                <ListItemText primary={'Media Upload'} />
+              </ListItem>
+             </Link>
+
+             <Link to={'./profile'} className="MenuList" >
+              <ListItem button key={'Profile'}>
+                <ListItemIcon> <AccountCircleIcon /> </ListItemIcon>
+                <ListItemText primary={'Profile'} />
+              </ListItem>
+             </Link>
+
             <ListItem button key={'Report'} className="MenuList" >
               <ListItemIcon> <ReportIcon /> </ListItemIcon>
               <ListItemText primary={'Report'} />
             </ListItem>
-          
-        </List>
 
-      </Drawer>
+          </List>
 
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <div >
-          <Router >
-              <Switch>
-                <Route exact path='/' component={Home} />
-                <Route path='/appointedlist' component={AppointmentList} />
-                <Route path='/uploadResult'  component={UploadResults} />
-                <Route path='/cancelApponiment' component={CancelAppoinment} />
-                <Route path='/Adbooking'  component={AdvertisementBook}/>
-                <Route path='/deals' component={DealsList} />
-                <Route path='/revenue' component={Revenueitems}/>
-                <Route path='/managecategory' component={ManageCategory}/>
-                <Route path='/manageTest' component={ManageTest}/>
-                <Route path='/mediaupload' component={MediaUpload}/>
-                <Route path='/profile' component={Profile}/>
-                {/* <Route path='/logout' component={Logout} /> */}
-              </Switch>
-          </Router>
+        </Drawer>
 
-        </div>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <div >
 
-      </main>
-    </div>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/appointedlist' component={AppointmentList} />
+              <Route path='/uploadResult' component={UploadResults} />
+              <Route path='/cancelApponiment' component={CancelAppoinment} />
+              <Route path='/Adbooking' component={AdvertisementBook} />
+              <Route path='/deals' component={DealsList} />
+              <Route path='/revenue' component={Revenueitems} />
+              <Route path='/managecategory' component={ManageCategory} />
+              <Route path='/manageTest' component={ManageTest} />
+              <Route path='/mediaupload' component={MediaUpload} />
+              <Route path='/profile' component={Profile} />
+              {/* <Route path='/logout' component={Logout} /> */}
+            </Switch>
+
+
+          </div>
+
+        </main>
+      </div>
+    </Router>
   );
 }
